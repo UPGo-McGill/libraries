@@ -107,3 +107,18 @@ names(Other) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
 Canadian_libraries <- rbind(Saskatoon, New_Brunswick, London, Waterloo, Winnipeg, Windsor,
                             Kitchener, Idea_Exchange, Toronto, St_Cats, Halifax, Markham, Other) 
 
+
+library(ggplot2)
+library(ggmap)
+library(maps)
+library(mapdata)
+
+maps::"canada"
+
+ggplot() +
+  geom_point(data = Canadian_libraries, aes(x = Longitude, y = Latitude), colour = "black", size = 1) 
+
+?coord_fixed
+
+?maps
+
