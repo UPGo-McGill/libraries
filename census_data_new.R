@@ -90,3 +90,9 @@ CTs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), (level = 'CT' 
 CTs %>% 
   filter(Type=="CT")->
   CTs
+
+# To do :
+  # Make sure library data is clean and recognized as lat logn
+  # Buffer around library - how big do we want them to be?
+  # Clip CTs to examine demographics within
+  # Compare with city-wide variables
