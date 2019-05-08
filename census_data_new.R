@@ -91,8 +91,16 @@ CTs %>%
   filter(Type=="CT")->
   CTs
 
+
+Areas_and_CTs <- st_intersection (CTs, libraryAreas)
+
+plot(Areas_and_CTs["geometry"]) 
+
+plot(libraryAreas["geometry"])
+
 # To do :
   # Make sure library data is clean and recognized as lat logn
   # Buffer around library - how big do we want them to be?
-  # Clip CTs to examine demographics within
+  # Clip CTs to examine demographics within - income, focus on social need 
+    # (drug addiction, homelessness etc.?), core housing need, immigration status, race, ethnicity
   # Compare with city-wide variables
