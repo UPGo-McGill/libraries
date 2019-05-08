@@ -83,3 +83,10 @@ libraryCDs <- filter(CDs,
                        name == "Kent (CT)")
 
 libraryAreas <- rbind(libraryCDs, LibraryCMAs)
+
+# Get census tracts
+CTs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), (level = 'CT' ), geo_format = "sf")
+
+CTs %>% 
+  filter(Type=="CT")->
+  CTs
