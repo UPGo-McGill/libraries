@@ -6,7 +6,7 @@ library(tidyverse)
 
 # API KEY
 options(cancensus.api_key = "CensusMapper_7f389ba345baaf2f6be7df4037991aa5")
-options(cancensus.cache_path = "~/OneDrive - McGill University/Documents/RA - UPGo/Libraries/libraries")
+options(cancensus.cache_path = "~/OneDrive - McGill University/Documents/RA - UPGo/libraries")
 
 # DATA
 variables <- list_census_vectors(dataset = "CA16")
@@ -19,7 +19,7 @@ onlyCMAs <- filter(CMAs, Type == "CMA")
 
 CDs <- get_census(dataset = "CA16", regions = list(C = "Canada"), (level = "CD"), geo_format = "sf")
 
-Library_Areas <- filter(CMAs, 
+LibraryCMAs <- filter(CMAs, 
                         name == "Abbotsford - Mission (B)" |
                           name == "Barrie (B)" |
                           name == "Calgary (B)" |
@@ -51,4 +51,31 @@ Library_Areas <- filter(CMAs,
                           name == "Winnipeg (B)" |
                           name == "Wood Buffalo (B)")
 
-
+libraryCDs <- filter(CDs, 
+                     name == "Fraser Valley (RD)" |
+                       name == "Central Okanagan (RD)" |
+                       name == "Columbia-Shuswap (RD)" |
+                       name == "North Okanagan (RD)" |
+                       name == "Okanagan-Similkameen (RD)" |
+                       name == "Mount Waddington (RD)" |
+                       name == "Strathcona (RD)" |
+                       name == "Alberni-Clayoquot (RD)" |
+                       name == "Comox Valley (RD)" |
+                       name == "Nanaimo (RD)" |
+                       name == "Cowichan Valley (RD)" |
+                       name == "Capital (RD)" |
+                       name == "Madawaska (CT)" |
+                       name == "Restigouche (CT)" |
+                       name == "Gloucester (CT)" |
+                       name == "Northumberland (CT)" |
+                       name == "Victoria (CT)" |
+                       name == "Carleton (CT)" |
+                       name == "York (CT)" |
+                       name == "Charlotte (CT)" |
+                       name == "Sunbury (CT)" |
+                       name == "Queens (CT)" |
+                       name == "Kins (CT)" |
+                       name == "Saint John (CT)" |
+                       name == "Albert (CT)" |
+                       name == "Westmorland (CT)"|
+                       name == "Kent (CT)")
