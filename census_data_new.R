@@ -51,6 +51,8 @@ LibraryCMAs <- filter(CMAs,
                           name == "Winnipeg (B)" |
                           name == "Wood Buffalo (B)")
 
+LibraryCMAs <- select(LibraryCMAs, -c(C_UID))
+
 libraryCDs <- filter(CDs, 
                      name == "Fraser Valley (RD)" |
                        name == "Central Okanagan (RD)" |
@@ -79,3 +81,5 @@ libraryCDs <- filter(CDs,
                        name == "Albert (CT)" |
                        name == "Westmorland (CT)"|
                        name == "Kent (CT)")
+
+libraryAreas <- rbind(libraryCDs, LibraryCMAs)
