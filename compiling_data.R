@@ -1,6 +1,6 @@
 ## Clean and Compile Library Data
 ## May 8, 2019
-
+install.packages("dplyr")
 library(tidyverse)
 library(dplyr)
 
@@ -121,4 +121,13 @@ ggplot() +
 ?coord_fixed
 
 ?maps
+
+Canadian_libraries
+install.packages("sf")
+library(sf)
+Can_Lib = st_as_sf(Canadian_libraries, coords = c("Longitude", "Latitude"),
+                   crs=4326) 
+ggplot (Can_Lib) +
+  geom_sf()
+
 
