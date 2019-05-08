@@ -91,10 +91,15 @@ CTs %>%
   filter(Type=="CT")->
   CTs
 
+DAs <- get_census(dataset = "CA16", regions = list(C = "Canada"), (level = "DA"), geo_format = "sf")
 
 Areas_and_CTs <- st_intersection (CTs, libraryAreas)
 
+Areas_and_DAs <- st_intersection(DAs, libraryAreas)
+
 plot(Areas_and_CTs["geometry"]) 
+
+plot(Areas_and_DAs["geometry"])
 
 plot(libraryAreas["geometry"])
 
