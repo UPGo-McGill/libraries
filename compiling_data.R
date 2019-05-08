@@ -28,6 +28,7 @@ names(Other) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
 #   Oshawa, Ottawa, Pickering, Red Deer, St Cats, Toronto, Windsor, Winnipeg
 
 
+# Compile into one table
 Canadian_libraries <- rbind(Saskatoon, New_Brunswick, Guelph, London, Other) 
 
 
