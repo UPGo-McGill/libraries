@@ -79,3 +79,6 @@ St_Cats %>%
 St_Cats$Library_System <- "St. Catharines Public Library"
 St_Cats <- St_Cats[c(4,1,3,2)]
 names(St_Cats) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
+
+# Markham
+
