@@ -51,7 +51,7 @@ names(Windsor) <- c("Library_Branch", "Longitude", "Latitude", "Library_System")
 Windsor <- Windsor[c(4,1,3,2)]
 
 
-# Other - Richmond Hill, Thunder Bay, Regina, Wood Buffalo, Vaughn, Red Deer, Milton, Burnaby, Coquitlam, 
+# Other - Richmond Hill, Thunder Bay, Regina, Wood Buffalo, Vaughan, Red Deer, Milton, Burnaby, Coquitlam, 
 #   Barrie, Calgary, Edmonton, Gatineau,
 #   Guelph, Hamilton, Kingston, Laval, Mississauga, Okanagan, Richmond, Surrey, Vancouver Island, Vancouver
 Other <- read_csv("Data/All Libraries.csv")
@@ -104,10 +104,16 @@ St_Cats$Library_System <- "St. Catharines Public Library"
 St_Cats <- St_Cats[c(4,1,3,2)]
 names(St_Cats) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
 
-# To import: Brampton, Burlington, Markham , Montreal, Oakville, Oshawa, Ottawa, Pickering, Halifax
+# Halifax
+Halifax <- read_csv("Data/Halifax_Libraries.csv")
 
+# Markham
+Markham <- read_csv("Data/Markham_libraries.csv")
+
+# To import: Brampton, Burlington,  Montreal, Oakville, Oshawa, Ottawa, 
+    # Pickering, Hamilton, Kingston (remainder)
 
 # Compile into one table
-Canadian_libraries <- rbind(Saskatoon, New_Brunswick, Guelph, London, Windsor, Winnipeg, Other, Waterloo, Kitchener, Idea_Exchange, Toronto, St_Cats) 
-
+Canadian_libraries <- rbind(Saskatoon, New_Brunswick, London, Windsor, Winnipeg, 
+                            Other, Waterloo, Kitchener, Idea_Exchange, Toronto, St_Cats, Halifax, Markham) 
 
