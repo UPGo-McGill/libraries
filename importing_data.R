@@ -42,5 +42,40 @@ Kitchener <- filter(Kitchener, Name == "Kitchener Main Library" | Name == "Count
                     | Name == "Grand River Stanley Park Community Library" | Name == "Pioneer Park Community Library")
 names(Kitchener) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
 
+# Idea Exchange
+Idea_Exchange <- read_csv ("Data/KitchenerWaterloo_Libraries.csv")
+Idea_Exchange %>% 
+  select(c(7, 4, 2, 1))->
+  Idea_Exchange
+Idea_Exchange <- filter(Idea_Exchange, Name == "Queen'S Square Library" | Name == "Preston Library" | Name == "Hespeler Library" 
+                    | Name == "Clemens Mill Library")
+names(Idea_Exchange) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
+
+Idea_Exchange_2 <- data.frame("Cambridge Libraries", "Old Post Office Library", 43.358338, -80.315516)
+names(Idea_Exchange_2)<- c("Library_System", "Library_Branch", "Latitude", "Longitude")
+
+Idea_Exchange_3 <- data.frame("Cambridge Libraries", "Design at Riverside", 43.358486, -80.316740)
+names(Idea_Exchange_3)<- c("Library_System", "Library_Branch", "Latitude", "Longitude")
+  
+Idea_Exchange <- rbind(Idea_Exchange, Idea_Exchange_2, Idea_Exchange_3)
 
 
+# Toronto
+Toronto <- read_csv("Data/Toronto_Libraries.csv")
+Toronto %>% 
+  select(c(1, 6:7))->
+  Toronto
+Toronto$Library_System <- "Toronto Public Library"
+Toronto <- Toronto[c(4, 1, 3, 2)]
+names(Toronto) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
+
+
+# St Cats
+St_Cats <- read_csv("Data/StCatharines_libraries.csv")
+St_Cats <- filter(St_Cats, Municipality == "St. Catharines")
+St_Cats %>% 
+  select(c(1, 7:8)) ->
+  St_Cats
+St_Cats$Library_System <- "St. Catharines Public Library"
+St_Cats <- St_Cats[c(4,1,3,2)]
+names(St_Cats) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
