@@ -17,7 +17,7 @@ Regina Public Library,Regent Place,Regina,50.473318,-104.616939
 Regina Public Library,Sherwood Village,Regina,50.495119,-104.668955
 Regina Public Library,Sunrise,Regina,50.429426,-104.535788
 Wood Buffalo Regional Library,Wood Buffalo Regional Library,Fort McMurray,56.737996,-111.384224
-Vaughan Public Libraries,Ansley Grove Library,Woodbridge,43.795864,-79.563549
+Vaughan Public Libraries,Wood Buffalo Regional Library,Woodbridge,43.795864,-79.563549
 Vaughan Public Libraries,Bathurst Clark Resource Library,Vaughan,43.803254,-79.452454
 Vaughan Public Libraries,Civic Centre Resource Library,Vaughan,43.855436,-79.51054
 Vaughan Public Libraries,Dufferin Clark Library,Thornhill,43.796702,-79.471627
@@ -118,10 +118,22 @@ Hamilton Public Library,Turner Park Library,Hamilton,43.19846705,-79.87862786
 Hamilton Public Library,Lynden Library,Hamilton,43.23656021,-80.14659537
 Hamilton Public Library,Freelton Library,Hamilton,43.39793341,-80.03876645
 Hamilton Public Library,Greensville Library,Hamilton,43.27528027,-79.99612469
-Kingston Frontenac Public Library,Central Branch,Kingston," 44.22958542507643]}"";44.2295854251",-76.48461525
-Kingston Frontenac Public Library,Calvin Park Branch,Kingston," 44.238716492199394]}"";44.2387164922",-76.51773298
-Kingston Frontenac Public Library,Pittsburgh Branch,Kingston," 44.259564520719394]}"";44.2595645207",-76.46130548
-Kingston Frontenac Public Library,Isabel Turner Branch,Kingston," 44.25453518884492]}"";44.2545351888",-76.57167364
+Kingston Frontenac Public Library,Central Branch,Kingston,44.22958543,-76.48461525
+Kingston Frontenac Public Library,Calvin Park Branch,Kingston,44.23871649,-76.51773298
+Kingston Frontenac Public Library,Pittsburgh Branch,Kingston,44.25956452,-76.46130548
+Kingston Frontenac Public Library,Isabel Turner Branch,Kingston,44.25453519,-76.57167364
+Kingston Frontenac Public Library,Arden Branch,Kingston,44.720526,-76.923823
+Kingston Frontenac Public Library,Hartington Branch,Kingston,44.441034,-76.668948
+Kingston Frontenac Public Library,Mountain Grove Branch,Kingston,44.738925,-76.84442
+Kingston Frontenac Public Library,Rideau Heights Branch,Kingston,44.265194,-76.482801
+Kingston Frontenac Public Library,Storrington Branch,Kingston,44.384943,-76.424975
+Kingston Frontenac Public Library,Wolfe Island Branch,Kingston,44.192443,-76.441754
+Kingston Frontenac Public Library,Cloyne Branch,Kingston,44.818291,-77.18488
+Kingston Frontenac Public Library,Howe Island Branch,Kingston,44.258391,-76.319037
+Kingston Frontenac Public Library,Parham Branch,Kingston,44.65505,-76.734191
+Kingston Frontenac Public Library,Plevna Branch,Kingston,44.96353,-76.986093
+Kingston Frontenac Public Library,Sharbot Lake Branch,Kingston,44.772764,-76.689269
+Kingston Frontenac Public Library,Sydenham Branch,Kingston,44.411821,-76.594909
 Bibliotheque Ville de Laval,Bibliotheque Emile-Nelligan,Laval,45.5521693,-73.70786895
 Bibliotheque Ville de Laval,Bibliotheque Gabrielle-Roy,Laval,45.57767869,-73.81057226
 Bibliotheque Ville de Laval,Bibliotheque Germaine-Guevremont,Laval,45.59097657,-73.66962923
@@ -149,51 +161,51 @@ Mississauga Library System,STREETSVILLE LIBRARY,Mississauga,43.58373491,-79.7169
 Mississauga Library System,LAKEVIEW LIBRARY,Mississauga,43.58339793,-79.56326242
 Mississauga Library System,LORNE PARK LIBRARY,Mississauga,43.53100605,-79.62766974
 Mississauga Library System,BURNHAMTHORPE LIBRARY,Mississauga,43.62100671,-79.60304373
-Mississauga Library System,Bibliotheque d'Ahuntsic,Montreal,45.5539209,-73.6637745
-Mississauga Library System,Bibliotheque de Belleville,Montreal,45.5819491,-73.6421957
-Mississauga Library System,Bibliotheque Benny,Montreal,45.4653268,-73.627692
-Mississauga Library System,Bibliotheque du Boise,Montreal,45.5028475,-73.7057204
-Mississauga Library System,Bibliotheque de Cartierville,Montreal,45.5271112,-73.7129921
-Mississauga Library System,Bibliotheque Yves-Ryan,Montreal,45.5965109,-73.6314167
-Mississauga Library System,Bibliotheque de Cote-des-Neiges,Montreal,45.4960623,-73.6221181
-Mississauga Library System,Bibliotheque de la Maison culturelle et communautaire de Montreal-Nord,Montreal,45.6163039,-73.6206732
-Mississauga Library System,Bibliotheque Frontenac,Montreal,45.5330176,-73.5526127
-Mississauga Library System,Bibliotheque Georges-Vanier,Montreal,45.4835213,-73.5751332
-Mississauga Library System,Bibliotheque du Haut-Anjou,Montreal,45.6012889,-73.575989
-Mississauga Library System,Bibliotheque Henri-Bourassa,Montreal,45.6046707,-73.6251967
-Mississauga Library System,Bibliotheque d'Hochelaga,Montreal,45.5427901,-73.5455177
-Mississauga Library System,Bibliotheque de l'Ile des Soeurs,Montreal,45.4571408,-73.5466571
-Mississauga Library System,Bibliotheque de L'Ie-Bizard,Montreal,45.489477,-73.8825461
-Mississauga Library System,Bibliotheque interculturelle,Montreal,45.5032432,-73.6369045
-Mississauga Library System,Bibliotheque Jean-Corbeil,Montreal,45.6029584,-73.5584036
-Mississauga Library System,Bibliotheque de La Petite-Patrie,Montreal,45.5473848,-73.5982557
-Mississauga Library System,Bibliotheque Langelier,Montreal,45.5817147,-73.5440686
-Mississauga Library System,Bibliotheque Le Prevost,Montreal,45.5438869,-73.6145768
-Mississauga Library System,Bibliotheque Maisonneuve,Montreal,45.5510555,-73.5407215
-Mississauga Library System,Bibliotheque Marc-Favreau,Montreal,45.5317427,-73.5978095
-Mississauga Library System,Bibliotheque Marie-Uguay,Montreal,45.4577169,-73.5955531
-Mississauga Library System,Bibliotheque de Mercier,Montreal,45.5957371,-73.5233452
-Mississauga Library System,Bibliotheque Mordecai-Richler,Montreal,45.5219052,-73.6015691
-Mississauga Library System,Bibliotheque de Notre-Dame-de-Grâce,Montreal,45.47551,-73.614579
-Mississauga Library System,Bibliotheque L'Octogone,Montreal,45.4243396,-73.6234491
-Mississauga Library System,Bibliotheque de Parc-Extension,Montreal,45.5311737,-73.6284967
-Mississauga Library System,Bibliotheque Pere-Ambroise,Montreal,45.5227892,-73.5626701
-Mississauga Library System,Bibliotheque de Pierrefonds,Montreal,45.4951911,-73.8471715
-Mississauga Library System,Bibliotheque du Plateau-Mont-Royal,Montreal,45.5248239,-73.5823694
-Mississauga Library System,Bibliotheque de Pointe-aux-Trembles,Montreal,45.6677173,-73.4944049
-Mississauga Library System,Bibliotheque de Riviere-des-Prairies,Montreal,45.6496356,-73.5788179
-Mississauga Library System,Bibliotheque Robert-Bourassa,Montreal,45.517746,-73.6085011
-Mississauga Library System,Bibliotheque de Rosemont,Montreal,45.5515175,-73.5820184
-Mississauga Library System,Bibliotheque de Roxboro,Montreal,45.5041334,-73.8133091
-Mississauga Library System,Bibliotheque de Saint-Charles,Montreal,45.4788404,-73.5643984
-Mississauga Library System,Bibliotheque de Saint-Henri,Montreal,45.4726771,-73.588888
-Mississauga Library System,Bibliotheque du Vieux-Saint-Laurent,Montreal,45.5126898,-73.6765622
-Mississauga Library System,Bibliotheque de Saint-Leonard,Montreal,45.586646,-73.5971925
-Mississauga Library System,Bibliotheque de Saint-Michel,Montreal,45.562238,-73.6023914
-Mississauga Library System,Bibliotheque de Saint-Pierre,Montreal,45.445771,-73.651088
-Mississauga Library System,Bibliotheque De Salaberry,Montreal,45.5347082,-73.703999
-Mississauga Library System,Bibliotheque Saul-Bellow,Montreal,45.4449735,-73.6709621
-Mississauga Library System,Bibliotheque Jacqueline-De Repentigny ,Montreal,45.4482057,-73.5770269
+Bibliotheque de Montreal,Bibliotheque d'Ahuntsic,Montreal,45.5539209,-73.6637745
+Bibliotheque de Montreal,Bibliotheque de Belleville,Montreal,45.5819491,-73.6421957
+Bibliotheque de Montreal,Bibliotheque Benny,Montreal,45.4653268,-73.627692
+Bibliotheque de Montreal,Bibliotheque du Boise,Montreal,45.5028475,-73.7057204
+Bibliotheque de Montreal,Bibliotheque de Cartierville,Montreal,45.5271112,-73.7129921
+Bibliotheque de Montreal,Bibliotheque Yves-Ryan,Montreal,45.5965109,-73.6314167
+Bibliotheque de Montreal,Bibliotheque de Cote-des-Neiges,Montreal,45.4960623,-73.6221181
+Bibliotheque de Montreal,Bibliotheque de la Maison culturelle et communautaire de Montreal-Nord,Montreal,45.6163039,-73.6206732
+Bibliotheque de Montreal,Bibliotheque Frontenac,Montreal,45.5330176,-73.5526127
+Bibliotheque de Montreal,Bibliotheque Georges-Vanier,Montreal,45.4835213,-73.5751332
+Bibliotheque de Montreal,Bibliotheque du Haut-Anjou,Montreal,45.6012889,-73.575989
+Bibliotheque de Montreal,Bibliotheque Henri-Bourassa,Montreal,45.6046707,-73.6251967
+Bibliotheque de Montreal,Bibliotheque d'Hochelaga,Montreal,45.5427901,-73.5455177
+Bibliotheque de Montreal,Bibliotheque de l'Ile des Soeurs,Montreal,45.4571408,-73.5466571
+Bibliotheque de Montreal,Bibliotheque de L'Ie-Bizard,Montreal,45.489477,-73.8825461
+Bibliotheque de Montreal,Bibliotheque interculturelle,Montreal,45.5032432,-73.6369045
+Bibliotheque de Montreal,Bibliotheque Jean-Corbeil,Montreal,45.6029584,-73.5584036
+Bibliotheque de Montreal,Bibliotheque de La Petite-Patrie,Montreal,45.5473848,-73.5982557
+Bibliotheque de Montreal,Bibliotheque Langelier,Montreal,45.5817147,-73.5440686
+Bibliotheque de Montreal,Bibliotheque Le Prevost,Montreal,45.5438869,-73.6145768
+Bibliotheque de Montreal,Bibliotheque Maisonneuve,Montreal,45.5510555,-73.5407215
+Bibliotheque de Montreal,Bibliotheque Marc-Favreau,Montreal,45.5317427,-73.5978095
+Bibliotheque de Montreal,Bibliotheque Marie-Uguay,Montreal,45.4577169,-73.5955531
+Bibliotheque de Montreal,Bibliotheque de Mercier,Montreal,45.5957371,-73.5233452
+Bibliotheque de Montreal,Bibliotheque Mordecai-Richler,Montreal,45.5219052,-73.6015691
+Bibliotheque de Montreal,Bibliotheque de Notre-Dame-de-Grâce,Montreal,45.47551,-73.614579
+Bibliotheque de Montreal,Bibliotheque L'Octogone,Montreal,45.4243396,-73.6234491
+Bibliotheque de Montreal,Bibliotheque de Parc-Extension,Montreal,45.5311737,-73.6284967
+Bibliotheque de Montreal,Bibliotheque Pere-Ambroise,Montreal,45.5227892,-73.5626701
+Bibliotheque de Montreal,Bibliotheque de Pierrefonds,Montreal,45.4951911,-73.8471715
+Bibliotheque de Montreal,Bibliotheque du Plateau-Mont-Royal,Montreal,45.5248239,-73.5823694
+Bibliotheque de Montreal,Bibliotheque de Pointe-aux-Trembles,Montreal,45.6677173,-73.4944049
+Bibliotheque de Montreal,Bibliotheque de Riviere-des-Prairies,Montreal,45.6496356,-73.5788179
+Bibliotheque de Montreal,Bibliotheque Robert-Bourassa,Montreal,45.517746,-73.6085011
+Bibliotheque de Montreal,Bibliotheque de Rosemont,Montreal,45.5515175,-73.5820184
+Bibliotheque de Montreal,Bibliotheque de Roxboro,Montreal,45.5041334,-73.8133091
+Bibliotheque de Montreal,Bibliotheque de Saint-Charles,Montreal,45.4788404,-73.5643984
+Bibliotheque de Montreal,Bibliotheque de Saint-Henri,Montreal,45.4726771,-73.588888
+Bibliotheque de Montreal,Bibliotheque du Vieux-Saint-Laurent,Montreal,45.5126898,-73.6765622
+Bibliotheque de Montreal,Bibliotheque de Saint-Leonard,Montreal,45.586646,-73.5971925
+Bibliotheque de Montreal,Bibliotheque de Saint-Michel,Montreal,45.562238,-73.6023914
+Bibliotheque de Montreal,Bibliotheque de Saint-Pierre,Montreal,45.445771,-73.651088
+Bibliotheque de Montreal,Bibliotheque De Salaberry,Montreal,45.5347082,-73.703999
+Bibliotheque de Montreal,Bibliotheque Saul-Bellow,Montreal,45.4449735,-73.6709621
+Bibliotheque de Montreal,Bibliotheque Jacqueline-De Repentigny ,Montreal,45.4482057,-73.5770269
 Bibliotheque et Archives Nationales du Quebec,Grande Bibliotheque - Bibliotheque et Archives nationales du Quebec,Montreal,45.5154553,-73.5623129
 Okanagan Regional Library District,Enderby Branch,Enderby,50.550263,-119.13802
 Okanagan Regional Library District,Keremeos Branch,Keremeos,49.205148,-119.824315
@@ -392,4 +404,11 @@ Burlington Public Library,Appleby,Burlington,43.371363,-79.76205729
 Burlington Public Library,Brant Hills,Burlington,43.361298,-79.84616006
 Burlington Public Library,Kilbride,Burlington,43.427508,-79.93653405
 Burlington Public Library,Aldershot,Burlington,43.32011,-79.83457955
-,,,45.420083,-75.707917
+Library and Archives Canada,Library and Archives Canada,Ottawa,45.420083,-75.707917
+Oakville Public Library,Central ,Oakville,43.444367,-79.671665
+Oakville Public Library,Glen Abbey,Oakville,43.435737,-79.739146
+Oakville Public Library,Iroquois Ridge,Oakville,43.488136,-79.700986
+Oakville Public Library,White Oaks,Oakville,43.463439,-79.701822
+Oakville Public Library,Clearview,Oakville,43.501523,-79.661393
+Oakville Public Library,Woodside,Oakville,43.417303,-79.698343
+Oakville Public Library,Sixteen Mile,Oakville,43.466091,-79.749305
