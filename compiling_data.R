@@ -119,7 +119,8 @@ install.packages("sf")
 library(sf)
 Can_Lib = st_as_sf(Canadian_libraries, coords = c("Longitude", "Latitude"),
                    crs=4326) 
-ggplot (Can_Lib) +
+Can_Lib_UTM <- st_transform (Can_Lib, 3347)
+ggplot (Can_Lib_UTM) +
   geom_sf()
 
 
