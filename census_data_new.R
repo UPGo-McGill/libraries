@@ -16,6 +16,8 @@ regions <- list_census_regions("CA16")
 CMAs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), 
                    (level = 'CMA' ), geo_format = "sf")
 
+CMAs <- st_transform(CMAs, 3347)
+
 LibraryCMAs <- filter(CMAs, 
                         name == "Abbotsford - Mission (B)" |
                           name == "Barrie (B)" |
@@ -52,6 +54,8 @@ LibraryCMAs <- select(LibraryCMAs, -c(C_UID))
 
 CDs <- get_census(dataset = "CA16", regions = list(C = "Canada"), 
                   (level = "CD"), geo_format = "sf")
+
+CDs <- st_transform(CDs, 3347)
 
 libraryCDs <- filter(CDs, 
                      name == "Fraser Valley (RD)" |
@@ -98,11 +102,16 @@ DAs <- get_census(dataset = "CA16", regions = list(C = "Canada"),
                   (level = "DA"), vectors = c("v_CA16_2354", "v_CA16_4886", 
                                               "v_CA16_488", "v_CA16_2401", "v_CA16_3401",
                                               "v_CA16_3954"), geo_format = "sf")
+DAs <- st_transform(DAs, 3347)
+
+DAs_centroids <- st_centroid(DAs)
 
 CanadaPolygon <- get_census(dataset = "CA16", regions = list(C = "Canada"),
                             level = "C", geo_format = "sf")
 
-Areas_and_DAs <- st_intersection(DAs, libraryAreas)
+#Areas_and_DAs <- st_intersection(DAs, libraryAreas)
+
+Areas_and_DAs <- st_join(DAs_centroids, libraryAreas) 
 
 plot(Areas_and_DAs["geometry"])
 
