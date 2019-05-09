@@ -13,11 +13,8 @@ variables <- list_census_vectors(dataset = "CA16")
 
 regions <- list_census_regions("CA16")
 
-CMAs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), (level = 'CMA' ), geo_format = "sf")
-
-onlyCMAs <- filter(CMAs, Type == "CMA")
-
-CDs <- get_census(dataset = "CA16", regions = list(C = "Canada"), (level = "CD"), geo_format = "sf")
+CMAs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), 
+                   (level = 'CMA' ), geo_format = "sf")
 
 LibraryCMAs <- filter(CMAs, 
                         name == "Abbotsford - Mission (B)" |
@@ -53,6 +50,9 @@ LibraryCMAs <- filter(CMAs,
 
 LibraryCMAs <- select(LibraryCMAs, -c(C_UID))
 
+CDs <- get_census(dataset = "CA16", regions = list(C = "Canada"), 
+                  (level = "CD"), geo_format = "sf")
+
 libraryCDs <- filter(CDs, 
                      name == "Fraser Valley (RD)" |
                        name == "Central Okanagan (RD)" |
@@ -84,20 +84,20 @@ libraryCDs <- filter(CDs,
 
 libraryAreas <- rbind(libraryCDs, LibraryCMAs)
 
-# Get census tracts
-CTs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), (level = 'CT' ), geo_format = "sf")
+# CENSUS TRACTS (NOT USING)
+# CTs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), (level = 'CT' ), geo_format = "sf")
 
-CTs %>% 
-  filter(Type=="CT")->
-  CTs
+# CTs %>% filter(Type=="CT") -> CTs
 
-DAs <- get_census(dataset = "CA16", regions = list(C = "Canada"), (level = "DA"), geo_format = "sf")
+# Areas_and_CTs <- st_intersection (CTs, libraryAreas)
 
-Areas_and_CTs <- st_intersection (CTs, libraryAreas)
+# plot(Areas_and_CTs["geometry"])
+
+# DISSEMINATION AREAS
+DAs <- get_census(dataset = "CA16", regions = list(C = "Canada"), 
+                  (level = "DA"), geo_format = "sf")
 
 Areas_and_DAs <- st_intersection(DAs, libraryAreas)
-
-plot(Areas_and_CTs["geometry"]) 
 
 plot(Areas_and_DAs["geometry"])
 
@@ -107,5 +107,5 @@ plot(libraryAreas["geometry"])
   # Make sure library data is clean and recognized as lat logn
   # Buffer around library - how big do we want them to be?
   # Clip CTs to examine demographics within - income, focus on social need 
-    # (drug addiction, homelessness etc.?), core housing need, immigration status, race, ethnicity
+    # (drug addiction etc.?), core housing need, immigration status, race, ethnicity
   # Compare with city-wide variables
