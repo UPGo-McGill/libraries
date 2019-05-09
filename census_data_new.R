@@ -74,6 +74,7 @@ libraryCDs <- filter(CDs,
                        name == "Nanaimo (RD)" |
                        name == "Cowichan Valley (RD)" |
                        name == "Capital (RD)" |
+                       name == "Skeena-Queen Charlotte (RD)"|
                        name == "Madawaska (CT)" |
                        name == "Restigouche (CT)" |
                        name == "Gloucester (CT)" |
