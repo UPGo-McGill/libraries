@@ -1,6 +1,7 @@
 ### BUFFER LIBRARIES ################################################################
 
 source("R/helper_functions.R")
+source("R/data_import.R")
 
 ## Buffer 1000 m = 1 km
 
