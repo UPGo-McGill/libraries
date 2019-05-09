@@ -113,14 +113,6 @@ library(ggmap)
 library(maps)
 library(mapdata)
 
-maps::"canada"
-
-ggplot() +
-  geom_point(data = Canadian_libraries, aes(x = Longitude, y = Latitude), colour = "black", size = 1) 
-
-?coord_fixed
-
-?maps
 
 Canadian_libraries
 install.packages("sf")
