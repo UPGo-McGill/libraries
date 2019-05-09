@@ -1,6 +1,6 @@
 ## Clean and Compile Library Data
 ## May 8, 2019
-
+install.packages("dplyr")
 library(tidyverse)
 library(dplyr)
 
@@ -113,12 +113,13 @@ library(ggmap)
 library(maps)
 library(mapdata)
 
-maps::"canada"
 
-ggplot() +
-  geom_point(data = Canadian_libraries, aes(x = Longitude, y = Latitude), colour = "black", size = 1) 
+Canadian_libraries
+install.packages("sf")
+library(sf)
+Can_Lib = st_as_sf(Canadian_libraries, coords = c("Longitude", "Latitude"),
+                   crs=4326) 
+ggplot (Can_Lib) +
+  geom_sf()
 
-?coord_fixed
-
-?maps
 
