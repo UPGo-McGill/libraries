@@ -95,7 +95,12 @@ libraryAreas <- rbind(libraryCDs, LibraryCMAs)
 
 # DISSEMINATION AREAS
 DAs <- get_census(dataset = "CA16", regions = list(C = "Canada"), 
-                  (level = "DA"), geo_format = "sf")
+                  (level = "DA"), vectors = c("v_CA16_2354", "v_CA16_4886", 
+                                              "v_CA16_488", "v_CA16_2401", "v_CA16_3401",
+                                              "v_CA16_3954"), geo_format = "sf")
+
+CanadaPolygon <- get_census(dataset = "CA16", regions = list(C = "Canada"),
+                            level = "C", geo_format = "sf")
 
 Areas_and_DAs <- st_intersection(DAs, libraryAreas)
 
