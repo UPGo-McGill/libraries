@@ -118,6 +118,14 @@ plot(Areas_and_DAs["geometry"])
 
 plot(libraryAreas["geometry"])
 
+Canadian_libraries <- read_csv("Canadian_libraries.csv")
+Can_Lib1 = st_as_sf(Canadian_libraries, coords = c("Longitude", "Latitude"),
+                    crs=4326) 
+Can_Lib <- st_transform (Can_Lib, 3347)
+
+ggplot (Can_Lib) +
+  geom_sf()
+
 # To do :
   # Make sure library data is clean and recognized as lat logn
   # Buffer around library - how big do we want them to be?
