@@ -106,8 +106,6 @@ DAs <- st_transform(DAs, 3347)
 
 DAs_centroids <- st_centroid(DAs)
 
-CanadaPolygon <- get_census(dataset = "CA16", regions = list(C = "Canada"),
-                            level = "C", geo_format = "sf")
 
 #Areas_and_DAs <- st_intersection(DAs, libraryAreas)
 
