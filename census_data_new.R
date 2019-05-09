@@ -119,7 +119,7 @@ plot(Areas_and_DAs["geometry"])
 
 plot(libraryAreas["geometry"])
 
-Canadian_libraries <- read_csv("Canadian_libraries.csv")
+Canadian_libraries <- read_csv("Data/Canadian_libraries.csv")
 Can_Lib1 = st_as_sf(Canadian_libraries, coords = c("Longitude", "Latitude"),
                     crs=4326) 
 Can_Lib <- st_transform (Can_Lib1, 3347)
