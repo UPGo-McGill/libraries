@@ -44,13 +44,12 @@ DAs <- DAs[,c(5:8,11,13:19)]
 # Add a CMA column to the DAs table
 
 DAs$CMAs <- st_within(DAs,CMAs)
-CMA_name <- CMAs[,7]
+CMA_name <- CMAs[,c(5,7)]
 CMA_name$CMAs <- 1:30
-CMA_name <- CMA_name[c(3,1,2)]
+CMA_name <- CMA_name[c(4,1,2,3)]
 
 DAs <- st_join(DAs, CMA_name, by = "CMAs" )
 
 DAs <- select(DAs, -c(12,13))
-
 
 
