@@ -109,7 +109,7 @@ DAs_centroids <- st_centroid(DAs)
 
 #Areas_and_DAs <- st_intersection(DAs, libraryAreas)
 
-Areas_and_DAs <- st_join(DAs_centroids, libraryAreas) 
+Areas_and_DAs <- st_join(libraryAreas, DAs_centroids) 
 
 plot(Areas_and_DAs["geometry"])
 
