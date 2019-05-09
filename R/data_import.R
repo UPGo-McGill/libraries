@@ -1,6 +1,6 @@
 ### DATA IMPORT ################################################################
 
-source("data/helper_functions.R")
+source("R/helper_functions.R")
 
 
 ## Import CMAs
