@@ -62,7 +62,7 @@ CDs <- get_census(dataset = "CA16", regions = list(C = "Canada"),
 CDs <- st_transform(CDs, 3347)
 
 libraryCDs <- filter(CDs, 
-                     name == "Fraser Valley (RD)" |
+                       name == "Fraser Valley (RD)" |
                        name == "Central Okanagan (RD)" |
                        name == "Columbia-Shuswap (RD)" |
                        name == "North Okanagan (RD)" |
