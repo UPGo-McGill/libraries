@@ -14,9 +14,7 @@ variables <- list_census_vectors(dataset = "CA16")
 regions <- list_census_regions("CA16")
 
 CMAs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), 
-                   (level = 'CMA' ), vectors = c("v_CA16_2354", "v_CA16_4888", 
-                                                 "v_CA16_488", "v_CA16_2398", "v_CA16_3411",
-                                                 "v_CA16_3957"), geo_format = "sf")
+                   (level = 'CMA' ), geo_format = "sf")
 
 CMAs <- st_transform(CMAs, 3347)
 
@@ -55,9 +53,7 @@ LibraryCMAs <- filter(CMAs,
 LibraryCMAs <- select(LibraryCMAs, -c(C_UID))
 
 CDs <- get_census(dataset = "CA16", regions = list(C = "Canada"), 
-                  (level = "CD"), vectors = c("v_CA16_2354", "v_CA16_4888", 
-                                              "v_CA16_488", "v_CA16_2398", "v_CA16_3411",
-                                              "v_CA16_3957"), geo_format = "sf")
+                  (level = "CD"), geo_format = "sf")
 
 CDs <- st_transform(CDs, 3347)
 
@@ -119,7 +115,11 @@ plot(Areas_and_DAs["geometry"])
 
 plot(libraryAreas["geometry"])
 
+<<<<<<< HEAD
+Canadian_libraries <- read_csv("data/Canadian_libraries.csv")
+=======
 Canadian_libraries <- read_csv("Data/Canadian_libraries.csv")
+>>>>>>> 06508bce779c859068cf6973ed8686bcbce83bef
 Can_Lib1 = st_as_sf(Canadian_libraries, coords = c("Longitude", "Latitude"),
                     crs=4326) 
 Can_Lib <- st_transform (Can_Lib1, 3347)
@@ -130,6 +130,10 @@ plot(Areas_and_DAs["geometry"], add=T)
 
 ggplot (Can_Lib) +
   geom_sf()
+
+ggplot () +
+  geom_sf(data=Areas_and_DAs)+
+  geom_sf(data=Can_Lib)
 
 # To do :
   # Make sure library data is clean and recognized as lat logn
