@@ -122,10 +122,10 @@ plot(libraryAreas["geometry"])
 Canadian_libraries <- read_csv("Canadian_libraries.csv")
 Can_Lib1 = st_as_sf(Canadian_libraries, coords = c("Longitude", "Latitude"),
                     crs=4326) 
-Can_Lib <- st_transform (Can_Lib, 3347)
+Can_Lib <- st_transform (Can_Lib1, 3347)
 
-plot(Areas_and_DAs["geometry"])
-plot(Can_Lib[2], add=T)
+plot(Can_Lib[2])
+plot(Areas_and_DAs["geometry"], add=T)
 
 
 ggplot (Can_Lib) +
