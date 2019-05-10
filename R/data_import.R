@@ -12,7 +12,6 @@ CMAs <-
     geo_format = "sf") %>% 
   st_transform(3347)
 
-
 ## Import CTs
 
 CTs <-
@@ -24,8 +23,6 @@ CTs <-
     geo_format = "sf") %>% 
   st_transform(3347)
 
-CTs <- filter(CTs, Type == "CT")
-
 ## Import libraries
 
 Libraries <- suppressWarnings(read_csv("data/Canadian_libraries.csv") %>% 
@@ -35,21 +32,33 @@ Libraries <- suppressWarnings(read_csv("data/Canadian_libraries.csv") %>%
 
 ## Filter tables to relevant ones
 
+# CMAs and CTs that are actually CMAs and CTs
 CMAs <- CMAs %>% filter(Type == "CMA")
+CTs <- CTs %>% filter(Type == "CT")
+
+#Libraries in CMAs
 Libraries <- Libraries[lengths(st_within(Libraries, CMAs)) > 0,]
+
+#CMAs and CTs that contain libraries
 CMAs <- CMAs[lengths(st_contains(CMAs, Libraries)) > 0,]
 CTs <- CTs[lengths(st_within(CTs, CMAs)) > 0,]
-CTs <- CTs[,c(5:8,11,13:19)]
+CTs <- CTs[,c(5:7,9,15:21)]
 
 
-# Add a CMA column to the DAs table
+## Add CMA names to the CTs table
 
-CTs$CMAs <- st_within(CTs,CMAs)
+CTs$CMA_Name <- st_within(CTs,CMAs)
+CTs$CMA_Name <- str_replace(CTs$CMA_Name, CTs$CMA_UID)
+
 CMA_name <- CMAs[,c(5,7)]
 CMA_name$CMAs <- 1:30
 CMA_name <- CMA_name[c(4,1,2,3)]
 
-CTs <- st_join(DAs, CMA_name, by = "CMAs" )
+CTs <- st_join(CTs, CMA_name, by = "CMAs" )
+CTs <- select(CTs, -c(11,12,13))
+CTs <- names(CTs)
+
+CTs <- CTs[c(1,4,12,2,3,5,6,7,8,9,10,11)]
 
 CTs <- select(CTs, -c(12,13))
 
