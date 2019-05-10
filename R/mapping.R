@@ -13,13 +13,14 @@ plot(lib_buffer)
 lib_union <- st_union (lib_buffer)
 
 # need to find a way to filter buffer
+# need to mutate variables
 
 ?tm_layout
 
 # Toronto 
 tm_shape(filter(CMAs, name == "Toronto (B)")) + 
   tm_borders(col = 'black') +
-tm_shape(filter(CTs_test, CMA_UID == "35535")) +
+tm_shape(filter(CTs, CMA_UID == "35535")) +
   tm_polygons(c("Population", "v_CA16_2354: Percentage with employment income", 
                 "v_CA16_2398: Median after-tax income of households in 2015 ($)", 
                 "v_CA16_4888: Spending 30% or more of income on shelter costs", 
