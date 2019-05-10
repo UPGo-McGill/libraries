@@ -7,16 +7,10 @@ source("R/data_import.R")
 
 lib_CMA <- st_join(Libraries, CMAs)
 
-lib_buffer <- st_buffer(lib_CMA, 1000)%>%
-  st_geometry ()
-plot(lib_buffer)
 
-## Sort by CMA?
-# Might need to use st_combine, to combine all buffers within a CMA 
-
-## Union overlaping buffers
-
-lib_union <- st_union (lib_buffer)
-plot(lib_union)
-  
+lib_buffer <- lib_CMA %>%
+  group_by(Library_System) %>% 
+  summarize(name = first(name),
+            geometry = st_union(geometry)) %>% 
+  st_buffer(1000)
 
