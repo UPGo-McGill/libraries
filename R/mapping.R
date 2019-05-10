@@ -1,6 +1,5 @@
 ## MAPPING
 
-
 options(cancensus.api_key = "CensusMapper_4be2cf3bf91d0cabf967f4934dbdc63b")
 
 options(cancensus.cache_path = "~/Desktop/AirBnB Internship/AirBnB-GIT/libraries")
@@ -20,19 +19,18 @@ lib_union <- st_union (lib_buffer)
 tm_shape(filter(CMAs, name == "Toronto (B)")) + 
   tm_borders(col = 'black') +
 tm_shape(filter(CTs, CMA_Name == "Toronto (B)")) +
-  tm_polygons(c("Population", "v_CA16_2354: Percentage with employment income", 
-                "v_CA16_2398: Median after-tax income of households in 2015 ($)", 
-                "v_CA16_4888: Spending 30% or more of income on shelter costs", 
-                "v_CA16_488: Total lone-parent families by sex of parent", 
-                "v_CA16_3411: Immigrants", 
-                "v_CA16_3957: Total visible minority population"), border.alpha = 0)  + 
+  tm_polygons(c("Pct_Unemployed", 
+                "Med_AT_Income", 
+                "Pct_Core_Hous", 
+                "Pct_Lone_Parent", 
+                "Pct_Imm", 
+                "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
 tm_shape(lib_union) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Toronto", 
             main.title.position = "left", 
-            title = c("Population", 
-                      "Percentage with Employment Income",
+            title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
                       "Percentage with Core Housing Need",
                       "Percentage of Single-Parent Families",
@@ -57,10 +55,50 @@ tm_shape(filter(CTs, name == "Montréal (B)")) +
 
 # Edmonton
 
-# Quebec
-
 # Winnipeg
 
 # Hamilton
 
 # Kitchener-Cambridge-Waterloo
+
+# Oshawa
+
+# Moncton
+
+# Saint John
+
+# Fredericton
+
+# Saskatoon
+
+# Kingston
+
+# St.Catharines - Niagara
+
+# Thunder Bay
+
+# London
+
+# Kelowna
+
+# Abbotsforn - Mission
+
+# Victoria
+
+# Nanaimo
+
+# Red Deer
+
+# Edmonton
+
+# Wood Buffalo
+
+# Barrie
+
+# Chilliwack
+
+# Guelph
+
+# Halifax
+
+# Regina
