@@ -2,22 +2,21 @@
 
 source("R/helper_functions.R")
 source("R/data_import.R")
-source("R/buffer_union.R")
 
-# Toronto 
-tm_shape(filter(CMAs, name == "Toronto (B)")) + 
+# Toronto 2016
+tm_shape(filter(CMAs_2016, CMA_name == "Toronto (B)")) + 
   tm_borders(col = 'black') +
-tm_shape(filter(CTs, CMA_Name == "Toronto (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-tm_shape(filter(service_areas, name == "Toronto (B)" & library == TRUE)) +
+tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Toronto", 
+  tm_layout(main.title = "Toronto 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -29,20 +28,20 @@ tm_shape(filter(service_areas, name == "Toronto (B)" & library == TRUE)) +
             frame = FALSE) +
   tm_compass()
 
-# Montreal
-tm_shape(filter(CMAs, name == "Montréal (B)")) + 
+# Toronto 2006
+tm_shape(filter(CMAs_2006, CMA_name == "Toronto (B)")) + 
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Montréal (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2006, CMA_name == "Toronto (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Montréal (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2006, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Montreal", 
+  tm_layout(main.title = "Toronto 2006", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -54,21 +53,20 @@ tm_shape(filter(CMAs, name == "Montréal (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Vancouver 
-
-tm_shape(filter(CMAs, name == "Vancouver (B)")) + 
+# Montreal 2016
+tm_shape(filter(CMAs_2016, CMA_name == "Montréal (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Vancouver (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Montréal (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Vancouver (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Montréal (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Vancouver", 
+  tm_layout(main.title = "Montreal 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -80,21 +78,201 @@ tm_shape(filter(CMAs, name == "Vancouver (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Calgary
-
-tm_shape(filter(CMAs, name == "Calgary (B)")) + 
+# Montreal 2006 
+tm_shape(filter(CMAs_2006, CMA_name == "Montréal (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Calgary (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2006, CMA_name == "Montréal (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Calgary (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2006, CMA_name == "Montréal (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Calgary", 
+  tm_layout(main.title = "Montreal 2006", 
+            main.title.position = "left", 
+            title = c("Unemployment Rate",
+                      "Median After-Tax Household Income",
+                      "Percentage with Core Housing Need",
+                      "Percentage of Single-Parent Families",
+                      "Percentage Immigrants",
+                      "Percentage Visible Minority"), 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+# Vancouver 2016
+tm_shape(filter(CMAs_2016, CMA_name == "Vancouver (B)")) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Vancouver (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Vancouver (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Vancouver 2016", 
+            main.title.position = "left", 
+            title = c("Unemployment Rate",
+                      "Median After-Tax Household Income",
+                      "Percentage with Core Housing Need",
+                      "Percentage of Single-Parent Families",
+                      "Percentage Immigrants",
+                      "Percentage Visible Minority"), 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+# Calgary 2016 
+
+tm_shape(filter(CMAs_2016, CMA_name == "Calgary (B)")) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Calgary (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Calgary 2016", 
+            main.title.position = "left", 
+            title = c("Unemployment Rate",
+                      "Median After-Tax Household Income",
+                      "Percentage with Core Housing Need",
+                      "Percentage of Single-Parent Families",
+                      "Percentage Immigrants",
+                      "Percentage Visible Minority"), 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+# Ottawa - Gatineau 2016
+
+tm_shape(filter(CMAs_2016, CMA_name == "Ottawa - Gatineau (B)")) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Ottawa - Gatineau (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Ottawa - Gatineau (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Ottawa - Gatineau 2016", 
+            main.title.position = "left", 
+            title = c("Unemployment Rate",
+                      "Median After-Tax Household Income",
+                      "Percentage with Core Housing Need",
+                      "Percentage of Single-Parent Families",
+                      "Percentage Immigrants",
+                      "Percentage Visible Minority"), 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+# Edmonton 2016
+
+tm_shape(filter(CMAs_2016, CMA_name == "Edmonton (B)")) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Edmonton (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Edmonton 2016", 
+            main.title.position = "left", 
+            title = c("Unemployment Rate",
+                      "Median After-Tax Household Income",
+                      "Percentage with Core Housing Need",
+                      "Percentage of Single-Parent Families",
+                      "Percentage Immigrants",
+                      "Percentage Visible Minority"), 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+# Winnipeg 2016
+
+tm_shape(filter(CMAs_2016, CMA_name == "Winnipeg (B)")) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Winnipeg (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Winnipeg (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Winnipeg 2016", 
+            main.title.position = "left", 
+            title = c("Unemployment Rate",
+                      "Median After-Tax Household Income",
+                      "Percentage with Core Housing Need",
+                      "Percentage of Single-Parent Families",
+                      "Percentage Immigrants",
+                      "Percentage Visible Minority"), 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+# Hamilton 2016
+
+tm_shape(filter(CMAs_2016, CMA_name == "Hamilton (B)")) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Hamilton (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Hamilton (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Hamilton 2016", 
+            main.title.position = "left", 
+            title = c("Unemployment Rate",
+                      "Median After-Tax Household Income",
+                      "Percentage with Core Housing Need",
+                      "Percentage of Single-Parent Families",
+                      "Percentage Immigrants",
+                      "Percentage Visible Minority"), 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+# Kitchener-Cambridge-Waterloo 2016
+
+tm_shape(filter(CMAs_2016, CMA_name == "Kitchener - Cambridge - Waterloo (B)")) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Kitchener - Cambridge - Waterloo (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Kitchener - Cambridge - Waterloo (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Kitchener - Cambridge - Waterloo 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -107,21 +285,21 @@ tm_shape(filter(CMAs, name == "Calgary (B)")) +
   tm_compass()
 
 
-# Ottawa - Gatineau
+# Oshawa 2016
 
-tm_shape(filter(CMAs, name == "Ottawa - Gatineau (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Oshawa (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Ottawa - Gatineau (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Oshawa (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Ottawa - Gatineau (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Oshawa (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Ottawa - Gatineau", 
+  tm_layout(main.title = "Oshawa 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -133,22 +311,21 @@ tm_shape(filter(CMAs, name == "Ottawa - Gatineau (B)")) +
             frame = FALSE) +
   tm_compass()
 
+# Moncton 2016
 
-# Edmonton
-
-tm_shape(filter(CMAs, name == "Edmonton (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Moncton (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Edmonton (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Moncton (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Edmonton (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Moncton (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Edmonton", 
+  tm_layout(main.title = "Moncton 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -160,21 +337,21 @@ tm_shape(filter(CMAs, name == "Edmonton (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Winnipeg
+# Saint John 2016 
 
-tm_shape(filter(CMAs, name == "Winnipeg (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Saint John (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Winnipeg (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Saint John (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Winnipeg (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Saint John (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Winnipeg", 
+  tm_layout(main.title = "Saint John 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -186,21 +363,21 @@ tm_shape(filter(CMAs, name == "Winnipeg (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Hamilton
+# Fredericton 2016
 
-tm_shape(filter(CMAs, name == "Hamilton (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Fredericton (K)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Hamilton (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Fredericton (K)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Hamilton (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Fredericton (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Hamilton", 
+  tm_layout(main.title = "Fredericton 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -212,21 +389,21 @@ tm_shape(filter(CMAs, name == "Hamilton (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Kitchener-Cambridge-Waterloo
+# Saskatoon 2016
 
-tm_shape(filter(CMAs, name == "Kitchener - Cambridge - Waterloo (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Saskatoon (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Kitchener - Cambridge - Waterloo (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Saskatoon (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Kitchener - Cambridge - Waterloo (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Saskatoon (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Kitchener - Cambridge - Waterloo", 
+  tm_layout(main.title = "Saskatoon 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -238,151 +415,21 @@ tm_shape(filter(CMAs, name == "Kitchener - Cambridge - Waterloo (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Oshawa
+# Kingston 2016
 
-tm_shape(filter(CMAs, name == "Oshawa (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Kingston (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Oshawa (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Kingston (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Oshawa (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Kingston (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Oshawa", 
-            main.title.position = "left", 
-            title = c("Unemployment Rate",
-                      "Median After-Tax Household Income",
-                      "Percentage with Core Housing Need",
-                      "Percentage of Single-Parent Families",
-                      "Percentage Immigrants",
-                      "Percentage Visible Minority"), 
-            legend.position = c("left", "top"),
-            frame = FALSE) +
-  tm_compass()
-
-# Moncton
-
-tm_shape(filter(CMAs, name == "Moncton (B)")) + 
-  tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Moncton (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Moncton (B)" & library == TRUE)) +
-  tm_borders(col = 'black') + 
-  tm_layout(main.title = "Moncton", 
-            main.title.position = "left", 
-            title = c("Unemployment Rate",
-                      "Median After-Tax Household Income",
-                      "Percentage with Core Housing Need",
-                      "Percentage of Single-Parent Families",
-                      "Percentage Immigrants",
-                      "Percentage Visible Minority"), 
-            legend.position = c("left", "top"),
-            frame = FALSE) +
-  tm_compass()
-
-# Saint John
-
-tm_shape(filter(CMAs, name == "Saint John (B)")) + 
-  tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Saint John (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Saint John (B)" & library == TRUE)) +
-  tm_borders(col = 'black') + 
-  tm_layout(main.title = "Saint John", 
-            main.title.position = "left", 
-            title = c("Unemployment Rate",
-                      "Median After-Tax Household Income",
-                      "Percentage with Core Housing Need",
-                      "Percentage of Single-Parent Families",
-                      "Percentage Immigrants",
-                      "Percentage Visible Minority"), 
-            legend.position = c("left", "top"),
-            frame = FALSE) +
-  tm_compass()
-
-# Fredericton
-
-tm_shape(filter(CMAs, name == "Fredericton (K)")) + 
-  tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Fredericton (K)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Fredericton (K)" & library == TRUE)) +
-  tm_borders(col = 'black') + 
-  tm_layout(main.title = "Fredericton", 
-            main.title.position = "left", 
-            title = c("Unemployment Rate",
-                      "Median After-Tax Household Income",
-                      "Percentage with Core Housing Need",
-                      "Percentage of Single-Parent Families",
-                      "Percentage Immigrants",
-                      "Percentage Visible Minority"), 
-            legend.position = c("left", "top"),
-            frame = FALSE) +
-  tm_compass()
-
-# Saskatoon
-
-tm_shape(filter(CMAs, name == "Saskatoon (B)")) + 
-  tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Saskatoon (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Saskatoon (B)" & library == TRUE)) +
-  tm_borders(col = 'black') + 
-  tm_layout(main.title = "Saskatoon", 
-            main.title.position = "left", 
-            title = c("Unemployment Rate",
-                      "Median After-Tax Household Income",
-                      "Percentage with Core Housing Need",
-                      "Percentage of Single-Parent Families",
-                      "Percentage Immigrants",
-                      "Percentage Visible Minority"), 
-            legend.position = c("left", "top"),
-            frame = FALSE) +
-  tm_compass()
-
-# Kingston
-
-tm_shape(filter(CMAs, name == "Kingston (B)")) + 
-  tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Kingston (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Kingston (B)" & library == TRUE)) +
-  tm_borders(col = 'black') + 
-  tm_layout(main.title = "Kingston", 
+  tm_layout(main.title = "Kingston 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -396,19 +443,19 @@ tm_shape(filter(CMAs, name == "Kingston (B)")) +
 
 # St.Catharines - Niagara
 
-tm_shape(filter(CMAs, name == "St. Catharines - Niagara (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "St. Catharines - Niagara (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "St. Catharines - Niagara (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "St. Catharines - Niagara (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "St. Catharines - Niagara (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "St. Catharines - Niagara (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "St. Catharines - Niagara", 
+  tm_layout(main.title = "St.Catharines - Niagara 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -420,21 +467,21 @@ tm_shape(filter(CMAs, name == "St. Catharines - Niagara (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Thunder Bay
+# Thunder Bay 2016
 
-tm_shape(filter(CMAs, name == "Thunder Bay (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Thunder Bay (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Thunder Bay (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Thunder Bay (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Thunder Bay (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Thunder Bay (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Thunder Bay", 
+  tm_layout(main.title = "Thunder Bay 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -446,21 +493,21 @@ tm_shape(filter(CMAs, name == "Thunder Bay (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# London
+# London 2016
 
-tm_shape(filter(CMAs, name == "London (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "London (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "London (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "London (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "London (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "London (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "London", 
+  tm_layout(main.title = "London 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -472,21 +519,21 @@ tm_shape(filter(CMAs, name == "London (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Kelowna
+# Kelowna 2016
 
-tm_shape(filter(CMAs, name == "Kelowna (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Kelowna (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Kelowna (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Kelowna (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Kelowna (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Kelowna (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Kelowna", 
+  tm_layout(main.title = "Kelowna 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -498,21 +545,21 @@ tm_shape(filter(CMAs, name == "Kelowna (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Abbotsforn - Mission
+# Abbotsforn - Mission 2016
 
-tm_shape(filter(CMAs, name == "Abbotsford - Mission (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Abbotsford - Mission (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Abbotsford - Mission (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Abbotsford - Mission (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Abbotsford - Mission (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Abbotsford - Mission (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Abbotsford - Mission", 
+  tm_layout(main.title = "Abbotsford - Mission 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -524,21 +571,22 @@ tm_shape(filter(CMAs, name == "Abbotsford - Mission (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Victoria
 
-tm_shape(filter(CMAs, name == "Victoria (B)")) + 
+# Victoria 2016
+
+tm_shape(filter(CMAs_2016, CMA_name == "Victoria (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Victoria (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Victoria (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Victoria (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Victoria (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Victoria", 
+  tm_layout(main.title = "Victoria 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -550,21 +598,21 @@ tm_shape(filter(CMAs, name == "Victoria (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Nanaimo
+# Nanaimo 2016
 
-tm_shape(filter(CMAs, name == "Nanaimo (K)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Nanaimo (K)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Nanaimo (K)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Nanaimo (K)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Nanaimo (K)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Nanaimo (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Nanaimo", 
+  tm_layout(main.title = "Nanaimo 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -576,21 +624,21 @@ tm_shape(filter(CMAs, name == "Nanaimo (K)")) +
             frame = FALSE) +
   tm_compass()
 
-# Red Deer
+# Red Deer 2016
 
-tm_shape(filter(CMAs, name == "Red Deer (K)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Red Deer (K)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Red Deer (K)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Red Deer (K)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Red Deer (K)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Red Deer (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Red Deer", 
+  tm_layout(main.title = "Red Deer 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -602,21 +650,21 @@ tm_shape(filter(CMAs, name == "Red Deer (K)")) +
             frame = FALSE) +
   tm_compass()
 
-# Edmonton
+# Edmonton 2016
 
-tm_shape(filter(CMAs, name == "Edmonton (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Edmonton (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Edmonton (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Edmonton (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Edmonton (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Edmonton", 
+  tm_layout(main.title = "Edmonton 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -628,21 +676,21 @@ tm_shape(filter(CMAs, name == "Edmonton (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Wood Buffalo
+# Wood Buffalo 2016
 
-tm_shape(filter(CMAs, name == "Wood Buffalo (K)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Wood Buffalo (K)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Wood Buffalo (K)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Wood Buffalo (K)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Wood Buffalo (K)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Wood Buffalo (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Wood Buffalo", 
+  tm_layout(main.title = "Wood Buffalo 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -654,21 +702,21 @@ tm_shape(filter(CMAs, name == "Wood Buffalo (K)")) +
             frame = FALSE) +
   tm_compass()
 
-# Barrie
+# Barrie 2016
 
-tm_shape(filter(CMAs, name == "Barrie (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Barrie (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Barrie (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Barrie (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Barrie (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Barrie (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Barrie", 
+  tm_layout(main.title = "Barrie 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -680,21 +728,21 @@ tm_shape(filter(CMAs, name == "Barrie (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Chilliwack
+# Chilliwack 2016
 
-tm_shape(filter(CMAs, name == "Chilliwack (K)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Chilliwack (K)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Chilliwack (K)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Chilliwack (K)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Chilliwack (K)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Chilliwack (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Chilliwack", 
+  tm_layout(main.title = "Chilliwack 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -706,21 +754,21 @@ tm_shape(filter(CMAs, name == "Chilliwack (K)")) +
             frame = FALSE) +
   tm_compass()
 
-# Guelph
+# Guelph 2016
 
-tm_shape(filter(CMAs, name == "Guelph (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Guelph (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Guelph (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Guelph (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Guelph (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Guelph (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Guelph", 
+  tm_layout(main.title = "Guelph 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -732,21 +780,21 @@ tm_shape(filter(CMAs, name == "Guelph (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Halifax
+# Halifax 2016
 
-tm_shape(filter(CMAs, name == "Halifax (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Halifax (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Halifax (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Halifax (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Halifax (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Halifax", 
+  tm_layout(main.title = "Halifax 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
@@ -758,21 +806,21 @@ tm_shape(filter(CMAs, name == "Halifax (B)")) +
             frame = FALSE) +
   tm_compass()
 
-# Regina
+# Regina 2016
 
-tm_shape(filter(CMAs, name == "Regina (B)")) + 
+tm_shape(filter(CMAs_2016, CMA_name == "Regina (B)")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs, CMA_Name == "Regina (B)")) +
-  tm_polygons(c("Pct_Unemployed", 
-                "Med_AT_Income", 
-                "Pct_Core_Hous", 
-                "Pct_Lone_Parent", 
-                "Pct_Imm", 
-                "Pct_Vis_Min"), border.alpha = 0)  + 
+  tm_shape(filter(CTs_2016, CMA_name == "Regina (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct", 
+                "lone_parent_pct", 
+                "immigrants_pct", 
+                "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas, name == "Regina (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Regina (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(main.title = "Regina", 
+  tm_layout(main.title = "Regina 2016", 
             main.title.position = "left", 
             title = c("Unemployment Rate",
                       "Median After-Tax Household Income",
