@@ -8,19 +8,6 @@ source("R/helper_functions.R")
 source("R/data_import.R")
 source("R/buffer_union.R")
 
-lib_union <- st_union (lib_buffer)
-
-# need to find a way to filter buffer
-# need to mutate variables
-
-#test
-
-tm_shape(filter(CMAs, name == "Ottawa - Gatineau (B)")) + 
-  tm_borders(col = 'black') +
-  tm_shape(filter(CTs, name == "Ottawa - Gatineau (B)")) +
-  tm_polygons("Population.x", border.alpha = 0)
-
-
 # Toronto 
 tm_shape(filter(CMAs, name == "Toronto (B)")) + 
   tm_borders(col = 'black') +
@@ -32,7 +19,7 @@ tm_shape(filter(CTs, CMA_Name == "Toronto (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-tm_shape(lib_union) +
+tm_shape(filter(service_areas, name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Toronto", 
             main.title.position = "left", 
@@ -47,7 +34,6 @@ tm_shape(lib_union) +
   tm_compass()
 
 # Montreal
-
 tm_shape(filter(CMAs, name == "Montréal (B)")) + 
   tm_borders(col = 'black') +
   tm_shape(filter(CTs, CMA_Name == "Montréal (B)")) +
@@ -58,7 +44,7 @@ tm_shape(filter(CMAs, name == "Montréal (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Montréal (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Montreal", 
             main.title.position = "left", 
@@ -84,7 +70,7 @@ tm_shape(filter(CMAs, name == "Vancouver (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Vancouver (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Vancouver", 
             main.title.position = "left", 
@@ -110,7 +96,7 @@ tm_shape(filter(CMAs, name == "Calgary (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Calgary (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Calgary", 
             main.title.position = "left", 
@@ -137,7 +123,7 @@ tm_shape(filter(CMAs, name == "Ottawa - Gatineau (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Ottawa - Gatineau (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Ottawa - Gatineau", 
             main.title.position = "left", 
@@ -164,7 +150,7 @@ tm_shape(filter(CMAs, name == "Edmonton (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Edmonton (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Edmonton", 
             main.title.position = "left", 
@@ -190,7 +176,7 @@ tm_shape(filter(CMAs, name == "Winnipeg (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Winnipeg (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Winnipeg", 
             main.title.position = "left", 
@@ -216,7 +202,7 @@ tm_shape(filter(CMAs, name == "Hamilton (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Hamilton (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Hamilton", 
             main.title.position = "left", 
@@ -242,7 +228,7 @@ tm_shape(filter(CMAs, name == "Kitchener - Cambridge - Waterloo (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Kitchener - Cambridge - Waterloo (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Kitchener - Cambridge - Waterloo", 
             main.title.position = "left", 
@@ -268,7 +254,7 @@ tm_shape(filter(CMAs, name == "Oshawa (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Oshawa (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Oshawa", 
             main.title.position = "left", 
@@ -294,7 +280,7 @@ tm_shape(filter(CMAs, name == "Moncton (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Moncton (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Moncton", 
             main.title.position = "left", 
@@ -320,7 +306,7 @@ tm_shape(filter(CMAs, name == "Saint John (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Saint John (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Saint John", 
             main.title.position = "left", 
@@ -346,7 +332,7 @@ tm_shape(filter(CMAs, name == "Fredericton (K)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Fredericton (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Fredericton", 
             main.title.position = "left", 
@@ -372,7 +358,7 @@ tm_shape(filter(CMAs, name == "Saskatoon (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Saskatoon (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Saskatoon", 
             main.title.position = "left", 
@@ -398,7 +384,7 @@ tm_shape(filter(CMAs, name == "Kingston (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Kingston (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Kingston", 
             main.title.position = "left", 
@@ -424,7 +410,7 @@ tm_shape(filter(CMAs, name == "St. Catharines - Niagara (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "St. Catharines - Niagara (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "St. Catharines - Niagara", 
             main.title.position = "left", 
@@ -450,7 +436,7 @@ tm_shape(filter(CMAs, name == "Thunder Bay (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Thunder Bay (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Thunder Bay", 
             main.title.position = "left", 
@@ -476,7 +462,7 @@ tm_shape(filter(CMAs, name == "London (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "London (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "London", 
             main.title.position = "left", 
@@ -502,7 +488,7 @@ tm_shape(filter(CMAs, name == "Kelowna (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Kelowna (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Kelowna", 
             main.title.position = "left", 
@@ -528,7 +514,7 @@ tm_shape(filter(CMAs, name == "Abbotsford - Mission (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Abbotsford - Mission (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Abbotsford - Mission", 
             main.title.position = "left", 
@@ -554,7 +540,7 @@ tm_shape(filter(CMAs, name == "Victoria (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Victoria (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Victoria", 
             main.title.position = "left", 
@@ -580,7 +566,7 @@ tm_shape(filter(CMAs, name == "Nanaimo (K)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Nanaimo (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Nanaimo", 
             main.title.position = "left", 
@@ -606,7 +592,7 @@ tm_shape(filter(CMAs, name == "Red Deer (K)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Red Deer (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Red Deer", 
             main.title.position = "left", 
@@ -632,7 +618,7 @@ tm_shape(filter(CMAs, name == "Edmonton (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Edmonton (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Edmonton", 
             main.title.position = "left", 
@@ -658,7 +644,7 @@ tm_shape(filter(CMAs, name == "Wood Buffalo (K)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Wood Buffalo (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Wood Buffalo", 
             main.title.position = "left", 
@@ -684,7 +670,7 @@ tm_shape(filter(CMAs, name == "Barrie (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Barrie (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Barrie", 
             main.title.position = "left", 
@@ -710,7 +696,7 @@ tm_shape(filter(CMAs, name == "Chilliwack (K)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Chilliwack (K)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Chilliwack", 
             main.title.position = "left", 
@@ -736,7 +722,7 @@ tm_shape(filter(CMAs, name == "Guelph (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Guelph (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Guelph", 
             main.title.position = "left", 
@@ -762,7 +748,7 @@ tm_shape(filter(CMAs, name == "Halifax (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Halifax (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Halifax", 
             main.title.position = "left", 
@@ -788,7 +774,7 @@ tm_shape(filter(CMAs, name == "Regina (B)")) +
                 "Pct_Imm", 
                 "Pct_Vis_Min"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(lib_union) +
+  tm_shape(filter(service_areas, name == "Regina (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Regina", 
             main.title.position = "left", 
@@ -801,3 +787,4 @@ tm_shape(filter(CMAs, name == "Regina (B)")) +
             legend.position = c("left", "top"),
             frame = FALSE) +
   tm_compass()
+
