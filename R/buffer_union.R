@@ -5,7 +5,9 @@ source("R/data_import.R")
 
 ## Buffer 1000 m = 1 km
 
-lib_buffer <- st_buffer(Libraries, 1000)%>%
+lib_CMA <- st_join(Libraries, CMAs)
+
+lib_buffer <- st_buffer(lib_CMA, 1000)%>%
   st_geometry ()
 plot(lib_buffer)
 
