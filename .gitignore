@@ -4,4 +4,6 @@
 .Ruserdata
 cancensus_setup.R
 *.Rproj
+.DS_Store
+data/.DS_Store
 
