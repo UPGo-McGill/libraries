@@ -59,8 +59,7 @@ CTs <- CTs %>%
   #select(-c(11:13)
   
 
-CTs <- 
-  CTs[c(1,4,11,2,3,5,6,7,8,9,10,12)] %>% 
+CTs <- select(CTs, 1, 4, 16, 2,3, 5:10, 20) %>% 
   rename(CMA_Name = name)
 
 CTs <- filter(CTs, CMA_Name != "NA")
