@@ -24,4 +24,4 @@ comb_lib <- lib_buffer %>%
 
 ## CMAs minus library areas
 diff_lib <- st_difference(CMAs, comb_lib)
-# plot (diff_lib ["geometry"])
+plot (diff_lib ["geometry"])
