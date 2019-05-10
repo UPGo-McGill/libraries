@@ -46,15 +46,18 @@ CTs <- CTs[,c(5:7,9,15:21)]
 
 ## Add CMA names to the CTs table
 
-CTs$CMAs <- st_within(CTs,CMAs)
+# CTs$CMAs <- st_within(CTs,CMAs)
 
-CMA_name <- CMAs[,c(5,7)]
-CMA_name$CMAs <- 1:30
-CMA_name <- CMA_name[c(4,1,2,3)]
+# CMA_name <- CMAs[,c(5,7)]
+# CMA_name$CMAs <- 1:30
+# CMA_name <- CMA_name[c(4,1,2,3)]
 
 CTs <- CTs %>% 
-  st_join(CMA_name, by = "CMAs" ) %>% 
-  select(-c(11:13))
+  left_join(st_drop_geometry(CMAs), by = c("CMA_UID" = "GeoUID" )) 
+
+# %>% 
+  #select(-c(11:13)
+  
 
 CTs <- 
   CTs[c(1,4,11,2,3,5,6,7,8,9,10,12)] %>% 
@@ -76,3 +79,4 @@ CTs <- CTs %>%
          Pct_Imm = Ct_Imm/Population,
          Pct_Vis_Min = Ct_Vis_Min/Population) %>% 
   CTs[c(1:8,13,9,14,10,15,11,16,12)]
+

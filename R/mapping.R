@@ -18,7 +18,7 @@ lib_union <- st_union (lib_buffer)
 # Toronto 
 tm_shape(filter(CMAs, name == "Toronto (B)")) + 
   tm_borders(col = 'black') +
-tm_shape(filter(CTs, CMA_Name == "Toronto (B)")) +
+tm_shape(filter(test, CMA_Name == "Toronto (B)")) +
   tm_polygons(c("Pct_Unemployed", 
                 "Med_AT_Income", 
                 "Pct_Core_Hous", 
