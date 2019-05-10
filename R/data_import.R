@@ -41,7 +41,6 @@ Libraries <- Libraries[lengths(st_within(Libraries, CMAs)) > 0,]
 
 #CMAs and CTs that contain libraries
 CMAs <- CMAs[lengths(st_contains(CMAs, Libraries)) > 0,]
-CTs <- CTs[lengths(st_within(CTs, CMAs)) >0,]
 CTs <- CTs[,c(5:7,9,15:21)]
 
 
@@ -53,9 +52,6 @@ CMA_name <- CMAs[,c(5,7)]
 CMA_name$CMAs <- 1:30
 CMA_name <- CMA_name[c(4,1,2,3)]
 
-CTs <- st_join(CTs, CMA_name, by = "CMAs")
-
-
 CTs <- CTs %>% 
   st_join(CMA_name, by = "CMAs" ) %>% 
   select(-c(11,12,13))
@@ -63,3 +59,4 @@ CTs <-
   CTs[c(1,4,11,2,3,5,6,7,8,9,10,12)] %>% 
   rename(CMA_Name = name)
 
+CTs <- filter(CTs, CMA_Name != "NA")
