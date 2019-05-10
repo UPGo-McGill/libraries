@@ -18,7 +18,7 @@ CTs <-
   get_census(
     dataset = "CA16", regions = list(C = "Canada"), 
     level = "CT",
-    vectors = c("v_CA16_2354", "v_CA16_4888", "v_CA16_488", "v_CA16_2398",
+    vectors = c("v_CA16_5618", "v_CA16_4888", "v_CA16_488", "v_CA16_2398",
                 "v_CA16_3411", "v_CA16_3957"),
     geo_format = "sf") %>% 
   st_transform(3347)
@@ -65,10 +65,14 @@ CTs <- filter(CTs, CMA_Name != "NA")
 
 names(CTs) <- 
   c("GeoUID", "CMA_UID", "CMA_Name", "Population",
-   "Adjusted_Population", "Pct_Emp_Inc", "Med_AT_Income", 
+   "Adjusted_Population", "Pct_Unemployed", "Med_AT_Income", 
    "Ct_Core_Hous", "Ct_Lone_Parent", "Ct_Imm", 
-   "Ct_Vis_Min", "Geometry")
+   "Ct_Vis_Min", "geometry")
 
 
-CTs %>% 
-  mutate(Pct_Core_Hous = Ct_Core_Hous/Population)
+CTs <- CTs %>% 
+  mutate(Pct_Core_Hous = Ct_Core_Hous/Population, 
+         Pct_Lone_Parent = Ct_Lone_Parent/Population,
+         Pct_Imm = Ct_Imm/Population,
+         Pct_Vis_Min = Ct_Vis_Min/Population) %>% 
+  CTs[c(1:8,13,9,14,10,15,11,16,12)]
