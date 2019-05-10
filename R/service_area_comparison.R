@@ -26,15 +26,17 @@ library_service_comparison_2006 <- st_intersect_summarize(
 
 summary_2016 <- 
   library_service_comparison_2016 %>%
-  st_drop_geometry()%>%
-  select(-name, -Population) %>%
+  ungroup() %>%
+  st_drop_geometry() %>%
+  select(-CMA_name, -population) %>%
   group_by(library)%>%
   summarize_all(mean)
 
 summary_2006 <- 
   library_service_comparison_2006 %>%
+  ungroup() %>% 
   st_drop_geometry()%>%
-  select(-name, -Population) %>%
+  select(-CMA_name, -population) %>%
   group_by(library)%>%
   summarize_all(mean)
 
