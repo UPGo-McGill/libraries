@@ -1,9 +1,5 @@
 ## MAPPING
 
-options(cancensus.api_key = "CensusMapper_4be2cf3bf91d0cabf967f4934dbdc63b")
-
-options(cancensus.cache_path = "~/Desktop/AirBnB Internship/AirBnB-GIT/libraries")
-
 source("R/helper_functions.R")
 source("R/data_import.R")
 source("R/buffer_union.R")
