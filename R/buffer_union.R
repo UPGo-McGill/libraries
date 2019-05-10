@@ -8,21 +8,34 @@ source("R/data_import.R")
 lib_CMA <- st_join(Libraries, CMAs)
 
 lib_buffer <- lib_CMA %>%
-  group_by(Library_System) %>% 
-  summarize(name = first(name),
+  group_by(name) %>% 
+  summarize(library = TRUE,
             geometry = st_union(geometry)) %>% 
   st_buffer(1000)
 
-#plot(lib_buffer ["geometry"])
 
-## Combine libraries 
-comb_lib <- lib_buffer %>%
-  summarize(name = "library",
-            geometry = st_union(geometry))
+diff_lib <- suppressWarnings(st_erase(CMAs, lib_buffer) %>% 
+  mutate(library = FALSE) %>% 
+  select(name, library, geometry))
 
-#plot(comb_lib["geometry"])
+service_areas <- rbind(lib_buffer, diff_lib)
 
-## CMAs minus library areas
-diff_lib <- st_difference(CMAs, comb_lib) %>%
-  diff_lib[c(1,5,7)]
-plot (diff_lib ["geometry"])
+
+# Service area comparison
+
+library_service_comparison <- st_intersect_summarize(
+  CTs,
+  service_areas,
+  group_vars = vars(name, library),
+  population = Population,
+  sum_vars = vars(Ct_Core_Hous, Ct_Lone_Parent, Ct_Imm, Ct_Vis_Min),
+  mean_vars = vars(Pct_Unemployed, Med_AT_Income)
+)
+
+library_service_comparison %>%
+  st_drop_geometry()%>%
+  select(-name, -Population) %>%
+  group_by(library)%>%
+  summarize_all(mean)
+
+
