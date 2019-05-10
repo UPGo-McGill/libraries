@@ -32,6 +32,10 @@ library_service_comparison <- st_intersect_summarize(
   mean_vars = vars(Pct_Unemployed, Med_AT_Income)
 )
 
-
+library_service_comparison %>%
+  st_drop_geometry()%>%
+  select(-name, -Population) %>%
+  group_by(library)%>%
+  summarize_all(mean)
 
 
