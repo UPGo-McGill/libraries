@@ -13,17 +13,18 @@ CMAs <-
   st_transform(3347)
 
 
-## Import DAs
+## Import CTs
 
-DAs <-
+CTs <-
   get_census(
     dataset = "CA16", regions = list(C = "Canada"), 
-    level = "DA",
+    level = "CT",
     vectors = c("v_CA16_2354", "v_CA16_4888", "v_CA16_488", "v_CA16_2398",
                 "v_CA16_3411", "v_CA16_3957"),
     geo_format = "sf") %>% 
   st_transform(3347)
 
+CTs <- filter(CTs, Type == "CT")
 
 ## Import libraries
 
@@ -37,19 +38,19 @@ Libraries <- suppressWarnings(read_csv("data/Canadian_libraries.csv") %>%
 CMAs <- CMAs %>% filter(Type == "CMA")
 Libraries <- Libraries[lengths(st_within(Libraries, CMAs)) > 0,]
 CMAs <- CMAs[lengths(st_contains(CMAs, Libraries)) > 0,]
-DAs <- DAs[lengths(st_within(DAs, CMAs)) > 0,]
-DAs <- DAs[,c(5:8,11,13:19)]
+CTs <- CTs[lengths(st_within(CTs, CMAs)) > 0,]
+CTs <- CTs[,c(5:8,11,13:19)]
 
 
 # Add a CMA column to the DAs table
 
-DAs$CMAs <- st_within(DAs,CMAs)
+CTs$CMAs <- st_within(CTs,CMAs)
 CMA_name <- CMAs[,c(5,7)]
 CMA_name$CMAs <- 1:30
 CMA_name <- CMA_name[c(4,1,2,3)]
 
-DAs <- st_join(DAs, CMA_name, by = "CMAs" )
+CTs <- st_join(DAs, CMA_name, by = "CMAs" )
 
-DAs <- select(DAs, -c(12,13))
+CTs <- select(CTs, -c(12,13))
 
 
