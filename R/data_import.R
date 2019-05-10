@@ -54,9 +54,21 @@ CMA_name <- CMA_name[c(4,1,2,3)]
 
 CTs <- CTs %>% 
   st_join(CMA_name, by = "CMAs" ) %>% 
-  select(-c(11,12,13))
+  select(-c(11:13))
+
 CTs <- 
   CTs[c(1,4,11,2,3,5,6,7,8,9,10,12)] %>% 
   rename(CMA_Name = name)
 
 CTs <- filter(CTs, CMA_Name != "NA")
+
+
+names(CTs) <- 
+  c("GeoUID", "CMA_UID", "CMA_Name", "Population",
+   "Adjusted_Population", "Pct_Emp_Inc", "Med_AT_Income", 
+   "Ct_Core_Hous", "Ct_Lone_Parent", "Ct_Imm", 
+   "Ct_Vis_Min", "Geometry")
+
+
+CTs %>% 
+  mutate(Pct_Core_Hous = Ct_Core_Hous/Population)
