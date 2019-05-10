@@ -45,3 +45,21 @@ st_intersect_summarize <- function(data, poly, group_vars, population, sum_vars,
                           full_join))
   
 }
+
+# make_library_service_areas
+
+make_library_service_areas <- function(libraries, CMAs) {
+  
+  lib_buffer <-
+    st_join(libraries, CMAs) %>%
+    group_by(CMA_name) %>% 
+    summarize(library = TRUE,
+              geometry = st_union(geometry)) %>% 
+    st_buffer(1000)
+  
+  diff_lib <- suppressWarnings(st_erase(CMAs, lib_buffer) %>% 
+                                      mutate(library = FALSE) %>% 
+                                      select(CMA_name, library, geometry))
+  
+  rbind(lib_buffer, diff_lib)
+}

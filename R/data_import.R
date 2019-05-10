@@ -3,78 +3,101 @@
 source("R/helper_functions.R")
 
 
-## Import CMAs
+## Import 2016 CMAs and CTs
 
-CMAs <-
+CMAs_2016 <-
   get_census(
-    dataset = 'CA16', regions = list(C = "Canada"), 
-    level = 'CMA',
+    dataset = 'CA16', regions = list(C = "Canada"), level = 'CMA',
     geo_format = "sf") %>% 
   st_transform(3347)
 
-## Import CTs
-
-CTs <-
+CMAs_2006 <-
   get_census(
-    dataset = "CA16", regions = list(C = "Canada"), 
-    level = "CT",
+    dataset = 'CA06', regions = list(C = "Canada"), level = 'CMA',
+    geo_format = "sf") %>% 
+  st_transform(3347)
+
+CTs_2016 <-
+  get_census(
+    dataset = "CA16", regions = list(C = "Canada"), level = "CT",
     vectors = c("v_CA16_5618", "v_CA16_4888", "v_CA16_488", "v_CA16_2398",
                 "v_CA16_3411", "v_CA16_3957"),
     geo_format = "sf") %>% 
   st_transform(3347)
 
+CTs_2006 <-
+  get_census(
+    dataset = "CA06", regions = list(C = "Canada"), level = "CT",
+    vectors = c("v_CA06_582", "v_CA06_2060", "v_CA06_2063", "v_CA06_69", 
+                "v_CA06_1785", "v_CA06_478", "v_CA06_1303"),
+    geo_format = "sf") %>% 
+  st_transform(3347)
+
+
+## Filter CMA and CT tables
+
+CMAs_2016 <- CMAs_2016 %>% filter(Type == "CMA") %>%
+  select(GeoUID, CMA_name = name)
+CMAs_2006 <- CMAs_2006 %>% filter(Type == "CMA") %>%
+  select(GeoUID, CMA_name = name)
+CTs_2016 <- CTs_2016 %>% filter(Type == "CT") %>% 
+  select(GeoUID, CMA_UID, Population, contains("v_CA"))
+CTs_2006 <- CTs_2006 %>% filter(Type == "CT") %>% 
+  select(GeoUID, CMA_UID, Population, contains("v_CA"))
+
+
 ## Import libraries
 
-Libraries <- suppressWarnings(read_csv("data/Canadian_libraries.csv") %>% 
-  st_as_sf(coords = c("Longitude", "Latitude"), crs=4326) %>%
-  st_transform(3347))
-
-
-## Filter tables to relevant ones
-
-# CMAs and CTs that are actually CMAs and CTs
-CMAs <- CMAs %>% filter(Type == "CMA")
-CTs <- CTs %>% filter(Type == "CT")
+libraries <- suppressWarnings(
+  read_csv("data/Canadian_libraries.csv") %>% 
+    st_as_sf(coords = c("Longitude", "Latitude"), crs=4326) %>%
+    st_transform(3347)
+  )
 
 #Libraries in CMAs
-Libraries <- Libraries[lengths(st_within(Libraries, CMAs)) > 0,]
+libraries_2016 <- libraries[lengths(st_within(libraries, CMAs_2016)) > 0,]
+libraries_2006 <- libraries[lengths(st_within(libraries, CMAs_2006)) > 0,]
 
 #CMAs and CTs that contain libraries
-CMAs <- CMAs[lengths(st_contains(CMAs, Libraries)) > 0,]
-CTs <- CTs[,c(5:7,9,15:21)]
+CMAs_2016 <- CMAs_2016[lengths(st_contains(CMAs_2016, libraries_2016)) > 0,]
+CMAs_2006 <- CMAs_2006[lengths(st_contains(CMAs_2006, libraries_2006)) > 0,]
 
 
-## Add CMA names to the CTs table
+## Add CMA names to the CTs table, rename, and add pct variables
 
-# CTs$CMAs <- st_within(CTs,CMAs)
+CTs_2016 <- CTs_2016 %>% 
+  inner_join(st_drop_geometry(CMAs_2016), by = c("CMA_UID" = "GeoUID")) %>% 
+  select(GeoUID, CMA_UID, CMA_name, everything())
 
-# CMA_name <- CMAs[,c(5,7)]
-# CMA_name$CMAs <- 1:30
-# CMA_name <- CMA_name[c(4,1,2,3)]
+CTs_2006 <- CTs_2006 %>% 
+  inner_join(st_drop_geometry(CMAs_2006), by = c("CMA_UID" = "GeoUID")) %>% 
+  select(GeoUID, CMA_UID, CMA_name, everything())
 
-CTs <- CTs %>% 
-  left_join(st_drop_geometry(CMAs), by = c("CMA_UID" = "GeoUID" )) 
+names(CTs_2016) <- 
+  c("Geo_UID", "CMA_UID", "CMA_name", "population", "unemployed_pct",
+   "housing_need", "lone_parent", "med_income", "immigrants",
+   "visible_minorities", "geometry")
 
-# %>% 
-  #select(-c(11:13)
-  
+names(CTs_2006) <- 
+  c("Geo_UID", "CMA_UID", "CMA_name", "population", "unemployed_pct",
+    "housing_need_rent", "housing_need_own", "lone_parent", "med_income",
+    "immigrants", "visible_minorities", "geometry")
 
-CTs <- select(CTs, 1, 4, 16, 2, 3, 5:10, 20) %>% 
-  rename(CMA_Name = name)
+CTs_2016 <- CTs_2016 %>% 
+  mutate_at(
+    .vars = c("housing_need", "lone_parent", "immigrants", "visible_minorities"),
+    .funs = list(`pct` = ~{. / population}))
+            
+CTs_2006 <- CTs_2006 %>% 
+  mutate(housing_need = housing_need_rent + housing_need_own) %>% 
+  select(Geo_UID, CMA_UID, CMA_name, population, unemployed_pct, housing_need,
+         lone_parent, med_income, immigrants, visible_minorities, geometry) %>% 
+  mutate_at(
+    c("housing_need", "lone_parent", "immigrants", "visible_minorities"),
+    list(`pct` = ~{. / population}))
 
-CTs <- filter(CTs, CMA_Name != "NA")
 
-names(CTs) <- 
-  c("Geo_UID", "CMA_UID", "CMA_Name", "Population",
-   "Adjusted_Population", "Pct_Unemployed",
-   "Ct_Core_Hous", "Ct_Lone_Parent", "Med_AT_Income","Ct_Imm", 
-   "Ct_Vis_Min", "geometry")
+## Produce library service areas
 
-
-CTs <- CTs %>% 
-  mutate(Pct_Core_Hous = Ct_Core_Hous/Population, 
-         Pct_Lone_Parent = Ct_Lone_Parent/Population,
-         Pct_Imm = Ct_Imm/Population,
-         Pct_Vis_Min = Ct_Vis_Min/Population) %>% 
-  CTs[c(1:8,13,9,14,10,15,11,16,12)]
-
+service_areas_2016 <- make_library_service_areas(libraries_2016, CMAs_2016)
+service_areas_2006 <- make_library_service_areas(libraries_2006, CMAs_2006)
