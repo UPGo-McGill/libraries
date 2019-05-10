@@ -48,7 +48,6 @@ CTs <- CTs[,c(5:7,9,15:21)]
 ## Add CMA names to the CTs table
 
 CTs$CMA_Name <- st_within(CTs,CMAs)
-CTs$CMA_Name <- str_replace(CTs$CMA_Name, CTs$CMA_UID)
 
 CMA_name <- CMAs[,c(5,7)]
 CMA_name$CMAs <- 1:30
@@ -56,10 +55,6 @@ CMA_name <- CMA_name[c(4,1,2,3)]
 
 CTs <- st_join(CTs, CMA_name, by = "CMAs" )
 CTs <- select(CTs, -c(11,12,13))
-CTs <- names(CTs)
-
-CTs <- CTs[c(1,4,12,2,3,5,6,7,8,9,10,11)]
-
-CTs <- select(CTs, -c(12,13))
+CTs <- CTs[c(1,4,11,2,3,5,6,7,8,9,10,12)]
 
 
