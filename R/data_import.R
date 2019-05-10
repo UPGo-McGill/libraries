@@ -59,16 +59,15 @@ CTs <- CTs %>%
   #select(-c(11:13)
   
 
-CTs <- select(CTs, 1, 4, 16, 2,3, 5:10, 20) %>% 
+CTs <- select(CTs, 1, 4, 16, 2, 3, 5:10, 20) %>% 
   rename(CMA_Name = name)
 
 CTs <- filter(CTs, CMA_Name != "NA")
 
-
 names(CTs) <- 
-  c("GeoUID", "CMA_UID", "CMA_Name", "Population",
-   "Adjusted_Population", "Pct_Unemployed", "Med_AT_Income", 
-   "Ct_Core_Hous", "Ct_Lone_Parent", "Ct_Imm", 
+  c("Geo_UID", "CMA_UID", "CMA_Name", "Population",
+   "Adjusted_Population", "Pct_Unemployed",
+   "Ct_Core_Hous", "Ct_Lone_Parent", "Med_AT_Income","Ct_Imm", 
    "Ct_Vis_Min", "geometry")
 
 
