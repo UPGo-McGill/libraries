@@ -28,7 +28,7 @@ CTs_2016 <-
 CTs_2006 <-
   get_census(
     dataset = "CA06", regions = list(C = "Canada"), level = "CT",
-    vectors = c("v_CA06_582", "v_CA06_2060", "v_CA06_2063", "v_CA06_69", 
+    vectors = c("v_CA06_582", "v_CA06_2051", "v_CA06_2056", "v_CA06_69", 
                 "v_CA06_1785", "v_CA06_478", "v_CA06_1303"),
     geo_format = "sf") %>% 
   st_transform(3347)
