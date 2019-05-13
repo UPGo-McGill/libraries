@@ -33,6 +33,22 @@ CTs_2006 <-
     geo_format = "sf") %>% 
   st_transform(3347)
 
+Canada_2016 <- 
+  get_census(
+    dataset = "CA16", regions = list(C = "Canada"), level = "C",
+    vectors = c("v_CA16_5618", "v_CA16_4888", "v_CA16_488", "v_CA16_2398",
+                "v_CA16_3411", "v_CA16_3957"), 
+    geo_format = "sf") %>% 
+  st_transform(3347)
+
+Canada_2006 <- 
+  get_census(
+    dataset = "CA06", regions = list(C = "Canada"), level = "C",
+    vectors = c("v_CA06_582", "v_CA06_2060", "v_CA06_2063", "v_CA06_69", 
+                "v_CA06_1785", "v_CA06_478", "v_CA06_1303"),
+    geo_format = "sf") %>% 
+  st_transform(3347)
+
 
 ## Filter CMA and CT tables
 
