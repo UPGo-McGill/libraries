@@ -43,6 +43,14 @@ lib_change <- lib_change %>%
 lib_change <- lib_change %>%
   mutate(med_income_ch = med_income.x - med_income.y)
 
+lib_change <- lib_change %>%
+  mutate(visible_minorities_ch = visible_minorities.x - visible_minorities.y)
+
+lib_change <- lib_change %>%
+  mutate(unemployed_pct_change = unemployed_pct.x - unemployed_pct.y)
+
+
+
 ## graphing housing need
 ggplot(lib_change)+
   geom_point(mapping = aes(CMA_name.x, housing_need_ch, color=library.x))+
@@ -55,6 +63,14 @@ ggplot(lib_change)+
 
 ggplot(lib_change)+
   geom_point(mapping = aes(CMA_name.x, immigrants_ch, color=library.x))+
+  facet_wrap(~region.y)
+
+ggplot(lib_change)+
+  geom_point(mapping = aes(CMA_name.x, visible_minorities_ch, color=library.x))+
+  facet_wrap(~region.y)
+
+ggplot(lib_change)+
+  geom_point(mapping = aes(CMA_name.x, unemployed_pct_change, color=library.x))+
   facet_wrap(~region.y)
 
 # Greatest change
