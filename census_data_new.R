@@ -13,11 +13,10 @@ variables <- list_census_vectors(dataset = "CA16")
 
 regions <- list_census_regions("CA16")
 
-CMAs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), (level = 'CMA' ), geo_format = "sf")
+CMAs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), 
+                   (level = 'CMA' ), geo_format = "sf")
 
-onlyCMAs <- filter(CMAs, Type == "CMA")
-
-CDs <- get_census(dataset = "CA16", regions = list(C = "Canada"), (level = "CD"), geo_format = "sf")
+CMAs <- st_transform(CMAs, 3347)
 
 LibraryCMAs <- filter(CMAs, 
                         name == "Abbotsford - Mission (B)" |
@@ -53,8 +52,13 @@ LibraryCMAs <- filter(CMAs,
 
 LibraryCMAs <- select(LibraryCMAs, -c(C_UID))
 
+CDs <- get_census(dataset = "CA16", regions = list(C = "Canada"), 
+                  (level = "CD"), geo_format = "sf")
+
+CDs <- st_transform(CDs, 3347)
+
 libraryCDs <- filter(CDs, 
-                     name == "Fraser Valley (RD)" |
+                       name == "Fraser Valley (RD)" |
                        name == "Central Okanagan (RD)" |
                        name == "Columbia-Shuswap (RD)" |
                        name == "North Okanagan (RD)" |
@@ -66,6 +70,7 @@ libraryCDs <- filter(CDs,
                        name == "Nanaimo (RD)" |
                        name == "Cowichan Valley (RD)" |
                        name == "Capital (RD)" |
+                       name == "Skeena-Queen Charlotte (RD)"|
                        name == "Madawaska (CT)" |
                        name == "Restigouche (CT)" |
                        name == "Gloucester (CT)" |
@@ -84,28 +89,55 @@ libraryCDs <- filter(CDs,
 
 libraryAreas <- rbind(libraryCDs, LibraryCMAs)
 
-# Get census tracts
-CTs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), (level = 'CT' ), geo_format = "sf")
+# CENSUS TRACTS (NOT USING)
+# CTs <- get_census(dataset = 'CA16', regions = list(C = "Canada"), (level = 'CT' ), geo_format = "sf")
 
-CTs %>% 
-  filter(Type=="CT")->
-  CTs
+# CTs %>% filter(Type=="CT") -> CTs
 
-DAs <- get_census(dataset = "CA16", regions = list(C = "Canada"), (level = "DA"), geo_format = "sf")
+# Areas_and_CTs <- st_intersection (CTs, libraryAreas)
 
-Areas_and_CTs <- st_intersection (CTs, libraryAreas)
+# plot(Areas_and_CTs["geometry"])
 
-Areas_and_DAs <- st_intersection(DAs, libraryAreas)
+# DISSEMINATION AREAS
+DAs <- get_census(dataset = "CA16", regions = list(C = "Canada"), 
+                  (level = "DA"), vectors = c("v_CA16_2354", "v_CA16_4888", 
+                                              "v_CA16_488", "v_CA16_2398", "v_CA16_3411",
+                                              "v_CA16_3957"), geo_format = "sf")
+DAs <- st_transform(DAs, 3347)
 
-plot(Areas_and_CTs["geometry"]) 
+DAs_centroids <- st_centroid(DAs)
+
+#Areas_and_DAs <- st_intersection(DAs, libraryAreas)
+
+Areas_and_DAs <- st_join(libraryAreas, DAs_centroids) 
 
 plot(Areas_and_DAs["geometry"])
 
 plot(libraryAreas["geometry"])
 
+<<<<<<< HEAD
+Canadian_libraries <- read_csv("data/Canadian_libraries.csv")
+=======
+Canadian_libraries <- read_csv("Data/Canadian_libraries.csv")
+>>>>>>> 06508bce779c859068cf6973ed8686bcbce83bef
+Can_Lib1 = st_as_sf(Canadian_libraries, coords = c("Longitude", "Latitude"),
+                    crs=4326) 
+Can_Lib <- st_transform (Can_Lib1, 3347)
+
+plot(Can_Lib[2])
+plot(Areas_and_DAs["geometry"], add=T)
+
+
+ggplot (Can_Lib) +
+  geom_sf()
+
+ggplot () +
+  geom_sf(data=Areas_and_DAs)+
+  geom_sf(data=Can_Lib)
+
 # To do :
   # Make sure library data is clean and recognized as lat logn
   # Buffer around library - how big do we want them to be?
   # Clip CTs to examine demographics within - income, focus on social need 
-    # (drug addiction, homelessness etc.?), core housing need, immigration status, race, ethnicity
+    # (drug addiction etc.?), core housing need, immigration status, race, ethnicity
   # Compare with city-wide variables

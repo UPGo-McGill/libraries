@@ -1,6 +1,6 @@
 ## Clean and Compile Library Data
 ## May 8, 2019
-install.packages("dplyr")
+
 library(tidyverse)
 library(dplyr)
 
@@ -107,6 +107,7 @@ names(Other) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
 Canadian_libraries <- rbind(Saskatoon, New_Brunswick, London, Waterloo, Winnipeg, Windsor,
                             Kitchener, Idea_Exchange, Toronto, St_Cats, Halifax, Markham, Other) 
 
+write.csv(Canadian_libraries, file = "Canadian_libraries.csv")
 
 library(ggplot2)
 library(ggmap)
@@ -115,11 +116,12 @@ library(mapdata)
 
 
 Canadian_libraries
-install.packages("sf")
+# install.packages("sf")
 library(sf)
 Can_Lib = st_as_sf(Canadian_libraries, coords = c("Longitude", "Latitude"),
                    crs=4326) 
-ggplot (Can_Lib) +
+Can_Lib_UTM <- st_transform (Can_Lib, 3347)
+ggplot (Can_Lib_UTM) +
   geom_sf()
 
 

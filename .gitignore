@@ -4,4 +4,8 @@
 .Ruserdata
 cancensus_setup.R
 *.Rproj
-
+.DS_Store
+data/.DS_Store
+*david_api.R
+cancensus_amy_ignore.R
+data/CM_*
