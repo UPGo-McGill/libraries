@@ -30,7 +30,11 @@ lib_true_2016 <- lib_true_2016 %>%
 
 ## Join 2006 and 2016 by CMA_NAME and LiBRARY SERVICE AREA (true/false)
 lib_change <- lib_true_2016 %>% 
-  inner_join(st_drop_geometry(lib_true_2006), by = c("CMA_lib2" = "CMA_lib2")) 
+  inner_join(st_drop_geometry(lib_true_2006), by = c("CMA_lib2" = "CMA_lib2"))
+
+lib_change %>% 
+  st_drop_geometry() %>% 
+  distinct()
 
 
 ## Calculate change in variables
@@ -49,6 +53,9 @@ lib_change <- lib_change %>%
 lib_change <- lib_change %>%
   mutate(unemployed_pct_change = unemployed_pct.x - unemployed_pct.y)
 
+lib_change <- lib_change %>% 
+  st_drop_geometry() %>% 
+  distinct(population.x, housing_need.x, .keep_all = TRUE)
 
 
 ## graphing housing need
@@ -81,4 +88,7 @@ lib_change %>%
   ggplot(mapping = aes(x = housing_need_ch, y = CMA_name.x, color=library.x)) +
   geom_point() + 
   geom_smooth(se = FALSE)
+
+
+
 
