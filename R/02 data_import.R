@@ -153,17 +153,17 @@ CMAs_2006 <- CMAs_2006 %>%
                           "Kitchener - Cambridge - Waterloo (B)", CMA_name))
 
 CMAs_2016 <- CMAs_2016 %>%
-  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal", CMA_name))
+  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal (B)", CMA_name))
 
 CTs_2006 <- CTs_2006 %>%
-  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal", CMA_name),
+  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal (B)", CMA_name),
          CMA_name = ifelse(CMA_name == "Abbotsford (B)",
                            "Abbotsford - Mission (B)", CMA_name),
          CMA_name = ifelse(CMA_name == "Kitchener (B)",
                            "Kitchener - Cambridge - Waterloo (B)", CMA_name))
 
 CTs_2016 <- CTs_2016 %>%
-  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal", CMA_name))
+  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal (B)", CMA_name))
 
 ## Produce library service areas
 
