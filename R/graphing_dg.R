@@ -57,6 +57,9 @@ lib_change <- lib_change %>%
   st_drop_geometry() %>% 
   distinct(population.x, housing_need.x, .keep_all = TRUE)
 
+lib_change <- lib_change %>% 
+  filter(region.x == region.y)
+
 
 ## graphing housing need
 ggplot(lib_change)+
@@ -90,5 +93,12 @@ lib_change %>%
   geom_smooth(se = FALSE)
 
 
+lib_change %>% 
+  filter(region.y == "Quebec") %>% 
+  view()
 
+
+
+library_service_comparison_2006 %>% 
+  filter(region == "Montreal")
 
