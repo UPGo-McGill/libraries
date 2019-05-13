@@ -8,3 +8,4 @@ cancensus_setup.R
 data/.DS_Store
 R/david_api.R
 cancensus_amy_ignore.R
+data/CM_*
