@@ -57,7 +57,10 @@ summary_2016_weighted <- data.frame("library" = c(TRUE, FALSE),
                                     "unemployed_pct"= c(weighted.mean(true_2016$unemployed_pct, true_2016$population),
                                                         weighted.mean(false_2016$unemployed_pct, false_2016$population)),
                                     "med_income" = c(weighted.mean(true_2016$med_income, true_2016$population),
-                                                      weighted.mean(false_2016$med_income, false_2016$population)))
+                                                      weighted.mean(false_2016$med_income, false_2016$population))) %>% 
+  
+
+
 true_2006 <- filter(library_service_comparison_2006, library == TRUE)
 false_2006 <- filter(library_service_comparison_2006, library == FALSE)
 
@@ -75,6 +78,7 @@ summary_2006_weighted <- data.frame("library" = c(TRUE, FALSE),
                                     "med_income" = c(weighted.mean(true_2006$med_income, true_2006$population),
                                                      weighted.mean(false_2006$med_income, false_2006$population)))
 
-                           
-                           
-                          
+rm(true_2016, false_2016, true_2006, false_2006)
+
+
+
