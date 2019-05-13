@@ -101,7 +101,7 @@ names(CTs_2006) <-
     "immigrants", "visible_minorities", "geometry")
 
 names(Canada_2016) <- 
-  c("Geo_UID", "population", "unemployment_pct",
+  c("Geo_UID", "population", "unemployed_pct",
     "housing_need", "lone_parent", "med_income", "immigrants",
     "visible_minorities", "geometry")
 
@@ -126,7 +126,9 @@ CTs_2006 <- CTs_2006 %>%
 Canada_2016 <- Canada_2016 %>% 
   mutate_at(
     .vars = c("housing_need", "lone_parent", "immigrants", "visible_minorities"),
-    .funs = list(`pct` = ~{. / population}))
+    .funs = list(`pct` = ~{. / population})) %>% 
+  mutate(
+    unemployed_pct = unemployed_pct / 100)
 
 Canada_2006 <- Canada_2006 %>% 
   mutate(housing_need = housing_need_rent + housing_need_own) %>% 
@@ -134,7 +136,9 @@ Canada_2006 <- Canada_2006 %>%
          lone_parent, med_income, immigrants, visible_minorities, geometry) %>% 
   mutate_at(
     c("housing_need", "lone_parent", "immigrants", "visible_minorities"),
-    list(`pct` = ~{. / population}))
+    list(`pct` = ~{. / population})) %>% 
+  mutate(
+    unemployed_pct = unemployed_pct / 100)
 
 
 ## Remove Montreal accent
