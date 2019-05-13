@@ -1458,7 +1458,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Halifax (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 3) +
+  tm_facets(sync = TRUE, ncol = 2) +
   tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Halifax 2016", 
