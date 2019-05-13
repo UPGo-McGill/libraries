@@ -13,7 +13,7 @@ tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
 tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Toronto 2016", 
@@ -38,7 +38,7 @@ tm_shape(filter(CMAs_2006, CMA_name == "Toronto (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2006, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Toronto 2006", 
@@ -54,6 +54,12 @@ tm_shape(filter(CMAs_2006, CMA_name == "Toronto (B)")) +
   tm_compass()
 
 # Montreal 2016
+tm_shape(filter(libraries_2016, Library_System == 
+                  "Bibliotheque et Archives Nationales du Quebec"), 
+         bb = st_buffer(filter(libraries_2016, Library_System == 
+                                 "Bibliotheque et Archives Nationales du Quebec"), 1000),
+           ext = 10) +
+  tm_borders(col = 'black')+
 tm_shape(filter(CMAs_2016, CMA_name == "Montreal")) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
@@ -63,7 +69,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Montreal")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2016, CMA_name == "Montreal" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Montreal 2016", 
@@ -78,6 +84,34 @@ tm_shape(filter(CMAs_2016, CMA_name == "Montreal")) +
             frame = FALSE) +
   tm_compass()
 
+# BaNQ 2016
+tm_shape(BaNQ_buffer,
+         ext = 12) +
+  tm_dots(col = 'black')+
+  tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
+  tm_polygons("housing_need_pct", border.alpha = 0)  + 
+  tm_shape(filter(libraries_2016, Library_System == "Bibliotheque et Archives Nationales du Quebec")) +
+  tm_dots(col= 'black', size = 1)+
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+tm_shape(st_buffer(filter(libraries_2016, Library_System == 
+                            "Bibliotheque et Archives Nationales du Quebec"), 1000),
+         ext = 12) +
+  tm_dots(col = 'black')+
+  tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
+  tm_polygons("housing_need_pct", border.alpha = 0)  + 
+  tm_shape(st_buffer(filter(libraries_2016, Library_System == 
+                              "Bibliotheque et Archives Nationales du Quebec"), 1000) ) +
+  tm_borders(col= 'black')+
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+
+
+
 # Montreal 2006 
 tm_shape(filter(CMAs_2006, CMA_name == "Montreal")) +
   tm_borders(col = 'black') +
@@ -88,7 +122,7 @@ tm_shape(filter(CMAs_2006, CMA_name == "Montreal")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2006, CMA_name == "Montreal" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Montreal 2006", 
@@ -113,7 +147,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Vancouver (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2016, CMA_name == "Vancouver (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Vancouver 2016", 
@@ -138,7 +172,7 @@ tm_shape(filter(CMAs_2006, CMA_name == "Vancouver (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2006, CMA_name == "Vancouver (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Vancouver 2006", 
@@ -164,7 +198,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Calgary (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Calgary 2016", 
@@ -189,7 +223,7 @@ tm_shape(filter(CMAs_2006, CMA_name == "Calgary (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2006, CMA_name == "Calgary (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Calgary 2006", 
@@ -215,7 +249,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Ottawa - Gatineau (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2016, CMA_name == "Ottawa - Gatineau (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Ottawa - Gatineau 2016", 
@@ -241,7 +275,7 @@ tm_shape(filter(CMAs_2006, CMA_name == "Ottawa - Gatineau (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2006, CMA_name == "Ottawa - Gatineau (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Ottawa - Gatineau 2006", 
@@ -267,7 +301,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Edmonton (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Edmonton 2016", 
@@ -293,7 +327,7 @@ tm_shape(filter(CMAs_2006, CMA_name == "Edmonton (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2006, CMA_name == "Edmonton (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Edmonton 2006", 
@@ -319,7 +353,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Winnipeg (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2016, CMA_name == "Winnipeg (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Winnipeg 2016", 
@@ -345,7 +379,7 @@ tm_shape(filter(CMAs_2006, CMA_name == "Winnipeg (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2006, CMA_name == "Winnipeg (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Winnipeg 2006", 
@@ -371,7 +405,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Hamilton (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2016, CMA_name == "Hamilton (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Hamilton 2016", 
@@ -1437,7 +1471,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Halifax (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 2) +
+  tm_facets(sync = TRUE, ncol = 3) +
   tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Halifax 2016", 
