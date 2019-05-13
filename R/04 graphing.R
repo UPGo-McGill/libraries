@@ -33,7 +33,13 @@ library_service_comparison <- rbind(library_service_comparison_2006 %>%
                               library_service_comparison_2016 %>% 
                               mutate(date = "2016")) %>% 
                               group_by(CMA_name) %>% 
-                              drop_units() 
+                              drop_units() %>% 
+   mutate(region = case_when(
+      PR_UID == 59 ~ "BC",
+      PR_UID == 48 | PR_UID == 47 | PR_UID == 46 ~ "Prairies",
+      PR_UID == 35 ~ "Ontario",
+      PR_UID == 24 ~ "Quebec",
+      PR_UID == 12 | PR_UID == 13 ~ "Atlantic"))
 
 Canada_summary <- rbind(
   Canada_2006 %>% mutate(date = "2006") %>% select(-c(1, 4:5, 7:8)),
