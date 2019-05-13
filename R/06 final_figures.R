@@ -5,7 +5,8 @@ source("R/01 helper_functions.R")
 
 ## FIGURE 1. MAP OF BANQ AREA (WITH NO BUFFERS AT ALL)
 
-tm_shape(BaNQ_buffer,
+tm_shape(st_buffer(filter(libraries_2016, Library_System == 
+                            "Bibliotheque et Archives Nationales du Quebec"), 1000),
          ext = 12) +
   tm_dots(col = 'black')+
   tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
@@ -67,9 +68,7 @@ tm_shape(filter(libraries_2006, Library_System ==
 ## FIGURE 4. LOLLIPOP GRAPH OF 2016 CORE HOUSING NEED ACROSS ALL REGIONS
 
 
-
 ## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
-
 
 
 ## FIGURE 6. ALL FIVE VARIABLE 2006/2016 COMPARISONS ACROSS ALL REGIONS
