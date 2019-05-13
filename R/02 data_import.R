@@ -57,9 +57,9 @@ CMAs_2016 <- CMAs_2016 %>% filter(Type == "CMA") %>%
 CMAs_2006 <- CMAs_2006 %>% filter(Type == "CMA") %>%
   select(GeoUID, CMA_name = name)
 CTs_2016 <- CTs_2016 %>% filter(Type == "CT") %>% 
-  select(GeoUID, CMA_UID, Population, contains("v_CA"))
+  select(GeoUID, PR_UID, CMA_UID, Population, contains("v_CA"))
 CTs_2006 <- CTs_2006 %>% filter(Type == "CT") %>% 
-  select(GeoUID, CMA_UID, Population, contains("v_CA")) %>% 
+  select(GeoUID, PR_UID, CMA_UID, Population, contains("v_CA")) %>% 
   mutate(
     CMA_UID = ifelse(CMA_UID == "24505" | CMA_UID == "35505", "505", CMA_UID))
 Canada_2016 <- Canada_2016 %>% select(GeoUID, Population, contains("v_CA"))
@@ -86,19 +86,19 @@ CMAs_2006 <- CMAs_2006[lengths(st_contains(CMAs_2006, libraries_2006)) > 0,]
 
 CTs_2016 <- CTs_2016 %>% 
   inner_join(st_drop_geometry(CMAs_2016), by = c("CMA_UID" = "GeoUID")) %>% 
-  select(GeoUID, CMA_UID, CMA_name, everything())
+  select(GeoUID, PR_UID, CMA_UID, CMA_name, everything())
 
 CTs_2006 <- CTs_2006 %>% 
   inner_join(st_drop_geometry(CMAs_2006), by = c("CMA_UID" = "GeoUID")) %>% 
-  select(GeoUID, CMA_UID, CMA_name, everything())
+  select(GeoUID, PR_UID, CMA_UID, CMA_name, everything())
 
 names(CTs_2016) <- 
-  c("Geo_UID", "CMA_UID", "CMA_name", "population", "unemployed_pct",
+  c("Geo_UID", "PR_UID", "CMA_UID", "CMA_name", "population", "unemployed_pct",
    "housing_need", "lone_parent", "med_income", "immigrants",
    "visible_minorities", "geometry")
 
 names(CTs_2006) <- 
-  c("Geo_UID", "CMA_UID", "CMA_name", "population", "unemployed_pct",
+  c("Geo_UID", "PR_UID", "CMA_UID", "CMA_name", "population", "unemployed_pct",
     "housing_need_rent", "housing_need_own", "lone_parent", "med_income",
     "immigrants", "visible_minorities", "geometry")
 
@@ -119,7 +119,7 @@ CTs_2016 <- CTs_2016 %>%
             
 CTs_2006 <- CTs_2006 %>% 
   mutate(housing_need = housing_need_rent + housing_need_own) %>% 
-  select(Geo_UID, CMA_UID, CMA_name, population, unemployed_pct, housing_need,
+  select(Geo_UID, PR_UID, CMA_UID, CMA_name, population, unemployed_pct, housing_need,
          lone_parent, med_income, immigrants, visible_minorities, geometry) %>% 
   mutate_at(
     c("housing_need", "lone_parent", "immigrants", "visible_minorities"),
