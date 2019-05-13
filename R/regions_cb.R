@@ -38,7 +38,8 @@ summary_2016_west_unweighted <-
   drop_units() %>%
   select(-CMA_name, -population) %>%
   group_by(library) %>%
-  summarize_all(mean)
+  summarize_all(mean) %>% 
+  mutate(region = "west")
 
 summary_2006_west_unweighted <- 
   library_service_comparison_west_2006 %>%
@@ -46,7 +47,8 @@ summary_2006_west_unweighted <-
   drop_units() %>% 
   select(-CMA_name, -population) %>%
   group_by(library) %>%
-  summarize_all(mean)
+  summarize_all(mean) %>% 
+  mutate(region = "west")
 
 summary_2016_west_weighted <- 
   library_service_comparison_west_2016 %>% 
@@ -55,7 +57,8 @@ summary_2016_west_weighted <-
   summarize_at(c("housing_need", "lone_parent", "immigrants",
                  "visible_minorities", "unemployed_pct", "med_income"),
                ~{sum(. * population, na.rm = TRUE) /
-                   sum(population, na.rm = TRUE)})
+                   sum(population, na.rm = TRUE)}) %>% 
+  mutate(region = "west")
 
 summary_2006_west_weighted <- 
   library_service_comparison_west_2006 %>% 
@@ -64,7 +67,8 @@ summary_2006_west_weighted <-
   summarize_at(c("housing_need", "lone_parent", "immigrants",
                  "visible_minorities", "unemployed_pct", "med_income"),
                ~{sum(. * population, na.rm = TRUE) /
-                   sum(population, na.rm = TRUE)})
+                   sum(population, na.rm = TRUE)}) %>% 
+  mutate(region = "west")
 
 
 # Central provinces: ON, QC
@@ -103,7 +107,8 @@ summary_2016_central_unweighted <-
   drop_units() %>%
   select(-CMA_name, -population) %>%
   group_by(library) %>%
-  summarize_all(mean)
+  summarize_all(mean) %>% 
+  mutate(region = "central")
 
 summary_2006_central_unweighted <- 
   library_service_comparison_central_2006 %>%
@@ -111,7 +116,8 @@ summary_2006_central_unweighted <-
   drop_units() %>% 
   select(-CMA_name, -population) %>%
   group_by(library) %>%
-  summarize_all(mean)
+  summarize_all(mean) %>% 
+  mutate(region = "central")
 
 summary_2016_central_weighted <- 
   library_service_comparison_central_2016 %>% 
@@ -120,7 +126,8 @@ summary_2016_central_weighted <-
   summarize_at(c("housing_need", "lone_parent", "immigrants",
                  "visible_minorities", "unemployed_pct", "med_income"),
                ~{sum(. * population, na.rm = TRUE) /
-                   sum(population, na.rm = TRUE)})
+                   sum(population, na.rm = TRUE)}) %>% 
+  mutate(region = "central")
 
 summary_2006_central_weighted <- 
   library_service_comparison_central_2006 %>% 
@@ -129,7 +136,8 @@ summary_2006_central_weighted <-
   summarize_at(c("housing_need", "lone_parent", "immigrants",
                  "visible_minorities", "unemployed_pct", "med_income"),
                ~{sum(. * population, na.rm = TRUE) /
-                   sum(population, na.rm = TRUE)})
+                   sum(population, na.rm = TRUE)}) %>% 
+  mutate(region = "central")
 
 
 
@@ -169,7 +177,8 @@ summary_2016_east_unweighted <-
   drop_units() %>%
   select(-CMA_name, -population) %>%
   group_by(library) %>%
-  summarize_all(mean)
+  summarize_all(mean) %>% 
+  mutate(region = "east")
 
 summary_2006_east_unweighted <- 
   library_service_comparison_east_2006 %>%
@@ -177,7 +186,8 @@ summary_2006_east_unweighted <-
   drop_units() %>% 
   select(-CMA_name, -population) %>%
   group_by(library) %>%
-  summarize_all(mean)
+  summarize_all(mean) %>% 
+  mutate(region = "east")
 
 summary_2016_east_weighted <- 
   library_service_comparison_east_2016 %>% 
@@ -186,7 +196,8 @@ summary_2016_east_weighted <-
   summarize_at(c("housing_need", "lone_parent", "immigrants",
                  "visible_minorities", "unemployed_pct", "med_income"),
                ~{sum(. * population, na.rm = TRUE) /
-                   sum(population, na.rm = TRUE)})
+                   sum(population, na.rm = TRUE)}) %>% 
+  mutate(region = "east")
 
 summary_2006_east_weighted <- 
   library_service_comparison_east_2006 %>% 
@@ -195,6 +206,23 @@ summary_2006_east_weighted <-
   summarize_at(c("housing_need", "lone_parent", "immigrants",
                  "visible_minorities", "unemployed_pct", "med_income"),
                ~{sum(. * population, na.rm = TRUE) /
-                   sum(population, na.rm = TRUE)})
+                   sum(population, na.rm = TRUE)}) %>% 
+  mutate(region = "east")
 
+# Regional summaries
 
+summary_2016_regional_unweighted <- 
+  rbind(summary_2016_west_unweighted, summary_2016_central_unweighted, 
+        summary_2016_east_unweighted)
+
+summary_2006_regional_unweighted <- 
+  rbind(summary_2006_west_unweighted, summary_2006_central_unweighted,
+        summary_2006_east_unweighted)
+
+summary_2016_regional_weighted <- 
+  rbind(summary_2016_west_weighted, summary_2016_central_weighted,
+        summary_2016_east_weighted)
+
+summary_2006_regional_weighted <- 
+  rbind(summary_2006_west_weighted, summary_2006_central_weighted,
+        summary_2006_east_weighted)
