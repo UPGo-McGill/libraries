@@ -81,27 +81,29 @@ library_service_comparison %>%
 ## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 ## FIGURE 6. ALL FIVE VARIABLE 2006/2016 COMPARISONS ACROSS ALL REGIONS
 
-library_service_comparison_tidy <- gather(library_service_comparison, 
-                                     housing_need, lone_parent, 
+library_service_comparison <- gather(library_service_comparison, 
+                                     housing_need,
                                      immigrants, visible_minorities, 
                                      unemployed_pct, 
                                      med_income, key = "census_variable",
                                      value = "value") %>% 
   drop_units()
 
-ggplot()+
-  geom_line(data = library_service_comparison_tidy,
+tidy_summary %>% 
+  filter(census_variable != "lone_parent") %>% 
+  ggplot()+
+  geom_line(data = library_service_comparison,
             aes(x = date, y = value, colour = library,
-                group = interaction(library, CMA_name)), 
+                group = interaction(library, CMA_name)),
             alpha = 0.2) +
-  geom_point(data = library_service_comparison_tidy,
-             aes(x = date, y = value, colour = library), 
+  geom_point(data = library_service_comparison,
+             aes(x = date, y = value, colour = library),
              alpha = 0.2) +
-  geom_point(data=tidy_summary,
-             aes(x = date, y = value, colour = library), size = 5) + 
-  geom_line(data = tidy_summary,
-            aes(x = date, y = value, colour = library, group = library),
-            size = 2) + 
+  geom_point(
+    aes(x = date, y = value, colour = library), size = 5) +
+  geom_line(
+    aes(x = date, y = value, colour = library, group = library),
+    size = 2) +
   facet_wrap(~census_variable, scales = "free")
 
 
