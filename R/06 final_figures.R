@@ -67,6 +67,14 @@ tm_shape(filter(libraries_2006, Library_System ==
 
 ## FIGURE 4. LOLLIPOP GRAPH OF 2016 CORE HOUSING NEED ACROSS ALL REGIONS
 
+library_service_comparison %>%
+  filter (date=="2016") %>%
+  ggplot()+
+  geom_point(mapping = aes(CMA_name, housing_need, color=library))+
+  coord_flip()
+
+
+## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 
 ## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 
