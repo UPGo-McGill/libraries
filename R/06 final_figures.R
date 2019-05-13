@@ -258,3 +258,139 @@ tm_shape(filter(service_areas_2006, CMA_name == "Edmonton (B)" & library == TRUE
   tm_layout(legend.position = c("left", "top"),
             frame = FALSE) +
   tm_compass()
+
+
+## FIGURE 8 ##################
+# Toronto
+#tm_shape(filter(CMAs_2016, CMA_name == "Toronto (B)")) +
+ # tm_borders(col = 'black')+
+tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Toronto 2016", 
+            main.title.position = "left", 
+            legend.position = c("right", "bottom"),
+            frame = FALSE) +
+  tm_compass()
+
+# Montreal
+# tm_shape(filter(CMAs_2016, CMA_name == "Montreal (B)")) +
+ # tm_borders(col = 'black')+
+tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Montreal (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Montreal", 
+            main.title.position = "left", 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+# Calgary
+# tm_shape(filter(CMAs_2016, CMA_name == "Calgary (B)")) +
+#   tm_borders(col = 'black')+
+tm_shape(filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE), ext = 1.5) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Calgary (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Calgary", 
+            main.title.position = "left", 
+            legend.position = c("right", "bottom"),
+            frame = FALSE) +
+  tm_compass()
+
+# Edmonton
+#tm_shape(filter(CMAs_2016, CMA_name == "Edmonton (B)")) +
+ # tm_borders(col = 'black')+
+tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE), ext = 1.2) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Edmonton (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Edmonton", 
+            main.title.position = "left", 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+
+# Halifax
+# tm_shape(filter(CMAs_2016, CMA_name == "Halifax (B)")) +
+#  tm_borders(col = 'black')
+tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Halifax (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(main.title = "Halifax", 
+            main.title.position = "left", 
+            legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+# Oshawa
+# tm_shape(filter(CMAs_2016, CMA_name == "Oshawa (B)")) +
+#  tm_borders(col = 'black') +
+tm_shape(filter(service_areas_2016, CMA_name == "Oshawa (B)" & library == TRUE), ext = 3) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Oshawa (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 4) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Oshawa (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_layout(main.title = "Oshawa", 
+            main.title.position = "left", 
+            legend.position = c("right", "bottom"),
+            frame = FALSE) +
+  tm_compass()
+
+# Saskatoon
+# tm_shape(filter(CMAs_2016, CMA_name == "Saskatoon (B)")) +
+#   tm_borders(col = 'black') +
+tm_shape(filter(service_areas_2016, CMA_name == "Saskatoon (B)" & library == TRUE), ext = 2) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Saskatoon (B)")) +
+  tm_polygons(c("unemployed_pct", 
+                "med_income", 
+                "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Saskatoon (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_layout(main.title = "Saskatoon", 
+            main.title.position = "left", 
+            legend.position = c("right", "bottom"),
+            frame = FALSE) +
+  tm_compass()
