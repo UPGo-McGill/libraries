@@ -54,9 +54,9 @@ tm_shape(filter(CMAs_2006, CMA_name == "Toronto (B)")) +
   tm_compass()
 
 # Montreal 2016
-tm_shape(filter(CMAs_2016, CMA_name == "Montréal (B)")) +
+tm_shape(filter(CMAs_2016, CMA_name == "Montreal")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs_2016, CMA_name == "Montréal (B)")) +
+  tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
   tm_polygons(c("unemployed_pct", 
                 "med_income", 
                 "housing_need_pct", 
@@ -64,7 +64,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Montréal (B)")) +
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas_2016, CMA_name == "Montréal (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Montreal" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Montreal 2016", 
             main.title.position = "left", 
@@ -79,9 +79,9 @@ tm_shape(filter(CMAs_2016, CMA_name == "Montréal (B)")) +
   tm_compass()
 
 # Montreal 2006 
-tm_shape(filter(CMAs_2006, CMA_name == "Montréal (B)")) +
+tm_shape(filter(CMAs_2006, CMA_name == "Montreal")) +
   tm_borders(col = 'black') +
-  tm_shape(filter(CTs_2006, CMA_name == "Montréal (B)")) +
+  tm_shape(filter(CTs_2006, CMA_name == "Montreal")) +
   tm_polygons(c("unemployed_pct", 
                 "med_income", 
                 "housing_need_pct", 
@@ -89,7 +89,7 @@ tm_shape(filter(CMAs_2006, CMA_name == "Montréal (B)")) +
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
   tm_facets(sync = TRUE, ncol = 2) +
-  tm_shape(filter(service_areas_2006, CMA_name == "Montréal (B)" & library == TRUE)) +
+  tm_shape(filter(service_areas_2006, CMA_name == "Montreal" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Montreal 2006", 
             main.title.position = "left", 
