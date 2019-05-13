@@ -207,5 +207,6 @@ ggplot()+
   labs(colour = '') +
   scale_colour_discrete (labels = 
                            c("Outside Library Service Area", 
-                             "Within Library Service Area"))
+                             "Within Library Service Area")) +
+  scale_y_continuous(limits = c(NA,100000), labels = scales::dollar)
 
