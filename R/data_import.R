@@ -59,7 +59,9 @@ CMAs_2006 <- CMAs_2006 %>% filter(Type == "CMA") %>%
 CTs_2016 <- CTs_2016 %>% filter(Type == "CT") %>% 
   select(GeoUID, CMA_UID, Population, contains("v_CA"))
 CTs_2006 <- CTs_2006 %>% filter(Type == "CT") %>% 
-  select(GeoUID, CMA_UID, Population, contains("v_CA"))
+  select(GeoUID, CMA_UID, Population, contains("v_CA")) %>% 
+  mutate(
+    CMA_UID = ifelse(CMA_UID == "24505" | CMA_UID == "35505", "505", CMA_UID))
 Canada_2016 <- Canada_2016 %>% select(GeoUID, Population, contains("v_CA"))
 Canada_2006 <- Canada_2006 %>% select(GeoUID, Population, contains("v_CA"))
 
