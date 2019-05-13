@@ -6,6 +6,7 @@ library(cancensus)
 library(sf)
 library(tidyverse)
 library(tmap)
+library(units)
 
 
 ## st_erase helper function
@@ -32,7 +33,8 @@ st_intersect_summarize <- function(data, poly, group_vars, population, sum_vars,
     summarize(!! pop := sum(population_int, na.rm = TRUE))
   
   sums <- intersects %>%
-    summarize_at(sum_vars, ~{sum(. * int_area_pct, na.rm = TRUE) / sum(population_int, na.rm = TRUE)})
+    summarize_at(sum_vars, ~{sum(. * int_area_pct, na.rm = TRUE) /
+        sum(population_int, na.rm = TRUE)})
   
   means <- intersects %>% 
     summarize_at(mean_vars, ~{
