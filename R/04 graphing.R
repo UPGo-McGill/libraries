@@ -30,11 +30,11 @@ library_service_comparison <- rbind(library_service_comparison_2006 %>%
 
 Canada_summary <- rbind(Canada_2006 %>% 
                           mutate(date = "2006") %>% 
-                          select(-c(1, 4:8)), 
+                          select(-c(1, 4:5, 7:8)), 
                         Canada_2016 %>% 
                           mutate(date = "2016") %>% 
-                          select(-c(1, 4:8)))
-names(Canada_summary) <- c("population", "unemployed_pct", "housing_need", "lone_parent", 
+                          select(-c(1, 4:5, 7:8)))
+names(Canada_summary) <- c("population", "unemployed_pct", "med_income", "housing_need", "lone_parent", 
                            "immigrants", "visible_minorities", "date", "geometry")
 
 # Making summary graphs of each year using weighted means
@@ -48,27 +48,37 @@ tidy_summary %>%
 tidy_summary %>% 
   filter(census_variable == "lone_parent") %>% 
   ggplot()+
-  geom_point(aes(x = date, y = value, colour = library))
+  geom_point(aes(x = date, y = value, colour = library))+ 
+  geom_point(data = Canada_summary,
+             aes(x = date, y = lone_parent))
 
 tidy_summary %>% 
   filter(census_variable == "immigrants") %>% 
   ggplot()+
-  geom_point(aes(x = date, y = value, colour = library))
+  geom_point(aes(x = date, y = value, colour = library))+ 
+  geom_point(data = Canada_summary,
+             aes(x = date, y = immigrants))
 
 tidy_summary %>% 
   filter(census_variable == "visible_minorities") %>% 
   ggplot()+
-  geom_point(aes(x = date, y = value, colour = library))
+  geom_point(aes(x = date, y = value, colour = library))+ 
+  geom_point(data = Canada_summary,
+             aes(x = date, y = visible_minorities))
 
 tidy_summary %>% 
   filter(census_variable == "unemployed_pct") %>% 
   ggplot()+
-  geom_point(aes(x = date, y = value, colour = library))
+  geom_point(aes(x = date, y = value, colour = library))+ 
+  geom_point(data = Canada_summary,
+             aes(x = date, y = unemployed_pct))
 
 tidy_summary %>% 
   filter(census_variable == "med_income") %>% 
   ggplot()+
-  geom_point(aes(x = date, y = value, colour = library))
+  geom_point(aes(x = date, y = value, colour = library))+ 
+  geom_point(data = Canada_summary,
+             aes(x = date, y = med_income))
 
 # Mapping housing need
  ggplot()+
