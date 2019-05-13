@@ -137,26 +137,29 @@ Canada_2006 <- Canada_2006 %>%
     list(`pct` = ~{. / population}))
 
 
-## Remove Montreal Accent
+## Remove Montreal accent
 
 CMAs_2006 <- CMAs_2006 %>%
-  ungroup()%>%
-  mutate(CMA_name=ifelse(str_detect(CMA_name, 'Mont'),"Montreal",CMA_name))
+  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal", CMA_name),
+         CMA_name = ifelse(CMA_name == "Abbotsford (B)",
+                         "Abbotsford - Mission (B)", CMA_name),
+         CMA_name = ifelse(CMA_name == "Kitchener (B)",
+                          "Kitchener - Cambridge - Waterloo (B)", CMA_name))
 
 CMAs_2016 <- CMAs_2016 %>%
-  ungroup()%>%
-  mutate(CMA_name=ifelse(str_detect(CMA_name, 'Mont'),"Montreal",CMA_name))
+  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal", CMA_name))
 
 CTs_2006 <- CTs_2006 %>%
-  ungroup()%>%
-  mutate(CMA_name=ifelse(str_detect(CMA_name, 'Mont'),"Montreal",CMA_name))
+  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal", CMA_name),
+         CMA_name = ifelse(CMA_name == "Abbotsford (B)",
+                           "Abbotsford - Mission (B)", CMA_name),
+         CMA_name = ifelse(CMA_name == "Kitchener (B)",
+                           "Kitchener - Cambridge - Waterloo (B)", CMA_name))
 
 CTs_2016 <- CTs_2016 %>%
-  ungroup()%>%
-  mutate(CMA_name=ifelse(str_detect(CMA_name, 'Mont'),"Montreal",CMA_name))
+  mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal", CMA_name))
 
 ## Produce library service areas
 
 service_areas_2016 <- make_library_service_areas(libraries_2016, CMAs_2016)
 service_areas_2006 <- make_library_service_areas(libraries_2006, CMAs_2006)
-
