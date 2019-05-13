@@ -206,30 +206,34 @@ ggplot()+
 
 ## FIGURE 7.A. CORE HOUSING NEED CHANGE 2006/2016 ACROSS MAJOR REGIONS
 
+## Did not figure out how to remove x axis labels
+
+
 ggplot(lib_change)+
   geom_point(mapping = aes(CMA_name.x, housing_need_ch, color=library.x))+
-  theme(axis.title.x = element_blank())+
+#  theme(axis.text.x=element_blank())+
+  theme_minimal()+
   facet_wrap(~region.y)
 
 ## FIGURE 7.B. VISIBLE MINORITIES CHANGE 2006/2016 ACROSS MAJOR REGIONS
 
 ggplot(lib_change)+
   geom_point(mapping = aes(CMA_name.x, visible_minorities_ch, color=library.x))+
-  theme(axis.title.x = element_blank())+
+  theme_minimal()+
   facet_wrap(~region.y)
 
 ## FIGURE 7.C. UNEMPLOYMENT CHANGE (PCT) 2006/2016 ACROSS MAJOR REGIONS
 
 ggplot(lib_change)+
   geom_point(mapping = aes(CMA_name.x, unemployed_pct_change, color=library.x))+
-  theme(axis.title.x = element_blank())+
+  theme_minimal()+
   facet_wrap(~region.y)
 
 ## FIGURE 7.D. MEDIAN INCOME CHANGE 2006/2016 ACROSS MAJOR REGIONS
 
 ggplot(lib_change)+
   geom_point(mapping = aes(CMA_name.x, med_income_ch, color=library.x))+
-  theme(axis.title.x = element_blank())+
+  theme_minimal()+
   facet_wrap(~region.y)
 
 ## FIGURE 8. MAPPING MAJOR CMAs
