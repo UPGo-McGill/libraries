@@ -236,7 +236,7 @@ ggplot(lib_change)+
 
 ## Toronto 2016, 2006
 #tm_shape(filter(CMAs_2016, CMA_name == "Toronto (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
@@ -248,7 +248,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)
   tm_compass()
 
 #tm_shape(filter(CMAs_2006, CMA_name == "Toronto (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2006, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2006, CMA_name == "Toronto (B)")) +
@@ -261,7 +261,7 @@ tm_shape(filter(service_areas_2006, CMA_name == "Toronto (B)" & library == TRUE)
 
 ## Vancouver 2016, 2006
 #tm_shape(filter(CMAs_2016, CMA_name == "Vancouver (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Vancouver (B)" & library == TRUE), ext = 1.1) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2016, CMA_name == "Vancouver (B)")) +
@@ -273,7 +273,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Vancouver (B)" & library == TRU
   tm_compass()
 
 #tm_shape(filter(CMAs_2006, CMA_name == "Vancouver (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2006, CMA_name == "Vancouver (B)" & library == TRUE), ext = 1.1) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2006, CMA_name == "Vancouver (B)")) +
@@ -286,7 +286,7 @@ tm_shape(filter(service_areas_2006, CMA_name == "Vancouver (B)" & library == TRU
 
 ## Calgary 2016, 2006
 #tm_shape(filter(CMAs_2016, CMA_name == "Calgary (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE), ext = 1.5) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2016, CMA_name == "Calgary (B)")) +
@@ -312,7 +312,7 @@ tm_shape(filter(service_areas_2006, CMA_name == "Calgary (B)" & library == TRUE)
 
 ## Montreal 2016, 2006
 #tm_shape(filter(CMAs_2016, CMA_name == "Montreal (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & library == TRUE), ext = 1.1) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2016, CMA_name == "Montreal (B)")) +
@@ -325,7 +325,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & library == TRUE
 
 ## somethings wrong
 #tm_shape(filter(CMAs_2006, CMA_name == "Montreal")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2006, CMA_name == "Montreal" & library == TRUE), ext = 1.1) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2006, CMA_name == "Montreal (B)")) +
@@ -339,7 +339,7 @@ tm_shape(filter(service_areas_2006, CMA_name == "Montreal" & library == TRUE), e
 ## Ottawa Gatineau 2016, 2006
 
 #tm_shape(filter(CMAs_2016, CMA_name == "Ottawa - Gatineau (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Ottawa - Gatineau (B)" & library == TRUE)) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2016, CMA_name == "Ottawa - Gatineau (B)")) +
@@ -351,7 +351,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Ottawa - Gatineau (B)" & librar
   tm_compass()
 
 #tm_shape(filter(CMAs_2006, CMA_name == "Ottawa - Gatineau (B)")) +
- #tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2006, CMA_name == "Ottawa - Gatineau (B)" & library == TRUE), ext = 1.1) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2006, CMA_name == "Ottawa - Gatineau (B)")) +
@@ -365,7 +365,7 @@ tm_shape(filter(service_areas_2006, CMA_name == "Ottawa - Gatineau (B)" & librar
 
 ## Halifax 2016, 2006
 #tm_shape(filter(CMAs_2016, CMA_name == "Halifax (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2016, CMA_name == "Halifax (B)")) +
@@ -377,7 +377,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)
   tm_compass()
 
 #tm_shape(filter(CMAs_2006, CMA_name == "Halifax(B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2006, CMA_name == "Halifax (B)" & library == TRUE)) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2006, CMA_name == "Halifax (B)")) +
@@ -390,7 +390,7 @@ tm_shape(filter(service_areas_2006, CMA_name == "Halifax (B)" & library == TRUE)
 
 ## Edmonton 2016, 2006
 #tm_shape(filter(CMAs_2016, CMA_name == "Edmonton (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE), ext = 1.5) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2016, CMA_name == "Edmonton (B)")) +
@@ -402,7 +402,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE
   tm_compass()
 
 #tm_shape(filter(CMAs_2006, CMA_name == "Edmonton (B)")) +
-# tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2006, CMA_name == "Edmonton (B)" & library == TRUE), ext = 1.5) +
   tm_borders(col = 'black')+
   tm_shape(filter(CTs_2006, CMA_name == "Edmonton (B)")) +
@@ -417,7 +417,7 @@ tm_shape(filter(service_areas_2006, CMA_name == "Edmonton (B)" & library == TRUE
 ## FIGURE 8 ##################
 # Toronto
 #tm_shape(filter(CMAs_2016, CMA_name == "Toronto (B)")) +
- # tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
@@ -436,7 +436,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)
 
 # Montreal
 # tm_shape(filter(CMAs_2016, CMA_name == "Montreal (B)")) +
- # tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & library == TRUE)) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2016, CMA_name == "Montreal (B)")) +
@@ -455,7 +455,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & library == TRUE
 
 # Calgary
 # tm_shape(filter(CMAs_2016, CMA_name == "Calgary (B)")) +
-#   tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE), ext = 1.5) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2016, CMA_name == "Calgary (B)")) +
@@ -474,7 +474,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)
 
 # Edmonton
 #tm_shape(filter(CMAs_2016, CMA_name == "Edmonton (B)")) +
- # tm_borders(col = 'black')+
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE), ext = 1.2) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2016, CMA_name == "Edmonton (B)")) +
@@ -494,7 +494,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE
 
 # Halifax
 # tm_shape(filter(CMAs_2016, CMA_name == "Halifax (B)")) +
-#  tm_borders(col = 'black')
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2016, CMA_name == "Halifax (B)")) +
@@ -513,7 +513,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)
 
 # Oshawa
 # tm_shape(filter(CMAs_2016, CMA_name == "Oshawa (B)")) +
-#  tm_borders(col = 'black') +
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Oshawa (B)" & library == TRUE), ext = 3) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2016, CMA_name == "Oshawa (B)")) +
@@ -532,7 +532,7 @@ tm_shape(filter(service_areas_2016, CMA_name == "Oshawa (B)" & library == TRUE),
 
 # Saskatoon
 # tm_shape(filter(CMAs_2016, CMA_name == "Saskatoon (B)")) +
-#   tm_borders(col = 'black') +
+# tm_dots(col = 'black')+
 tm_shape(filter(service_areas_2016, CMA_name == "Saskatoon (B)" & library == TRUE), ext = 2) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2016, CMA_name == "Saskatoon (B)")) +
