@@ -4,52 +4,48 @@ source("R/01 helper_functions.R")
 source("R/02 data_import.R")
 
 # Toronto 2016
-tm_shape(filter(CMAs_2016, CMA_name == "Toronto (B)")) + 
+tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') +
-tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
+  tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
   tm_polygons(c("unemployed_pct", 
                 "med_income", 
-                "housing_need_pct", 
-                "lone_parent_pct", 
-                "immigrants_pct", 
+                "housing_need_pct",
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 3) +
-tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Toronto 2016", 
             main.title.position = "left", 
-            title = c("Unemployment Rate",
-                      "Median After-Tax Household Income",
-                      "Percentage with Core Housing Need",
-                      "Percentage of Single-Parent Families",
-                      "Percentage Immigrants",
-                      "Percentage Visible Minority"), 
-            legend.position = c("left", "top"),
+            #title = c("Unemployment Rate",
+            #       "Median After-Tax Household Income",
+            #       "Percentage with Core Housing Need",
+            #        "Percentage of Single-Parent Families",
+            #        "Percentage Immigrants",
+            #        "Percentage Visible Minority"), 
+            legend.position = c("right", "bottom"),
             frame = FALSE) +
   tm_compass()
 
 # Toronto 2006
-tm_shape(filter(CMAs_2006, CMA_name == "Toronto (B)")) + 
+tm_shape(filter(service_areas_2006, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2006, CMA_name == "Toronto (B)")) +
   tm_polygons(c("unemployed_pct", 
                 "med_income", 
-                "housing_need_pct", 
-                "lone_parent_pct", 
-                "immigrants_pct", 
+                "housing_need_pct",
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 3) +
+  tm_facets(sync = TRUE, ncol = 4) +
   tm_shape(filter(service_areas_2006, CMA_name == "Toronto (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Toronto 2006", 
             main.title.position = "left", 
-            title = c("Unemployment Rate",
-                      "Median After-Tax Household Income",
-                      "Percentage with Core Housing Need",
-                      "Percentage of Single-Parent Families",
-                      "Percentage Immigrants",
-                      "Percentage Visible Minority"), 
-            legend.position = c("left", "top"),
+            #title = c("Unemployment Rate",
+              #       "Median After-Tax Household Income",
+               #       "Percentage with Core Housing Need",
+              #        "Percentage of Single-Parent Families",
+              #        "Percentage Immigrants",
+              #        "Percentage Visible Minority"), 
+            legend.position = c("right", "bottom"),
             frame = FALSE) +
   tm_compass()
 
