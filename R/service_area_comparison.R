@@ -11,7 +11,9 @@ library_service_comparison_2016 <- st_intersect_summarize(
   population = population,
   sum_vars = vars(housing_need, lone_parent, immigrants, visible_minorities),
   mean_vars = vars(unemployed_pct, med_income)
-)
+) %>% 
+  mutate(unemployed_pct = unemployed_pct * 0.01) %>% 
+  drop_units()
 
 library_service_comparison_2006 <- st_intersect_summarize(
   CTs_2006,
@@ -20,11 +22,14 @@ library_service_comparison_2006 <- st_intersect_summarize(
   population = population,
   sum_vars = vars(housing_need, lone_parent, immigrants, visible_minorities),
   mean_vars = vars(unemployed_pct, med_income)
-)
+) %>% 
+  mutate(unemployed_pct = unemployed_pct * 0.01) %>% 
+  drop_units()
+
 
 ## Summaries for the two years
 
-summary_2016 <- 
+summary_2016_unweighted <- 
   library_service_comparison_2016 %>%
   ungroup() %>%
   st_drop_geometry() %>%
@@ -32,11 +37,29 @@ summary_2016 <-
   group_by(library)%>%
   summarize_all(mean)
 
-summary_2006 <- 
+summary_2006_unweighted <- 
   library_service_comparison_2006 %>%
   ungroup() %>% 
   st_drop_geometry()%>%
   select(-CMA_name, -population) %>%
   group_by(library)%>%
   summarize_all(mean)
+
+
+## Summaries by weighted mean
+
+summary_2016_weighted <- 
+  library_service_comparison_2016 %>% 
+  group_by(library) %>% 
+  summarize_at(c("housing_need", "lone_parent", "immigrants",
+                 "visible_minorities", "unemployed_pct", "med_income"),
+               ~{weighted.mean(., population)})
+
+summary_2006_weighted <- 
+  library_service_comparison_2006 %>% 
+  group_by(library) %>% 
+  summarize_at(c("housing_need", "lone_parent", "immigrants",
+                 "visible_minorities", "unemployed_pct", "med_income"),
+               ~{weighted.mean(., population)})
+  
 
