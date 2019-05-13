@@ -1,7 +1,7 @@
 ## MAPPING
 
-source("R/helper_functions.R")
-source("R/data_import.R")
+source("R/01 helper_functions.R")
+source("R/02 data_import.R")
 
 # Toronto 2016
 tm_shape(filter(CMAs_2016, CMA_name == "Toronto (B)")) + 
