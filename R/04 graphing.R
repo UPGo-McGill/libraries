@@ -33,15 +33,17 @@ Canada_summary <- rbind(Canada_2006 %>%
                           select(-c(1, 4:8)), 
                         Canada_2016 %>% 
                           mutate(date = "2016") %>% 
-                          select(-c(1, 4:8))) %>% 
-                  names() <- c("population", "unemployed_pct", "housing_need", "lone_parent", 
-                               "immigrants", "visible_minorities", "date", "geometry")
+                          select(-c(1, 4:8)))
+names(Canada_summary) <- c("population", "unemployed_pct", "housing_need", "lone_parent", 
+                           "immigrants", "visible_minorities", "date", "geometry")
 
 # Making summary graphs of each year using weighted means
 tidy_summary %>% 
   filter(census_variable == "housing_need") %>% 
   ggplot()+
-  geom_point(aes(x = date, y = value, colour = library))
+  geom_point(aes(x = date, y = value, colour = library)) + 
+  geom_point(data = Canada_summary,
+             aes(x = date, y = housing_need))
 
 tidy_summary %>% 
   filter(census_variable == "lone_parent") %>% 
