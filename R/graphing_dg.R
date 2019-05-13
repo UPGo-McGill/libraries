@@ -58,6 +58,8 @@ ggplot(lib_change)+
 
 ggplot(lib_change)+
   geom_point(mapping = aes(CMA_name.x, med_income_ch, color=library.x))+
+  #geom_text_repel(data = subset(lib_change, library.x == TRUE),
+  #                aes(CMA_name.x, med_income_ch, label = CMA_name.x)) +
   facet_wrap(~region.y)
 
 
