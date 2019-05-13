@@ -76,13 +76,16 @@ tidy_summary %>%
 
 # Mapping housing need
  ggplot()+
-  geom_point(data = library_service_comparison,
-            aes(x = date, y = housing_need, colour = library, size = population), 
-             alpha = 0.25) +
-  geom_point(data = filter(tidy_summary, census_variable == "housing_need"),
-             aes(x = date, y = value, colour = library), size = 10) + 
+   geom_line(data = library_service_comparison,
+             aes(x = date, y = housing_need, colour = library,
+                group = interaction(library, CMA_name)), 
+             alpha = 0.2) +
+   geom_point(data = library_service_comparison,
+             aes(x = date, y = housing_need, colour = library), 
+             alpha = 0.2) +
+   geom_point(data = filter(tidy_summary, census_variable == "housing_need"),
+             aes(x = date, y = value, colour = library), size = 5) + 
   geom_line(data = filter(tidy_summary, census_variable == "housing_need"),
-             aes(x = date, y = value, colour = library, group = library))+
-  geom_point(data = Canada_summary,
-              aes(x = date, y = housing_need))
+             aes(x = date, y = value, colour = library, group = library),
+            size = 2)
   
