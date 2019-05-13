@@ -58,8 +58,8 @@ tm_shape(filter(libraries_2016, Library_System ==
                   "Bibliotheque et Archives Nationales du Quebec"), 
          bb = st_buffer(filter(libraries_2016, Library_System == 
                                  "Bibliotheque et Archives Nationales du Quebec"), 1000),
-           ext = 10) +
-  tm_borders(col = 'black')+
+           ext = 12) +
+  tm_dots(col = 'black')+
 tm_shape(filter(CMAs_2016, CMA_name == "Montreal")) +
   tm_borders(col = 'black') +
   tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
@@ -85,16 +85,6 @@ tm_shape(filter(CMAs_2016, CMA_name == "Montreal")) +
   tm_compass()
 
 # BaNQ 2016
-tm_shape(BaNQ_buffer,
-         ext = 12) +
-  tm_dots(col = 'black')+
-  tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
-  tm_polygons("housing_need_pct", border.alpha = 0)  + 
-  tm_shape(filter(libraries_2016, Library_System == "Bibliotheque et Archives Nationales du Quebec")) +
-  tm_dots(col= 'black', size = 1)+
-  tm_layout(legend.position = c("left", "top"),
-            frame = FALSE) +
-  tm_compass()
 
 tm_shape(st_buffer(filter(libraries_2016, Library_System == 
                             "Bibliotheque et Archives Nationales du Quebec"), 1000),
@@ -108,9 +98,6 @@ tm_shape(st_buffer(filter(libraries_2016, Library_System ==
   tm_layout(legend.position = c("left", "top"),
             frame = FALSE) +
   tm_compass()
-
-
-
 
 # Montreal 2006 
 tm_shape(filter(CMAs_2006, CMA_name == "Montreal")) +
@@ -1471,7 +1458,7 @@ tm_shape(filter(CMAs_2016, CMA_name == "Halifax (B)")) +
                 "lone_parent_pct", 
                 "immigrants_pct", 
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_facets(sync = TRUE, ncol = 3) +
+  tm_facets(sync = TRUE, ncol = 2) +
   tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(main.title = "Halifax 2016", 

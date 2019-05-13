@@ -5,7 +5,8 @@ source("R/01 helper_functions.R")
 
 ## FIGURE 1. MAP OF BANQ AREA (WITH NO BUFFERS AT ALL)
 
-tm_shape(BaNQ_buffer,
+tm_shape(st_buffer(filter(libraries_2016, Library_System == 
+                            "Bibliotheque et Archives Nationales du Quebec"), 1000),
          ext = 12) +
   tm_dots(col = 'black')+
   tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
@@ -56,8 +57,8 @@ tm_shape(filter(libraries_2006, Library_System ==
                                  "Bibliotheque et Archives Nationales du Quebec"), 1000),
          ext = 12) +
   tm_dots(col = 'black')+
-  tm_shape(filter(CTs_2006, CMA_name == "Montreal")) +
-  tm_polygons("housing_need_pct", border.alpha = 0)  + 
+  tm_shape(filter(CTs_2006, CMA_name == "Montreal"))+
+  tm_fill("housing_need_pct", border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
   tm_shape(filter(service_areas_2006, CMA_name == "Montreal" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(legend.position = c("left", "top"),
@@ -66,10 +67,16 @@ tm_shape(filter(libraries_2006, Library_System ==
 
 ## FIGURE 4. LOLLIPOP GRAPH OF 2016 CORE HOUSING NEED ACROSS ALL REGIONS
 
+library_service_comparison %>%
+  filter (date=="2016") %>%
+  ggplot()+
+  geom_point(mapping = aes(CMA_name, housing_need, color=library))+
+  coord_flip()
 
 
 ## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 
+## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 
 
 ## FIGURE 6. ALL FIVE VARIABLE 2006/2016 COMPARISONS ACROSS ALL REGIONS

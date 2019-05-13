@@ -36,11 +36,11 @@ library_service_comparison <- rbind(library_service_comparison_2006 %>%
                               drop_units() 
 
 Canada_summary <- rbind(
-  Canada_2006 %>% mutate(date = "2006") %>% select(-c(1, 4:8)),
-  Canada_2016 %>% mutate(date = "2016") %>% select(-c(1, 4:8)))
+  Canada_2006 %>% mutate(date = "2006") %>% select(-c(1, 4:5, 7:8)),
+  Canada_2016 %>% mutate(date = "2016") %>% select(-c(1, 4:5, 7:8)))
 
 names(Canada_summary) <-
-  c("population", "unemployed_pct", "housing_need", "lone_parent", "immigrants",
+  c("population", "unemployed_pct", "med_income", "housing_need", "lone_parent", "immigrants",
     "visible_minorities", "date", "geometry")
 
 # Making summary graphs of each year using weighted means
