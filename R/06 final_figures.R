@@ -68,7 +68,8 @@ pdf()
 dev.off()
 
 
-## FIGURE 4. LOLLIPOP GRAPH OF 2016 CORE HOUSING NEED ACROSS ALL REGIONS
+
+## FIGURE 4.A LOLLIPOP GRAPH OF 2016 VISIBLE MINORITIES
 
 library_service_comparison %>%
   filter (date=="2016") %>%
@@ -78,7 +79,104 @@ library_service_comparison %>%
   scale_x_continuous(labels = scales::percent) +
   theme_minimal()
 
-## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
+
+## FIGURE 4.B LOLLIPOP GRAPH OF 2016 VISIBLE MINORITIES
+
+library_service_comparison %>%
+  filter (date=="2016") %>%
+  ggplot()+
+  geom_line(mapping = aes(visible_minorities, CMA_name, group = CMA_name)) +
+  geom_point(mapping = aes(visible_minorities, CMA_name, color = library)) +
+  scale_x_continuous(labels = scales::percent) +
+  theme_minimal()
+
+## FIGURE 4.C LOLLIPOP GRAPH OF 2016 UNEMPLOYMENT (PRC)
+
+library_service_comparison %>%
+  filter (date=="2016") %>%
+  ggplot()+
+  geom_line(mapping = aes(unemployed_pct, CMA_name, group = CMA_name)) +
+  geom_point(mapping = aes(unemployed_pct, CMA_name, color = library)) +
+  scale_x_continuous(labels = scales::percent) +
+  theme_minimal()
+
+## FIGURE 4.D LOLLIPOP GRAPH OF 2016 MEDIAN INCOME
+
+library_service_comparison %>%
+  filter (date=="2016") %>%
+  ggplot()+
+  geom_line(mapping = aes(med_income, CMA_name, group = CMA_name)) +
+  geom_point(mapping = aes(med_income, CMA_name, color = library)) +
+  scale_x_continuous(labels = scales::dollar) +
+  theme_minimal()
+
+
+## FIGURE 5.A. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
+
+lib_change %>%
+  ggplot()+
+  geom_line(mapping = aes(housing_need_ch, CMA_name.x, group = CMA_name.x)) +
+  geom_point(mapping = aes(housing_need_ch, CMA_name.x, color = library.x)) +
+  scale_x_continuous(labels = scales::percent) +
+  theme_minimal()
+
+## FIGURE 5.B. 2006/2016 VISIBLE MINORITIES COMPARISON ACROSS ALL REGIONS
+
+lib_change %>%
+  ggplot()+
+  geom_line(mapping = aes(visible_minorities_ch, CMA_name.x, group = CMA_name.x)) +
+  geom_point(mapping = aes(visible_minorities_ch, CMA_name.x, color = library.x)) +
+  scale_x_continuous(labels = scales::percent) +
+  theme_minimal()
+
+## FIGURE 5.C. 2006/2016 UNEMPLOYMENT (PCT) COMPARISON ACROSS ALL REGIONS
+
+lib_change %>%
+  ggplot()+
+  geom_line(mapping = aes(unemployed_pct_change, CMA_name.x, group = CMA_name.x)) +
+  geom_point(mapping = aes(unemployed_pct_change, CMA_name.x, color = library.x)) +
+  scale_x_continuous(labels = scales::percent) +
+  theme_minimal()
+
+## FIGURE 5.D. 2006/2016 MEDIAN INCOME (PCT) COMPARISON ACROSS ALL REGIONS
+
+lib_change %>%
+  ggplot()+
+  geom_line(mapping = aes(med_income_ch, CMA_name.x, group = CMA_name.x)) +
+  geom_point(mapping = aes(med_income_ch, CMA_name.x, color = library.x)) +
+  scale_x_continuous(labels = scales::dollar) +
+  theme_minimal()
+
+
+
+## FIGURE 6. ALL FIVE VARIABLE 2006/2016 COMPARISONS ACROSS ALL REGIONS
+
+library_service_comparison_tidy <- gather(library_service_comparison, 
+                                          housing_need, lone_parent, 
+                                          immigrants, visible_minorities, 
+                                          unemployed_pct, 
+                                          med_income, key = "census_variable",
+                                          value = "value") %>% 
+  drop_units()
+
+ggplot()+
+  geom_line(data = library_service_comparison_tidy,
+            aes(x = date, y = value, colour = library,
+                group = interaction(library, CMA_name)), 
+            alpha = 0.2) +
+  geom_point(data = library_service_comparison_tidy,
+             aes(x = date, y = value, colour = library), 
+             alpha = 0.2) +
+  geom_point(data=tidy_summary,
+             aes(x = date, y = value, colour = library), size = 5) + 
+  geom_line(data = tidy_summary,
+            aes(x = date, y = value, colour = library, group = library),
+            size = 2) + 
+  facet_wrap(~census_variable, scales = "free")
+
+
+
+
 ## FIGURE 6. ALL FIVE VARIABLE 2006/2016 COMPARISONS ACROSS ALL REGIONS
 
 library_service_comparison_tidy <- gather(library_service_comparison, 
@@ -105,9 +203,15 @@ ggplot()+
   facet_wrap(~census_variable, scales = "free")
 
 
+## FIGURE 7. CORE HOUSING NEED 2006/2016 ACROSS MAJOR REGIONS
+
+ggplot(lib_change)+
+  geom_point(mapping = aes(CMA_name.x, visible_minorities_ch, color=library.x))+
+  theme(axis.title.x = element_blank())+
+  facet_wrap(~region.y)+
+  theme(axis.title.x = element_blank())
 
 
-## FIGURE 7. CORE HOUSING NEED 2006/2016 ACROSS MAJOR CMAs
 ## Toronto 2016, 2006
 #tm_shape(filter(CMAs_2016, CMA_name == "Toronto (B)")) +
 # tm_dots(col = 'black')+
