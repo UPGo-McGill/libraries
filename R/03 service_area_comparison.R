@@ -15,6 +15,15 @@ library_service_comparison_2016 <- st_intersect_summarize(
   mutate(unemployed_pct = unemployed_pct * 0.01) %>% 
   drop_units() 
 
+library_service_comparison_2016 <- 
+  library_service_comparison_2016 %>% 
+  mutate(region = case_when(
+    PR_UID == 59 ~ "BC",
+    PR_UID == 48 | PR_UID == 47 | PR_UID == 46 ~ "Prairies",
+    PR_UID == 35 ~ "Ontario",
+    PR_UID == 24 ~ "Quebec",
+    PR_UID == 12 | PR_UID == 13 ~ "Atlantic"))
+
 library_service_comparison_2006 <- st_intersect_summarize(
   CTs_2006,
   service_areas_2006,
@@ -26,20 +35,28 @@ library_service_comparison_2006 <- st_intersect_summarize(
   mutate(unemployed_pct = unemployed_pct * 0.01) %>% 
   drop_units()
 
+library_service_comparison_2006 <- 
+  library_service_comparison_2006 %>% 
+  mutate(region = case_when(
+    PR_UID == 59 ~ "BC",
+    PR_UID == 48 | PR_UID == 47 | PR_UID == 46 ~ "Prairies",
+    PR_UID == 35 ~ "Ontario",
+    PR_UID == 24 ~ "Quebec",
+    PR_UID == 12 | PR_UID == 13 ~ "Atlantic"))
 
 ## Summaries for the two years
 
 summary_2016_unweighted <- 
   library_service_comparison_2016 %>%
   st_drop_geometry() %>% 
-  select(-CMA_name, -population) %>%
+  select(-CMA_name, -population, -region, -PR_UID) %>%
   group_by(library) %>%
   summarize_all(mean)
 
 summary_2006_unweighted <- 
   library_service_comparison_2006 %>%
   st_drop_geometry() %>%
-  select(-CMA_name, -population) %>%
+  select(-CMA_name, -population, -region, -PR_UID) %>%
   group_by(library) %>%
   summarize_all(mean)
 
@@ -90,13 +107,7 @@ library_service_comparison <- rbind(library_service_comparison_2006 %>%
                                     library_service_comparison_2016 %>% 
                                       mutate(date = "2016")) %>% 
   group_by(CMA_name) %>% 
-  drop_units() %>% 
-  mutate(region = case_when(
-    PR_UID == 59 ~ "BC",
-    PR_UID == 48 | PR_UID == 47 | PR_UID == 46 ~ "Prairies",
-    PR_UID == 35 ~ "Ontario",
-    PR_UID == 24 ~ "Quebec",
-    PR_UID == 12 | PR_UID == 13 ~ "Atlantic"))
+  drop_units() 
 
 Canada_summary <- rbind(
   Canada_2006 %>% mutate(date = "2006") %>% select(-c(1, 4:5, 7:8)),
