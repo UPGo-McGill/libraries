@@ -28,6 +28,15 @@ library_service_comparison <- rbind(library_service_comparison_2006 %>%
                               group_by(CMA_name) %>% 
                               drop_units()
 
+Canada_summary <- rbind(Canada_2006 %>% 
+                          mutate(date = "2006") %>% 
+                          select(-c(1, 4:8)), 
+                        Canada_2016 %>% 
+                          mutate(date = "2016") %>% 
+                          select(-c(1, 4:8))) %>% 
+                  names() <- c("population", "unemployed_pct", "housing_need", "lone_parent", 
+                               "immigrants", "visible_minorities", "date", "geometry")
+
 # Making summary graphs of each year using weighted means
 tidy_summary %>% 
   filter(census_variable == "housing_need") %>% 
@@ -60,11 +69,14 @@ tidy_summary %>%
   geom_point(aes(x = date, y = value, colour = library))
 
 # Mapping housing need
- 
  ggplot()+
   geom_point(data = library_service_comparison,
             aes(x = date, y = housing_need, colour = library, size = population), 
              alpha = 0.25) +
-
   geom_point(data = filter(tidy_summary, census_variable == "housing_need"),
-             aes(x = date, y = value, colour = library), size = 5)
+             aes(x = date, y = value, colour = library), size = 10) + 
+  geom_line(data = filter(tidy_summary, census_variable == "housing_need"),
+             aes(x = date, y = value, colour = library, group = library))+
+  geom_point(data = Canada_summary,
+              aes(x = date, y = housing_need))
+  
