@@ -203,14 +203,36 @@ ggplot()+
   facet_wrap(~census_variable, scales = "free")
 
 
-## FIGURE 7. CORE HOUSING NEED 2006/2016 ACROSS MAJOR REGIONS
+
+## FIGURE 7.A. CORE HOUSING NEED CHANGE 2006/2016 ACROSS MAJOR REGIONS
+
+ggplot(lib_change)+
+  geom_point(mapping = aes(CMA_name.x, housing_need_ch, color=library.x))+
+  theme(axis.title.x = element_blank())+
+  facet_wrap(~region.y)
+
+## FIGURE 7.B. VISIBLE MINORITIES CHANGE 2006/2016 ACROSS MAJOR REGIONS
 
 ggplot(lib_change)+
   geom_point(mapping = aes(CMA_name.x, visible_minorities_ch, color=library.x))+
   theme(axis.title.x = element_blank())+
-  facet_wrap(~region.y)+
-  theme(axis.title.x = element_blank())
+  facet_wrap(~region.y)
 
+## FIGURE 7.C. UNEMPLOYMENT CHANGE (PCT) 2006/2016 ACROSS MAJOR REGIONS
+
+ggplot(lib_change)+
+  geom_point(mapping = aes(CMA_name.x, unemployed_pct_change, color=library.x))+
+  theme(axis.title.x = element_blank())+
+  facet_wrap(~region.y)
+
+## FIGURE 7.D. MEDIAN INCOME CHANGE 2006/2016 ACROSS MAJOR REGIONS
+
+ggplot(lib_change)+
+  geom_point(mapping = aes(CMA_name.x, med_income_ch, color=library.x))+
+  theme(axis.title.x = element_blank())+
+  facet_wrap(~region.y)
+
+## FIGURE 8. MAPPING MAJOR CMAs
 
 ## Toronto 2016, 2006
 #tm_shape(filter(CMAs_2016, CMA_name == "Toronto (B)")) +
