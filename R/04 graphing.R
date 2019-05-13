@@ -1,8 +1,8 @@
 ## GRAPHING ############
 
-source("R/helper_functions.R")
-source("R/data_import.R")
-source("R/service_area_comparison.R")
+source("R/01 helper_functions.R")
+source("R/02 data_import.R")
+source("R/03 service_area_comparison.R")
 
 ## Tidying data
 tidy_summary_2006 <- gather(summary_2006_weighted, housing_need, lone_parent, 
