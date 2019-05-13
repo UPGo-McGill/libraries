@@ -48,15 +48,19 @@ summary_2006_unweighted <-
 
 summary_2016_weighted <- 
   library_service_comparison_2016 %>% 
+  st_drop_geometry() %>% 
   group_by(library) %>% 
   summarize_at(c("housing_need", "lone_parent", "immigrants",
                  "visible_minorities", "unemployed_pct", "med_income"),
-               ~{weighted.mean(., population)})
+               ~{sum(. * population, na.rm = TRUE) /
+                   sum(population, na.rm = TRUE)})
 
 summary_2006_weighted <- 
   library_service_comparison_2006 %>% 
+  st_drop_geometry() %>% 
   group_by(library) %>% 
   summarize_at(c("housing_need", "lone_parent", "immigrants",
                  "visible_minorities", "unemployed_pct", "med_income"),
-               ~{weighted.mean(., population)})
+               ~{sum(. * population, na.rm = TRUE) /
+                   sum(population, na.rm = TRUE)})
   
