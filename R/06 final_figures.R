@@ -56,8 +56,8 @@ tm_shape(filter(libraries_2006, Library_System ==
                                  "Bibliotheque et Archives Nationales du Quebec"), 1000),
          ext = 12) +
   tm_dots(col = 'black')+
-  tm_shape(filter(CTs_2006, CMA_name == "Montreal")) +
-  tm_polygons("housing_need_pct", border.alpha = 0)  + 
+  tm_shape(filter(CTs_2006, CMA_name == "Montreal"))+
+  tm_fill("housing_need_pct", border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
   tm_shape(filter(service_areas_2006, CMA_name == "Montreal" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(legend.position = c("left", "top"),
