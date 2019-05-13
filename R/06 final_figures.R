@@ -79,9 +79,162 @@ library_service_comparison %>%
 
 ## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 
-## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 
+
+## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 
 ## FIGURE 6. ALL FIVE VARIABLE 2006/2016 COMPARISONS ACROSS ALL REGIONS
 
 
+## FIGURE 7. CORE HOUSING NEED 2006/2016 ACROSS MAJOR CMAs
+## Toronto 2016, 2006
+tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+tm_shape(filter(service_areas_2006, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2006, CMA_name == "Toronto (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2006, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+## Vancouver 2016, 2006
+
+tm_shape(filter(service_areas_2016, CMA_name == "Vancouver (B)" & library == TRUE), ext = 1.1) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2016, CMA_name == "Vancouver (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2016, CMA_name == "Vancouver (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "bottom"),
+            frame = FALSE) +
+  tm_compass()
+
+tm_shape(filter(service_areas_2006, CMA_name == "Vancouver (B)" & library == TRUE), ext = 1.1) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2006, CMA_name == "Vancouver (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2006, CMA_name == "Vancouver (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "bottom"),
+            frame = FALSE) +
+  tm_compass()
+
+## Calgary 2016, 2006
+
+tm_shape(filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2016, CMA_name == "Calgary (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("right", "bottom"),
+            frame = FALSE) +
+  tm_compass()
+
+tm_shape(filter(service_areas_2006, CMA_name == "Calgary (B)" & library == TRUE)) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2006, CMA_name == "Calgary (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2006, CMA_name == "Calgary (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("right", "bottom"),
+            frame = FALSE) +
+  tm_compass()
+
+
+## Montreal 2016, 2006
+tm_shape(filter(service_areas_2016, CMA_name == "Montreal" & library == TRUE)) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2016, CMA_name == "Montreal" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+tm_shape(filter(service_areas_2006, CMA_name == "Montreal" & library == TRUE), ext = 1.1) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2006, CMA_name == "Montreal")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2006, CMA_name == "Montreal" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+## Ottawa Gatineau 2016, 2006
+
+tm_shape(filter(service_areas_2016, CMA_name == "Ottawa - Gatineau (B)" & library == TRUE)) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2016, CMA_name == "Ottawa - Gatineau (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2016, CMA_name == "Ottawa - Gatineau (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+tm_shape(filter(service_areas_2006, CMA_name == "Ottawa - Gatineau (B)" & library == TRUE), ext = 1.1) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2006, CMA_name == "Ottawa - Gatineau (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2006, CMA_name == "Ottawa - Gatineau (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+
+## Halifax 2016, 2006
+tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2016, CMA_name == "Halifax (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2016, CMA_name == "Halifax (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+tm_shape(filter(service_areas_2006, CMA_name == "Halifax (B)" & library == TRUE), ext = 1.1) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2006, CMA_name == "Halifax (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2006, CMA_name == "Halifax (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+## Edmonton 2016, 2006
+tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE)) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2016, CMA_name == "Edmonton (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2016, CMA_name == "Edmonton (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
+
+tm_shape(filter(service_areas_2006, CMA_name == "Edmonton (B)" & library == TRUE), ext = 1.1) +
+  tm_borders(col = 'black')+
+  tm_shape(filter(CTs_2006, CMA_name == "Edmonton (B)")) +
+  tm_polygons(("housing_need_pct"), border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
+  tm_shape(filter(service_areas_2006, CMA_name == "Edmonton (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"),
+            frame = FALSE) +
+  tm_compass()
