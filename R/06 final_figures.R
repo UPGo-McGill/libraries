@@ -73,14 +73,15 @@ dev.off()
 library_service_comparison %>%
   filter (date=="2016") %>%
   ggplot()+
-  geom_point(mapping = aes(CMA_name, housing_need, color=library))+
-  coord_flip()
-
+  geom_line(mapping = aes(housing_need, CMA_name, group = CMA_name)) +
+  geom_point(mapping = aes(housing_need, CMA_name, color = library)) +
+  scale_x_continuous(labels = scales::percent) +
+  theme_minimal()
 
 ## FIGURE 5. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 ## FIGURE 6. ALL FIVE VARIABLE 2006/2016 COMPARISONS ACROSS ALL REGIONS
 
-library_service_comparison <- gather(library_service_comparison, 
+library_service_comparison_tidy <- gather(library_service_comparison, 
                                      housing_need, lone_parent, 
                                      immigrants, visible_minorities, 
                                      unemployed_pct, 
@@ -89,11 +90,11 @@ library_service_comparison <- gather(library_service_comparison,
   drop_units()
 
 ggplot()+
-  geom_line(data = library_service_comparison,
+  geom_line(data = library_service_comparison_tidy,
             aes(x = date, y = value, colour = library,
                 group = interaction(library, CMA_name)), 
             alpha = 0.2) +
-  geom_point(data = library_service_comparison,
+  geom_point(data = library_service_comparison_tidy,
              aes(x = date, y = value, colour = library), 
              alpha = 0.2) +
   geom_point(data=tidy_summary,
