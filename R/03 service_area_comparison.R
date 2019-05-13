@@ -7,18 +7,18 @@ source("R/01 helper_functions.R")
 library_service_comparison_2016 <- st_intersect_summarize(
   CTs_2016,
   service_areas_2016,
-  group_vars = vars(CMA_name, library),
+  group_vars = vars(CMA_name, library, PR_UID),
   population = population,
   sum_vars = vars(housing_need, lone_parent, immigrants, visible_minorities),
   mean_vars = vars(unemployed_pct, med_income)) %>% 
   ungroup() %>%
   mutate(unemployed_pct = unemployed_pct * 0.01) %>% 
-  drop_units()
+  drop_units() 
 
 library_service_comparison_2006 <- st_intersect_summarize(
   CTs_2006,
   service_areas_2006,
-  group_vars = vars(CMA_name, library),
+  group_vars = vars(CMA_name, library, PR_UID),
   population = population,
   sum_vars = vars(housing_need, lone_parent, immigrants, visible_minorities),
   mean_vars = vars(unemployed_pct, med_income)) %>% 
