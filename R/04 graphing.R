@@ -210,3 +210,42 @@ ggplot()+
                              "Within Library Service Area")) +
   scale_y_continuous(limits = c(NA,100000), labels = scales::dollar)
 
+# FACET WRAP
+
+library_service_comparison <- gather(library_service_comparison, 
+                                              housing_need, lone_parent, 
+                                              immigrants, visible_minorities, 
+                                              unemployed_pct, 
+                                              med_income, key = "census_variable",
+                                              value = "value") %>% 
+   drop_units()
+
+ggplot(data = library_service_comparison)+
+   geom_line(
+             aes(x = date, y = value, colour = library,
+                 group = interaction(library, CMA_name)), 
+             alpha = 0.2) +
+   geom_point(data = library_service_comparison,
+              aes(x = date, y = value, colour = library), 
+              alpha = 0.2) +
+   geom_point(
+              aes(x = date, y = value, colour = library), size = 5) + 
+   geom_line(
+             aes(x = date, y = value, colour = library, group = library),
+             size = 2) + 
+   #geom_point(data = Canada_summary,
+    #          aes(x = date, y = value), 
+     #         size = 5, alpha = 0.5)+
+   #geom_line(data = Canada_summary,
+    #         aes(x = date, y = value, group = 1),
+    #         size = 2, alpha = 0.5) +
+   
+   facet_wrap(~census_variable) +
+xlab("Year") +
+   ylab("Median Household Income ($)") +
+   labs(colour = '') +
+   scale_colour_discrete (labels = 
+                             c("Outside Library Service Area", 
+                               "Within Library Service Area")) +
+   scale_y_continuous(limits = c(NA,100000), labels = scales::dollar) +
+   facet_wrap(~census_variable)
