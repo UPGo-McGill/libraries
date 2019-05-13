@@ -6,7 +6,7 @@ ggplot(library_service_comparison_2016)+
   geom_point(mapping = aes(CMA_name, housing_need, color=library))
 
 ## Highest Core Housing Need 
-library_service_comparison_2016_num %>% 
+library_service_comparison_2016 %>% 
   filter(housing_need > 0.14) %>% 
   ggplot(mapping = aes(x = housing_need, y = CMA_name, color=library)) +
   geom_point() + 
@@ -45,13 +45,17 @@ lib_change <- lib_change %>%
 
 ## graphing housing need
 ggplot(lib_change)+
-  geom_point(mapping = aes(CMA_name.x, housing_need_ch, color=library.x))
+  geom_point(mapping = aes(CMA_name.x, housing_need_ch, color=library.x))+
+  facet_wrap(~region.y)
 
 ggplot(lib_change)+
-  geom_point(mapping = aes(CMA_name.x, med_income_ch, color=library.x))
+  geom_point(mapping = aes(CMA_name.x, med_income_ch, color=library.x))+
+  facet_wrap(~region.y)
+
 
 ggplot(lib_change)+
-  geom_point(mapping = aes(CMA_name.x, immigrants_ch, color=library.x))
+  geom_point(mapping = aes(CMA_name.x, immigrants_ch, color=library.x))+
+  facet_wrap(~region.y)
 
 # Greatest change
 lib_change %>% 
