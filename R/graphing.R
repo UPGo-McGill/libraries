@@ -5,23 +5,30 @@ source("R/data_import.R")
 source("R/service_area_comparison.R")
 
 ## Tidying data
-
 tidy_summary_2006 <- gather(summary_2006_weighted, housing_need, lone_parent, 
                             immigrants, visible_minorities, unemployed_pct, 
                             med_income, key = "census_variable", value = "value") %>% 
                             mutate(date = "2006") %>% 
-    drop_units()
+                            drop_units()
 
 tidy_summary_2016 <- gather(summary_2016_weighted, housing_need, lone_parent, 
                             immigrants, visible_minorities, unemployed_pct, 
                             med_income, key = "census_variable", value = "value") %>% 
-  mutate(date = "2016") %>% 
-  drop_units()
+                            mutate(date = "2016") %>% 
+                            drop_units()
 
 tidy_summary <- rbind(tidy_summary_2006, tidy_summary_2016)
 
+rm(tidy_summary_2006, tidy_summary_2016)
 
-# Making graphs
+library_service_comparison <- rbind(library_service_comparison_2006 %>% 
+                              mutate(date = "2006"), 
+                              library_service_comparison_2016 %>% 
+                              mutate(date = "2016")) %>% 
+                              group_by(CMA_name) %>% 
+                              drop_units()
+
+# Making summary graphs of each year using weighted means
 tidy_summary %>% 
   filter(census_variable == "housing_need") %>% 
   ggplot()+
@@ -51,3 +58,13 @@ tidy_summary %>%
   filter(census_variable == "med_income") %>% 
   ggplot()+
   geom_point(aes(x = date, y = value, colour = library))
+
+# Mapping housing need
+ 
+ ggplot()+
+  geom_point(data = library_service_comparison,
+            aes(x = date, y = housing_need, colour = library, size = population), 
+             alpha = 0.25) +
+
+  geom_point(data = filter(tidy_summary, census_variable == "housing_need"),
+             aes(x = date, y = value, colour = library), size = 5)
