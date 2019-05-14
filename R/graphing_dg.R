@@ -32,10 +32,6 @@ lib_true_2016 <- lib_true_2016 %>%
 lib_change <- lib_true_2016 %>% 
   inner_join(st_drop_geometry(lib_true_2006), by = c("CMA_lib2" = "CMA_lib2"))
 
-lib_change %>% 
-  st_drop_geometry() %>% 
-  distinct()
-
 
 ## Calculate change in variables
 lib_change <- lib_change %>%

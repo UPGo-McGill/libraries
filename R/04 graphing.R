@@ -212,7 +212,7 @@ ggplot()+
 
 # FACET WRAP
 
-library_service_comparison <- gather(library_service_comparison, 
+library_service_comparison_tidy <- gather(library_service_comparison, 
                                               housing_need,
                                               immigrants, visible_minorities, 
                                               unemployed_pct, 
@@ -223,11 +223,11 @@ library_service_comparison <- gather(library_service_comparison,
 tidy_summary %>% 
    filter(census_variable != "lone_parent") %>% 
 ggplot()+
-   geom_line(data = library_service_comparison,
+   geom_line(data = library_service_comparison_tidy,
              aes(x = date, y = value, colour = library,
                  group = interaction(library, CMA_name)),
              alpha = 0.2) +
-   geom_point(data = library_service_comparison,
+   geom_point(data = library_service_comparison_tidy,
               aes(x = date, y = value, colour = library),
               alpha = 0.2) +
    geom_point(

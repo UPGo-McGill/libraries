@@ -5,110 +5,187 @@ source("R/01 helper_functions.R")
 
 ## FIGURE 1. MAP OF BANQ AREA (WITH NO BUFFERS AT ALL)
 
-pdf()
-tm_shape(st_buffer(filter(libraries_2016, Library_System == 
-                            "Bibliotheque et Archives Nationales du Quebec"), 1000),
-         ext = 12) +
-  tm_dots(col = 'black')+
-  tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
-  tm_polygons("housing_need_pct", border.alpha = 0)  + 
-  tm_shape(filter(libraries_2016, Library_System == "Bibliotheque et Archives Nationales du Quebec")) +
-  tm_dots(col= 'black', size = 1)+
+figure_1 <-
+  tm_shape(st_buffer( 
+    filter(libraries_2016, Library_System == 
+             "Bibliotheque et Archives Nationales du Quebec"), 1000),
+    ext = 12) + 
+    tm_dots(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Montreal (B)")) +
+    tm_polygons("housing_need_pct", border.alpha = 0,
+                legend.format=list(fun=function(x) {
+                  paste0(formatC(x * 100, digits = 0, format="f"), " %")
+                  })) + 
+  tm_shape(water) +
+    tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+    tm_fill(col = "grey85") +
+  tm_shape(filter(libraries_2016, Library_System ==
+                    "Bibliotheque et Archives Nationales du Quebec")) +
+    tm_dots(col= 'black', size = 1) +
   tm_layout(legend.position = c("left", "top"),
             frame = FALSE) +
   tm_compass()
-dev.off()
+
+tmap_save(figure_1, "output/figure_1.png", width = 2400, height = 2400)
+
 
 ## FIGURE 2. MAP OF BANQ AREA (WITH BANQ BUFFER DRAWN ON)
 
-pdf()
-tm_shape(st_buffer(filter(libraries_2016, Library_System == 
-                            "Bibliotheque et Archives Nationales du Quebec"), 1000),
-         ext = 12) +
-  tm_dots(col = 'black')+
-  tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
-  tm_polygons("housing_need_pct", border.alpha = 0)  + 
-  tm_shape(st_buffer(filter(libraries_2016, Library_System == 
-                              "Bibliotheque et Archives Nationales du Quebec"), 1000) ) +
-  tm_borders(col= 'black')+
+figure_2 <- 
+  tm_shape(st_buffer(
+    filter(libraries_2016, Library_System == 
+             "Bibliotheque et Archives Nationales du Quebec"), 1000),
+    ext = 12) +
+    tm_dots(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Montreal (B)")) +
+    tm_polygons("housing_need_pct", border.alpha = 0,
+                legend.format=list(fun=function(x) {
+                  paste0(formatC(x * 100, digits = 0, format="f"), " %")
+                })) +
+  tm_shape(water) +
+    tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+    tm_fill(col = "grey85") +
+  tm_shape(st_buffer(
+    filter(libraries_2016, Library_System ==
+             "Bibliotheque et Archives Nationales du Quebec"), 1000)) +
+    tm_borders(col= 'black') +
+  
   tm_layout(legend.position = c("left", "top"),
             frame = FALSE) +
   tm_compass()
-dev.off()
+
+tmap_save(figure_2, "output/figure_2.png", width = 2400, height = 2400)
+
 
 ## FIGURE 3. MAP OF MONTREAL WITH ALL LIBRARY BUFFERS (2016)
 
-pdf()
-tm_shape(filter(libraries_2016, Library_System == 
-                  "Bibliotheque et Archives Nationales du Quebec"), 
-         bb = st_buffer(filter(libraries_2016, Library_System == 
-                                 "Bibliotheque et Archives Nationales du Quebec"), 1000),
-         ext = 12) +
-  tm_dots(col = 'black')+
-  tm_shape(filter(CTs_2016, CMA_name == "Montreal")) +
-  tm_polygons("housing_need_pct", border.alpha = 0)  + 
-  tm_shape(filter(service_areas_2016, CMA_name == "Montreal" & library == TRUE)) +
-  tm_borders(col = 'black') + 
+figure_3 <- 
+  tm_shape(st_buffer(
+    filter(libraries_2016, Library_System == 
+             "Bibliotheque et Archives Nationales du Quebec"), 1000),
+    ext = 12) +
+    tm_dots(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Montreal (B)")) +
+    tm_polygons("housing_need_pct", border.alpha = 0,
+              legend.format=list(fun=function(x) {
+                paste0(formatC(x * 100, digits = 0, format="f"), " %")
+              })) +
+  tm_shape(water) +
+    tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+    tm_fill(col = "grey85") +
+  tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & 
+                    library == TRUE)) +
+    tm_borders(col = 'black') + 
   tm_layout(legend.position = c("left", "top"),
             frame = FALSE) +
   tm_compass()
-dev.off()
+
+tmap_save(figure_3, "output/figure_3.png", width = 2400, height = 2400)
 
 
-## FIGURE 3B. ZOOMED OUT MAP OF MONTREAL WITH ALL LIBRARY BUFFERS
 
-pdf()
-  tm_shape(filter(CTs_2006, CMA_name == "Montreal"))+
-  tm_fill("housing_need_pct", border.alpha = 0, breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5))  + 
-  tm_shape(filter(service_areas_2006, CMA_name == "Montreal" & library == TRUE)) +
-  tm_borders(col = 'black') + 
+## FIGURE 4. ZOOMED OUT MAP OF MONTREAL WITH ALL LIBRARY BUFFERS
+
+figure_4 <- 
+  tm_shape(filter(CTs_2016, CMA_name == "Montreal (B)")) +
+    tm_fill("housing_need_pct",
+            border.alpha = 0,
+            breaks = c(0,0.1, 0.2, 0.3, 0.4, 0.5),
+            legend.format=list(fun=function(x) {
+              paste0(formatC(x * 100, digits = 0, format="f"), " %")
+            })) +
+  tm_shape(water) +
+    tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+    tm_fill(col = "grey85") +
+  tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & 
+                    library == TRUE)) +
+    tm_borders(col = 'black') + 
   tm_layout(legend.position = c("left", "top"),
             frame = FALSE) +
   tm_compass()
-dev.off()
+
+tmap_save(figure_4, "output/figure_4.png", width = 2400, height = 2400)
 
 
+## FIGURE 5a LOLLIPOP GRAPH OF 2016 VISIBLE MINORITIES
 
-## FIGURE 4.A LOLLIPOP GRAPH OF 2016 VISIBLE MINORITIES
-
-library_service_comparison %>%
-  filter (date=="2016") %>%
-  ggplot()+
-  geom_line(mapping = aes(housing_need, CMA_name, group = CMA_name)) +
-  geom_point(mapping = aes(housing_need, CMA_name, color = library)) +
+figure_5a <- 
+  library_service_comparison %>%
+  filter(date == "2016") %>%
+  ggplot(aes(housing_need, CMA_name)) +
+  geom_line(aes(group = interaction(CMA_name, PR_UID))) +
+  geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::percent) +
-  theme_minimal()
+  theme_minimal() +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.title.x = element_blank())
 
+ggsave("output/figure_5a.png", figure_5a, "png", width = 8, height = 6,
+       units = "in", dpi = 240)
 
-## FIGURE 4.B LOLLIPOP GRAPH OF 2016 VISIBLE MINORITIES
+## FIGURE 5b LOLLIPOP GRAPH OF 2016 MEDIAN INCOME
 
-library_service_comparison %>%
-  filter (date=="2016") %>%
-  ggplot()+
-  geom_line(mapping = aes(visible_minorities, CMA_name, group = CMA_name)) +
-  geom_point(mapping = aes(visible_minorities, CMA_name, color = library)) +
-  scale_x_continuous(labels = scales::percent) +
-  theme_minimal()
-
-## FIGURE 4.C LOLLIPOP GRAPH OF 2016 UNEMPLOYMENT (PRC)
-
-library_service_comparison %>%
-  filter (date=="2016") %>%
-  ggplot()+
-  geom_line(mapping = aes(unemployed_pct, CMA_name, group = CMA_name)) +
-  geom_point(mapping = aes(unemployed_pct, CMA_name, color = library)) +
-  scale_x_continuous(labels = scales::percent) +
-  theme_minimal()
-
-## FIGURE 4.D LOLLIPOP GRAPH OF 2016 MEDIAN INCOME
-
-library_service_comparison %>%
-  filter (date=="2016") %>%
-  ggplot()+
-  geom_line(mapping = aes(med_income, CMA_name, group = CMA_name)) +
-  geom_point(mapping = aes(med_income, CMA_name, color = library)) +
+figure_5b <- 
+  library_service_comparison %>%
+  filter(date == "2016") %>%
+  ggplot(aes(med_income, CMA_name)) +
+  geom_line(aes(group = interaction(CMA_name, PR_UID))) +
+  geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::dollar) +
-  theme_minimal()
+  theme_minimal() +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.title.x = element_blank())
+
+ggsave("output/figure_5b.png", figure_5b, "png", width = 8, height = 6,
+       units = "in", dpi = 240)
+
+
+## FIGURE 5c LOLLIPOP GRAPH OF 2016 UNEMPLOYMENT (PRC)
+
+figure_5c <- 
+  library_service_comparison %>%
+  filter(date == "2016") %>%
+  ggplot(aes(unemployed_pct, CMA_name)) +
+  geom_line(aes(group = interaction(CMA_name, PR_UID))) +
+  geom_point(aes(color = library)) +
+  scale_x_continuous(labels = scales::percent) +
+  theme_minimal() +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.title.x = element_blank())
+
+ggsave("output/figure_5c.png", figure_5c, "png", width = 8, height = 6,
+       units = "in", dpi = 240)
+
+## FIGURE 5d LOLLIPOP GRAPH OF 2016 VISIBLE MINORITIES
+
+figure_5d <- 
+  library_service_comparison %>%
+  filter(date == "2016") %>%
+  ggplot(aes(visible_minorities, CMA_name)) +
+  geom_line(aes(group = interaction(CMA_name, PR_UID))) +
+  geom_point(aes(color = library)) +
+  scale_x_continuous(labels = scales::percent) +
+  theme_minimal() +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.title.x = element_blank())
+
+ggsave("output/figure_5d.png", figure_5d, "png", width = 8, height = 6,
+       units = "in", dpi = 240)
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## FIGURE 5.A. 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
