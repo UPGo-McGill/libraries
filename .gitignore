@@ -9,3 +9,4 @@ data/.DS_Store
 *david_api.R
 cancensus_amy_ignore.R
 data/CM_*
+data/lhy*
