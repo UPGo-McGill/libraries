@@ -116,7 +116,7 @@ tmap_save(figure_4, "output/figure_4.png", width = 2400, height = 2400)
 figure_5a <- 
   library_service_comparison %>%
   filter(date == "2016") %>%
-  ggplot(aes(housing_need, CMA_name)) +
+  ggplot(aes(housing_need, reorder(CMA_name, housing_need))) +
   geom_line(aes(group = interaction(CMA_name, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::percent) +
@@ -132,7 +132,7 @@ ggsave("output/figure_5a.png", figure_5a, "png", width = 8, height = 6,
 figure_5b <- 
   library_service_comparison %>%
   filter(date == "2016") %>%
-  ggplot(aes(med_income, CMA_name)) +
+  ggplot(aes(med_income, reorder(CMA_name, med_income))) +
   geom_line(aes(group = interaction(CMA_name, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::dollar) +
@@ -149,7 +149,7 @@ ggsave("output/figure_5b.png", figure_5b, "png", width = 8, height = 6,
 figure_5c <- 
   library_service_comparison %>%
   filter(date == "2016") %>%
-  ggplot(aes(unemployed_pct, CMA_name)) +
+  ggplot(aes(unemployed_pct, reorder(CMA_name, unemployed_pct))) +
   geom_line(aes(group = interaction(CMA_name, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::percent) +
@@ -165,7 +165,7 @@ ggsave("output/figure_5c.png", figure_5c, "png", width = 8, height = 6,
 figure_5d <- 
   library_service_comparison %>%
   filter(date == "2016") %>%
-  ggplot(aes(visible_minorities, CMA_name)) +
+  ggplot(aes(visible_minorities, reorder(CMA_name, visible_minorities))) +
   geom_line(aes(group = interaction(CMA_name, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::percent) +
