@@ -7,6 +7,7 @@ library(sf)
 library(tidyverse)
 library(tmap)
 library(units)
+library(ggrepel)
 
 
 ## st_erase helper function

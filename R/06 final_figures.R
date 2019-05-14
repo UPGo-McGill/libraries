@@ -111,13 +111,13 @@ figure_4 <-
 tmap_save(figure_4, "output/figure_4.png", width = 2400, height = 2400)
 
 
-## FIGURE 5a LOLLIPOP GRAPH OF 2016 VISIBLE MINORITIES
+## FIGURE 5a LOLLIPOP GRAPH OF 2016 HOUSING NEED
 
 figure_5a <- 
   library_service_comparison %>%
   filter(date == "2016") %>%
   ggplot(aes(housing_need, CMA_name)) +
-  geom_line(aes(group = interaction(CMA_name, PR_UID))) +
+  geom_line(aes(group = interaction(CMA_name, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::percent) +
   theme_minimal() +
@@ -133,7 +133,7 @@ figure_5b <-
   library_service_comparison %>%
   filter(date == "2016") %>%
   ggplot(aes(med_income, CMA_name)) +
-  geom_line(aes(group = interaction(CMA_name, PR_UID))) +
+  geom_line(aes(group = interaction(CMA_name, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::dollar) +
   theme_minimal() +
@@ -150,7 +150,7 @@ figure_5c <-
   library_service_comparison %>%
   filter(date == "2016") %>%
   ggplot(aes(unemployed_pct, CMA_name)) +
-  geom_line(aes(group = interaction(CMA_name, PR_UID))) +
+  geom_line(aes(group = interaction(CMA_name, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::percent) +
   theme_minimal() +
@@ -166,7 +166,7 @@ figure_5d <-
   library_service_comparison %>%
   filter(date == "2016") %>%
   ggplot(aes(visible_minorities, CMA_name)) +
-  geom_line(aes(group = interaction(CMA_name, PR_UID))) +
+  geom_line(aes(group = interaction(CMA_name, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::percent) +
   theme_minimal() +
@@ -177,7 +177,7 @@ ggsave("output/figure_5d.png", figure_5d, "png", width = 8, height = 6,
        units = "in", dpi = 240)
 
 
-## 2016 maps
+## 2016 maps #############
 
 # Montreal
 
@@ -639,7 +639,7 @@ CMA <-
 tmap_save(CMA, "output/Chilliwack_CMA.png", width = 2400, height = 2400)
 
 
-## FIGURE 6. ALL FIVE VARIABLE 2006/2016 COMPARISONS ACROSS ALL REGIONS
+## FIGURE 6. ALL FIVE VARIABLE 2006/2016 COMPARISONS ACROSS ALL REGIONS ####
 
 figure_6 <- 
   tidy_summary %>% 
@@ -661,25 +661,19 @@ ggsave("output/figure_6.png", figure_6, "png", width = 8, height = 8,
        units = "in", dpi = 240)
 
 
-
-
-
-
-
-
 ## FIGURE 7a 2006/2016 CORE HOUSING NEED COMPARISON ACROSS ALL REGIONS
 
 figure_7a <-
   lib_change %>%
-  ggplot(aes(housing_need_ch, CMA_name.x))+
-  geom_line(aes(group = interaction(CMA_name.x, PR_UID))) +
+  ggplot(aes(housing_need_ch, reorder(CMA_name.x, housing_need_ch))) +
+  geom_line(aes(group = interaction(CMA_name.x, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
   scale_x_continuous(labels = scales::percent) +
   theme_minimal() +
   theme(axis.title.y = element_blank()) +
   theme(axis.title.x = element_blank())
 
-ggsave("output/figure_7a.png", figure_7a, "png", width = 8, height = 8,
+ggsave("output/figure_7a.png", figure_7a, "png", width = 8, height = 6,
        units = "in", dpi = 240)
 
 
@@ -687,75 +681,55 @@ ggsave("output/figure_7a.png", figure_7a, "png", width = 8, height = 8,
 
 figure_7b <-
   lib_change %>%
-  ggplot() +
-  geom_point(mapping = aes(CMA_name.x, housing_need_ch, color=library.x))+
-  #  theme(axis.text.x=element_blank())+
-  theme_minimal()+
-  theme(axis.text.x = element_blank()) +
+  ggplot(aes(reorder(CMA_name.x, housing_need_ch), housing_need_ch)) +
+  geom_line(aes(group = interaction(CMA_name.x, PR_UID)), colour = "grey80") +
+  geom_point(mapping = aes(color=library)) +
+  geom_text_repel(data = filter(lib_change, library == TRUE),
+                  aes(label = CMA_name.x), size = 1.5) +
+  theme_minimal() +
+  theme(axis.title.y = element_blank(), axis.title.x = element_blank(),
+        axis.text.x = element_blank()) +
+  scale_y_continuous(labels = scales::percent) +
   facet_wrap(~region.y)
 
-ggsave("output/figure_7b.png", figure_7b, "png", width = 8, height = 8,
+ggsave("output/figure_7b.png", figure_7b, "png", width = 8, height = 6,
        units = "in", dpi = 240)
 
 
-## FIGURE 5.B. 2006/2016 VISIBLE MINORITIES COMPARISON ACROSS ALL REGIONS
+## FIGURE 8 MEDIAN INCOME CHANGE 2006/2016 ACROSS MAJOR REGIONS
 
-lib_change %>%
-  ggplot()+
-  geom_line(mapping = aes(visible_minorities_ch, CMA_name.x, group = CMA_name.x)) +
-  geom_point(mapping = aes(visible_minorities_ch, CMA_name.x, color = library.x)) +
-  scale_x_continuous(labels = scales::percent) +
-  theme_minimal()
-
-## FIGURE 5.C. 2006/2016 UNEMPLOYMENT (PCT) COMPARISON ACROSS ALL REGIONS
-
-lib_change %>%
-  ggplot()+
-  geom_line(mapping = aes(unemployed_pct_change, CMA_name.x, group = CMA_name.x)) +
-  geom_point(mapping = aes(unemployed_pct_change, CMA_name.x, color = library.x)) +
-  scale_x_continuous(labels = scales::percent) +
-  theme_minimal()
-
-## FIGURE 5.D. 2006/2016 MEDIAN INCOME (PCT) COMPARISON ACROSS ALL REGIONS
-
-lib_change %>%
-  ggplot()+
-  geom_line(mapping = aes(med_income_ch, CMA_name.x, group = CMA_name.x)) +
-  geom_point(mapping = aes(med_income_ch, CMA_name.x, color = library.x)) +
-  scale_x_continuous(labels = scales::dollar) +
-  theme_minimal()
-
-
-
-
-
-
-
-
-
-
-
-
-## FIGURE 7.B. VISIBLE MINORITIES CHANGE 2006/2016 ACROSS MAJOR REGIONS
-
-ggplot(lib_change)+
-  geom_point(mapping = aes(CMA_name.x, visible_minorities_ch, color=library.x))+
-  theme_minimal()+
-  theme(axis.text.x = element_blank()) +
-  facet_wrap(~region.y)
-
-## FIGURE 7.C. UNEMPLOYMENT CHANGE (PCT) 2006/2016 ACROSS MAJOR REGIONS
-
-ggplot(lib_change)+
-  geom_point(mapping = aes(CMA_name.x, unemployed_pct_change, color=library.x))+
-  theme_minimal()+
-  theme(axis.text.x = element_blank()) +
-  facet_wrap(~region.y)
-
-## FIGURE 7.D. MEDIAN INCOME CHANGE 2006/2016 ACROSS MAJOR REGIONS
-
-ggplot(lib_change)+
-  geom_point(mapping = aes(CMA_name.x, med_income_ch, color=library.x))+
+figure_8 <-
+  lib_change %>%
+  ggplot(aes(reorder(CMA_name.x, med_income_ch), med_income_ch)) +
+  geom_line(aes(group = interaction(CMA_name.x, PR_UID)), colour = "grey80") +
+  geom_point(mapping = aes(color=library)) +
+  geom_text_repel(data = filter(lib_change, library == TRUE),
+                  aes(label = CMA_name.x), size = 1.5) +
   theme_minimal() +
-  theme(axis.text.x = element_blank()) +
+  theme(axis.title.y = element_blank(), axis.title.x = element_blank(),
+        axis.text.x = element_blank()) +
+  scale_y_continuous(labels = scales::dollar) +
   facet_wrap(~region.y)
+
+ggsave("output/figure_8.png", figure_8, "png", width = 8, height = 6,
+       units = "in", dpi = 240)
+
+
+## FIGURE 9 VISIBLE MINORITY CHANGE 2006/2016 ACROSS MAJOR REGIONS
+
+figure_9 <-
+  lib_change %>%
+  ggplot(aes(reorder(CMA_name.x, visible_minorities_ch),
+             visible_minorities_ch)) +
+  geom_line(aes(group = interaction(CMA_name.x, PR_UID)), colour = "grey80") +
+  geom_point(mapping = aes(color=library)) +
+  geom_text_repel(data = filter(lib_change, library == TRUE),
+                  aes(label = CMA_name.x), size = 1.5) +
+  theme_minimal() +
+  theme(axis.title.y = element_blank(), axis.title.x = element_blank(),
+        axis.text.x = element_blank()) +
+  scale_y_continuous(labels = scales::percent) +
+  facet_wrap(~region.y)
+
+ggsave("output/figure_9.png", figure_9, "png", width = 8, height = 6,
+       units = "in", dpi = 240)
