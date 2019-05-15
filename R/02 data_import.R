@@ -1,9 +1,14 @@
 ### DATA IMPORT ################################################################
 
+library(tidyverse)
+library(sf)
+library(cancensus)
 source("R/01 helper_functions.R")
 
 
-## Import 2016 CMAs and CTs
+## 1 - Import 2016 CMA, CT, and Canada-wide Census Data for 2016 and 2006
+
+# CMAs - Spatial geometry and base variables only
 
 CMAs_2016 <-
   get_census(
@@ -16,6 +21,10 @@ CMAs_2006 <-
     dataset = 'CA06', regions = list(C = "Canada"), level = 'CMA',
     geo_format = "sf") %>% 
   st_transform(3347)
+
+# CTs - Spatial geometry, base variables, and census variables of interest
+# (Unemployment, population spending 30%+ on housing, lone-parent families, 
+# median after-tax household income, immigrants, and visible minorities)
 
 CTs_2016 <-
   get_census(
@@ -32,6 +41,9 @@ CTs_2006 <-
                 "v_CA06_1785", "v_CA06_478", "v_CA06_1303"),
     geo_format = "sf") %>% 
   st_transform(3347)
+
+# Canada-wide - Spatial geometry, base variables, and census variables 
+# (same as CTs)
 
 Canada_2016 <- 
   get_census(
@@ -50,7 +62,8 @@ Canada_2006 <-
   st_transform(3347)
 
 
-## Filter CMA, CT, and Canada-wide tables
+## 2 - Filter CMA, CT, and Canada-wide tables to pertinent variables and levels of
+# aggregation 
 
 CMAs_2016 <- CMAs_2016 %>% filter(Type == "CMA") %>%
   select(GeoUID, CMA_name = name)
@@ -65,7 +78,7 @@ CTs_2006 <- CTs_2006 %>% filter(Type == "CT") %>%
 Canada_2016 <- Canada_2016 %>% select(GeoUID, Population, contains("v_CA"))
 Canada_2006 <- Canada_2006 %>% select(GeoUID, Population, contains("v_CA"))
 
-## Import libraries
+## 3 - Import libraries dataframe (compiled manually)
 
 libraries <- suppressWarnings(
   read_csv("data/Canadian_libraries.csv") %>% 
@@ -73,16 +86,19 @@ libraries <- suppressWarnings(
     st_transform(3347)
   )
 
-#Libraries in CMAs
+## 4 - Filter to areas of interest
+
+# Filter libraries dataframe to those contained in CMAs
 libraries_2016 <- libraries[lengths(st_within(libraries, CMAs_2016)) > 0,]
 libraries_2006 <- libraries[lengths(st_within(libraries, CMAs_2006)) > 0,]
 
-#CMAs and CTs that contain libraries
+# Filter CMAs dataframe to those that contain libraries
 CMAs_2016 <- CMAs_2016[lengths(st_contains(CMAs_2016, libraries_2016)) > 0,]
 CMAs_2006 <- CMAs_2006[lengths(st_contains(CMAs_2006, libraries_2006)) > 0,]
 
 
-## Add CMA names to the CTs table, rename, and add pct variables
+## 5 - Add CMA names to the CTs table, rename variable columns, 
+# and add percent variables
 
 CTs_2016 <- CTs_2016 %>% 
   inner_join(st_drop_geometry(CMAs_2016), by = c("CMA_UID" = "GeoUID")) %>% 
@@ -143,7 +159,7 @@ Canada_2006 <- Canada_2006 %>%
     unemployed_pct = unemployed_pct / 100)
 
 
-## Remove Montreal accent
+## 6 - Remove Montreal accent and rename long CMAs for data processing ease
 
 CMAs_2006 <- CMAs_2006 %>%
   mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal", CMA_name),
@@ -165,7 +181,7 @@ CTs_2006 <- CTs_2006 %>%
 CTs_2016 <- CTs_2016 %>%
   mutate(CMA_name = ifelse(str_detect(CMA_name, "Mont"), "Montreal (B)", CMA_name))
 
-## Produce library service areas
+## 7 - Produce library service areas (buffers) 
 
 service_areas_2016 <- make_library_service_areas(libraries_2016, CMAs_2016)
 service_areas_2006 <- make_library_service_areas(libraries_2006, CMAs_2006)

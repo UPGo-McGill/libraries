@@ -5,40 +5,10 @@ source("R/02 data_import.R")
 source("R/03 service_area_comparison.R")
 
 
-# Making summary graphs of each year using weighted means
+## Lollipop graphs of demographic variables in 2006 and 2016
+# Compared to Canadian average 
 
-tidy_summary %>% 
-  filter(census_variable == "housing_need") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "lone_parent") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "immigrants") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "visible_minorities") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "unemployed_pct") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "med_income") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-
-# Graphing housing need
+# 1. Graphing housing need 
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = housing_need, colour = library,
@@ -65,7 +35,7 @@ ggplot()+
                            c("Outside Library Service Area", 
                              "Within Library Service Area"))
 
-# Graphing lone parent
+# 2. Graphing lone parent
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = lone_parent, colour = library,
@@ -92,8 +62,7 @@ ggplot()+
                            c("Outside Library Service Area", 
                              "Within Library Service Area"))
 
-
-# Graphing immigrants
+# 3. Graphing immigration
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = immigrants, colour = library,
@@ -122,7 +91,7 @@ ggplot()+
   scale_y_continuous (labels = scales:: percent)
 
 
-# Graphing visible minorities
+# 4. Graphing visible minorities
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = visible_minorities, colour = library,
@@ -150,7 +119,7 @@ ggplot()+
                              "Within Library Service Area"))
 
 
-# Graphing unemployment
+# 5. Graphing unemployment
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = unemployed_pct, colour = library,
@@ -178,7 +147,7 @@ ggplot()+
                              "Within Library Service Area"))
 
 
-# Graphing median income
+# 6. Graphing median income
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = med_income, colour = library,
@@ -206,7 +175,8 @@ ggplot()+
                              "Within Library Service Area")) +
   scale_y_continuous(limits = c(NA,100000), labels = scales::dollar)
 
-# FACET WRAP
+## Facet Wrap of previous graphs: Demographic variables in 2006 and 2016
+# (removes lone parent variable)
 
 library_service_comparison_tidy <-
   gather(library_service_comparison, housing_need, visible_minorities,

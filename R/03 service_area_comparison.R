@@ -61,7 +61,7 @@ summary_2006_unweighted <-
   summarize_all(mean)
 
 
-## Summaries by weighted mean
+## Summaries by weighted mean (population)
 
 summary_2016_weighted <- 
   library_service_comparison_2016 %>% 
@@ -82,7 +82,7 @@ summary_2006_weighted <-
                    sum(population, na.rm = TRUE)})
   
 
-## Tidying data
+## Tidying summary data
 
 tidy_summary_2006 <- gather(summary_2006_weighted, housing_need, lone_parent, 
                             immigrants, visible_minorities, unemployed_pct, 
@@ -132,7 +132,7 @@ lib_true_2016 <- library_service_comparison_2016 %>%
 lib_true_2016 <- lib_true_2016 %>%
   mutate (CMA_lib2 = paste(as.character(CMA_name), as.character(CMA_lib), sep='_'))
 
-## Join 2006 and 2016 by CMA_NAME and LiBRARY SERVICE AREA (true/false)
+## Join 2006 and 2016 by CMA_NAME and Library service area (true/false)
 lib_change <- lib_true_2016 %>% 
   inner_join(st_drop_geometry(lib_true_2006), by = c("CMA_lib2", "library", "PR_UID"))
 
