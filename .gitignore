@@ -7,5 +7,7 @@ cancensus_setup.R
 .DS_Store
 data/.DS_Store
 *david_api.R
-cancensus_amy_ignore.R
+*cancensus_amy_ignore.R
 data/CM_*
+data/lhy*
+*compiling_data.R
