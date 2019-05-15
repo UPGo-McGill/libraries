@@ -10,3 +10,4 @@ data/.DS_Store
 cancensus_amy_ignore.R
 data/CM_*
 data/lhy*
+compiling_data.R
