@@ -98,7 +98,7 @@ Markham <- read_csv("Data/Markham_libraries.csv")
 # Other - Richmond Hill, Thunder Bay, Regina, Wood Buffalo, Vaughan, Red Deer, Milton, Burnaby, Coquitlam, 
 #   Barrie, Calgary, Edmonton, Gatineau,
 #   Guelph, Hamilton, Kingston, Laval, Mississauga, Okanagan, Richmond, Surrey, Vancouver Island, Vancouver
-Other <- read_csv("Data/Compile Libraries DG (1).csv")
+Other <- read_csv("Data/Libraries_Coordinates.csv")
 Other <- select(Other, -c(City ))
 names(Other) <- c("Library_System", "Library_Branch", "Latitude", "Longitude")
 
