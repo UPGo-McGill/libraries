@@ -5,39 +5,6 @@ source("R/02 data_import.R")
 source("R/03 service_area_comparison.R")
 
 
-# Simplified summary graphs of demographic variables in 2006 - 2016 
-# for library service area and non-service area
-
-tidy_summary %>% 
-  filter(census_variable == "housing_need") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "lone_parent") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "immigrants") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "visible_minorities") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "unemployed_pct") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
-tidy_summary %>% 
-  filter(census_variable == "med_income") %>% 
-  ggplot()+
-  geom_line(aes(x = date, y = value, colour = library, group = library))
-
 ## Lollipop graphs of demographic variables in 2006 and 2016
 # Compared to Canadian average 
 
