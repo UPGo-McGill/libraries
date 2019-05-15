@@ -206,7 +206,7 @@ ggplot()+
                              "Within Library Service Area")) +
   scale_y_continuous(limits = c(NA,100000), labels = scales::dollar)
 
-# FACET WRAP
+# FACET WRAP: 2006-2016 by variable
 
 library_service_comparison_tidy <-
   gather(library_service_comparison, housing_need, visible_minorities,
