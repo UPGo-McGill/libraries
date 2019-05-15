@@ -4,10 +4,6 @@ source("R/01 helper_functions.R")
 source("R/02 data_import.R")
 source("R/03 service_area_comparison.R")
 
-## need to multiple percentages by 100##
-## fix legends ##
-
-
 
 # Making summary graphs of each year using weighted means
 
