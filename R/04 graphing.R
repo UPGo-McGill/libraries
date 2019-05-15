@@ -42,7 +42,7 @@ tidy_summary %>%
   geom_line(aes(x = date, y = value, colour = library, group = library))
 
 
-# Mapping housing need
+# Graphing housing need
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = housing_need, colour = library,
@@ -69,7 +69,7 @@ ggplot()+
                            c("Outside Library Service Area", 
                              "Within Library Service Area"))
 
-# Mapping lone parent
+# Graphing lone parent
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = lone_parent, colour = library,
@@ -97,7 +97,7 @@ ggplot()+
                              "Within Library Service Area"))
 
 
-# Mapping immigrants
+# Graphing immigrants
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = immigrants, colour = library,
@@ -126,7 +126,7 @@ ggplot()+
   scale_y_continuous (labels = scales:: percent)
 
 
-# Mapping visible minorities
+# Graphing visible minorities
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = visible_minorities, colour = library,
@@ -154,7 +154,7 @@ ggplot()+
                              "Within Library Service Area"))
 
 
-# Mapping unemployment
+# Graphing unemployment
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = unemployed_pct, colour = library,
@@ -182,7 +182,7 @@ ggplot()+
                              "Within Library Service Area"))
 
 
-# Mapping median income
+# Graphing median income
 ggplot()+
   geom_line(data = library_service_comparison,
             aes(x = date, y = med_income, colour = library,
@@ -234,49 +234,4 @@ ggplot()+
              aes(x = date, y = value, colour = library, group = library),
              size = 2) +
    facet_wrap(~census_variable, scales = "free")
-
-
-## Create variable to study change 2006-2016
-
-lib_true_2006 <- library_service_comparison_2006 %>%
-  ungroup()%>%
-  mutate (CMA_lib = if_else(library==TRUE, "T", "F"))
-lib_true_2006 <- lib_true_2006 %>%
-  mutate (CMA_lib2 = paste(as.character(CMA_name), as.character(CMA_lib), sep='_'))
-
-lib_true_2016 <- library_service_comparison_2016 %>%
-  ungroup()%>%
-  mutate (CMA_lib = if_else(library==TRUE, "T", "F"))
-lib_true_2016 <- lib_true_2016 %>%
-  mutate (CMA_lib2 = paste(as.character(CMA_name), as.character(CMA_lib), sep='_'))
-
-## Join 2006 and 2016 by CMA_NAME and LiBRARY SERVICE AREA (true/false)
-lib_change <- lib_true_2016 %>% 
-  inner_join(st_drop_geometry(lib_true_2006), by = c("CMA_lib2", "library", "PR_UID"))
-
-rm(lib_true_2006, lib_true_2016)
-
-## Calculate change in variables
-lib_change <- lib_change %>%
-  mutate(housing_need_ch = housing_need.x - housing_need.y)
-
-lib_change <- lib_change %>%
-  mutate(immigrants_ch = immigrants.x - immigrants.y)
-
-lib_change <- lib_change %>%
-  mutate(med_income_ch = med_income.x - med_income.y)
-
-lib_change <- lib_change %>%
-  mutate(visible_minorities_ch = visible_minorities.x - visible_minorities.y)
-
-lib_change <- lib_change %>%
-  mutate(unemployed_pct_change = unemployed_pct.x - unemployed_pct.y)
-
-lib_change <- lib_change %>% 
-  st_drop_geometry() %>% 
-  distinct(population.x, housing_need.x, .keep_all = TRUE)
-
-lib_change <- lib_change %>% 
-  filter(region.x == region.y)
-
 

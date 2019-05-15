@@ -116,3 +116,49 @@ Canada_summary <- rbind(
 names(Canada_summary) <-
   c("population", "unemployed_pct", "med_income", "housing_need", "lone_parent", "immigrants",
     "visible_minorities", "date", "geometry")
+
+# COMPARE 2006 - 2016 
+## Create variable to study change 2006-2016
+
+lib_true_2006 <- library_service_comparison_2006 %>%
+  ungroup()%>%
+  mutate (CMA_lib = if_else(library==TRUE, "T", "F"))
+lib_true_2006 <- lib_true_2006 %>%
+  mutate (CMA_lib2 = paste(as.character(CMA_name), as.character(CMA_lib), sep='_'))
+
+lib_true_2016 <- library_service_comparison_2016 %>%
+  ungroup()%>%
+  mutate (CMA_lib = if_else(library==TRUE, "T", "F"))
+lib_true_2016 <- lib_true_2016 %>%
+  mutate (CMA_lib2 = paste(as.character(CMA_name), as.character(CMA_lib), sep='_'))
+
+## Join 2006 and 2016 by CMA_NAME and LiBRARY SERVICE AREA (true/false)
+lib_change <- lib_true_2016 %>% 
+  inner_join(st_drop_geometry(lib_true_2006), by = c("CMA_lib2", "library", "PR_UID"))
+
+rm(lib_true_2006, lib_true_2016)
+
+## Calculate change in variables
+lib_change <- lib_change %>%
+  mutate(housing_need_ch = housing_need.x - housing_need.y)
+
+lib_change <- lib_change %>%
+  mutate(immigrants_ch = immigrants.x - immigrants.y)
+
+lib_change <- lib_change %>%
+  mutate(med_income_ch = med_income.x - med_income.y)
+
+lib_change <- lib_change %>%
+  mutate(visible_minorities_ch = visible_minorities.x - visible_minorities.y)
+
+lib_change <- lib_change %>%
+  mutate(unemployed_pct_change = unemployed_pct.x - unemployed_pct.y)
+
+lib_change <- lib_change %>% 
+  st_drop_geometry() %>% 
+  distinct(population.x, housing_need.x, .keep_all = TRUE)
+
+lib_change <- lib_change %>% 
+  filter(region.x == region.y)
+
+
