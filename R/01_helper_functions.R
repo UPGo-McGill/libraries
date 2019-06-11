@@ -16,6 +16,8 @@ library(tinytex)
 ## st_erase helper function
 
 st_erase <- function(x, y) st_difference(x, st_union(st_combine(y)))
+options(cancensus.api_key = "CensusMapper_4be2cf3bf91d0cabf967f4934dbdc63b")
+options(cancensus.cache_path = "~/UPGo/libraries")
 
 
 ## st_intersect_summarize helper function
