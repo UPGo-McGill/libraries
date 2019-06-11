@@ -16,29 +16,19 @@ As libraries take on a greater role as community centres and fill social-service
 This preliminary study was requested by the Municipal Council of Urban Libraries. We conducted a spatial analysis, mapping over 500 urban libraries and a series of demographic variables to determine how demographics differed within library service areas and the wider city context.
 Overall, findings demonstrate systematically higher levels of social need within library walk-sheds, with higher core housing need, lower income, higher unemployment, and more visible minorities and immigrants when compared with surrounding areas.
 
-```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 1: Active Airbnb listings by listing type and revenue", fig.align = 'center', message = FALSE}
-figure1
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 1: Distribution of housing need in Motnreal", fig.align = 'center', message = FALSE}
+figure_3
+```
+*Core housing need is 57% higher within library walksheds in Montreal than in the rest of the CMA.*
+
+Comparing the census data from 2006 and 2016, we found that these patterns of greater social need in library walksheds are not new; social disparities between library service areas and the rest of the regions are relatively large and mostly growing. 
+
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 2: Housing income and library walksheds", fig.align = 'center', message = FALSE}
+figure_5b
 ```
 
-'
+
+Changing patterns of urban development have shifted, and will continue to shift, libraries’ local contexts and roles. With growing social need in library walk-sheds, libraries are becoming increasingly important spaces for community services, moving away from the traditional mission of public libraries. However, evidence suggests that while municipal officials are supportive of libraries, they do not fully understand the range of services that they may provide; stagnating or declining high-level funding is a major threat. 
 
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
