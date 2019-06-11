@@ -11,10 +11,10 @@ figure_3 <-
               legend.format=list(fun=function(x) {
                 paste0(formatC(x * 100, digits = 0, format="f"), " %")
               })) +
-  #  tm_shape(water) +
-  #    tm_fill(col = "grey85") +
-  #  tm_shape(coastal_water) +
-  #    tm_fill(col = "grey85") +
+  tm_shape(water) +
+  tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+  tm_fill(col = "grey85") +
   tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & 
                     library == TRUE)) +
   tm_borders(col = 'black') + 
@@ -24,42 +24,134 @@ figure_3 <-
 
 tmap_save(figure_3, "output/figure_3.png", width = 2400, height = 2400)
 
-figure_3a <- 
-  tm_shape(st_buffer(
-    filter(libraries_2016, Library_System == 
-             "Bibliotheque et Archives Nationales du Quebec"), 1000),
-    ext = 12) +
-  tm_dots(col = 'black')+
-  tm_shape(filter(CMAs_2016, CMA_name == "Montreal (B)")) +
-  tm_borders(col="black", alpha = 0.3) +
-  tm_shape(filter(libraries, str_detect(Library_System, "Montreal"))) +
-  tm_dots(col = 'black') +
-  tm_layout(legend.position = c("left", "top"),
-            frame = FALSE) +
-  tm_compass()
 
-tmap_save(figure_3a, "output/figure_3a.png", width = 2400, height = 2400)
-
-
-figure_3b <- 
-  tm_shape(st_buffer(
-    filter(libraries_2016, Library_System == 
-             "Bibliotheque et Archives Nationales du Quebec"), 1000),
-    ext = 12) +
-  tm_dots(col = 'black')+
-  tm_shape(filter(CMAs_2016, CMA_name == "Montreal (B)")) +
-  tm_borders(col="black", alpha = 0.3) +
-  tm_shape(filter(libraries, str_detect(Library_System, "Montreal"))) +
-  tm_dots(col = 'black')+
-  tm_shape(filter(service_areas_2016, CMA_name == "Montreal (B)" & 
-                    library == TRUE)) +
+## Other Cities
+fig_calgary <- 
+  tm_shape(
+    filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Calgary (B)")) +
+  tm_polygons(c("unemployed_pct", "med_income", "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_shape(water) +
+  tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+  tm_fill(col = "grey85") +
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(
+    service_areas_2016, CMA_name == city_name & library == TRUE)) +
   tm_borders(col = 'black') + 
-  tm_layout(legend.position = c("left", "top"),
-            frame = FALSE) +
-  tm_compass()
-tmap_save(figure_3b, "output/figure_3b.png", width = 2400, height = 2400)
+  tm_layout(legend.position = c("left", "top"), frame = FALSE)
+
+tmap_save(fig_calgary, "output/Calgary_city.png", width = 2400,
+          height = 2400)
+
+fig_calgary2 <- 
+  tm_shape(filter(CMAs_2016, CMA_name == "Calgary (B)")) +
+  tm_dots(col = 'black')+
+  tm_shape(
+    filter(service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Calgary (B)")) +
+  tm_polygons(c("unemployed_pct", "med_income", "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  # tm_shape(water) +
+  #  tm_fill(col = "grey85") +
+  #  tm_shape(coastal_water) +
+  #  tm_fill(col = "grey85") +
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(
+    service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"), frame = FALSE)
+
+tmap_save(fig_calgary2, "output/Calgary_CMA.png", width = 2400, height = 2400)
+
+## Vancouver
+fig_vancouver <- 
+  tm_shape(
+    filter(service_areas_2016, CMA_name == "Vancouver (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Vancouver (B)")) +
+  tm_polygons(c("unemployed_pct", "med_income", "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_shape(water) +
+  tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+  tm_fill(col = "grey85") +
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(
+    service_areas_2016, CMA_name == "Vancouver (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"), frame = FALSE)
+
+tmap_save(fig_vancouver, "output/Vancouver_city.png", width = 2400,
+          height = 2400)
+
+fig_vancouver2 <- 
+  tm_shape(filter(CMAs_2016, CMA_name == "Vancouver (B)")) +
+  tm_dots(col = 'black')+
+  tm_shape(
+    filter(service_areas_2016, CMA_name == "Vancouver (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Vancouver (B)")) +
+  tm_polygons(c("unemployed_pct", "med_income", "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_shape(water) +
+  tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+  tm_fill(col = "grey85") +
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(
+    service_areas_2016, CMA_name == "Vancouver (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"), frame = FALSE)
+
+tmap_save(fig_vancouver2, "output/Vancouver_CMA.png", width = 2400, height = 2400)
 
 
+## Toronto
+
+fig_toronto <- 
+  tm_shape(
+    filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
+  tm_polygons(c("unemployed_pct", "med_income", "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_shape(water) +
+  tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+  tm_fill(col = "grey85") +
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(
+    service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"), frame = FALSE)
+
+tmap_save(fig_toronto, "output/Toronto_city.png", width = 2400,
+          height = 2400)
+
+fig_toronto2 <- 
+  tm_shape(filter(CMAs_2016, CMA_name == "Toronto (B)")) +
+  tm_dots(col = 'black')+
+  tm_shape(
+    filter(service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black') +
+  tm_shape(filter(CTs_2016, CMA_name == "Toronto (B)")) +
+  tm_polygons(c("unemployed_pct", "med_income", "housing_need_pct",
+                "visible_minorities_pct"), border.alpha = 0)  + 
+  tm_shape(water) +
+  tm_fill(col = "grey85") +
+  tm_shape(coastal_water) +
+  tm_fill(col = "grey85") +
+  tm_facets(sync = TRUE, ncol = 2) +
+  tm_shape(filter(
+    service_areas_2016, CMA_name == "Toronto (B)" & library == TRUE)) +
+  tm_borders(col = 'black') + 
+  tm_layout(legend.position = c("left", "top"), frame = FALSE)
+
+tmap_save(fig_toronto2, "output/Toronto_CMA.png", width = 2400, height = 2400)
 
 ## FIGURE 5b LOLLIPOP GRAPH OF 2016 MEDIAN INCOME
 
@@ -106,4 +198,19 @@ figure_6 <-
 
 ggsave("output/figure_6.png", figure_6, "png", width = 8, height = 8,
        units = "in", dpi = 240)
+
+
+figure_7a <-
+  lib_change %>%
+  ggplot(aes(housing_need_ch, reorder(CMA_name.x, housing_need_ch))) +
+  geom_line(aes(group = interaction(CMA_name.x, PR_UID)), colour = "grey80") +
+  geom_point(aes(color = library)) +
+  scale_x_continuous(labels = scales::percent) +
+  theme_minimal() +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.title.x = element_blank())
+
+ggsave("output/figure_7a.png", figure_7a, "png", width = 8, height = 6,
+       units = "in", dpi = 240)
+
 

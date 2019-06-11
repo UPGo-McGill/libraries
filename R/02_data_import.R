@@ -185,3 +185,9 @@ CTs_2016 <- CTs_2016 %>%
 
 service_areas_2016 <- make_library_service_areas(libraries_2016, CMAs_2016)
 service_areas_2006 <- make_library_service_areas(libraries_2006, CMAs_2006)
+
+## add water
+water <- read_sf("data", "lhy_000c16a_e")
+water <- st_union(st_combine(water))
+coastal_water <- read_sf("data", "lhy_000h16a_e")
+coastal_water <- st_union(st_combine(coastal_water))
