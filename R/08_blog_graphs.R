@@ -79,8 +79,31 @@ ggsave("output/figure_5b.png", figure_5b, "png", width = 8, height = 6,
 
 
 
+## Facet Wrap of previous graphs: Demographic variables in 2006 and 2016
+# (removes lone parent variable)
 
+library_service_comparison_tidy <-
+  gather(library_service_comparison, housing_need, visible_minorities,
+         unemployed_pct, med_income, key = "census_variable",
+         value = "value") %>% 
+  drop_units()
 
+figure_6 <- 
+  tidy_summary %>% 
+  filter(census_variable != "immigrants" & census_variable != "lone_parent") %>%
+  ggplot()+
+  geom_line(data = filter(library_service_comparison_tidy, value < 100000),
+            aes(x = date, y = value, colour = library,
+                group = interaction(library, CMA_name)), 
+            alpha = 0.2) +
+  geom_point(data = filter(library_service_comparison_tidy, value < 100000),
+             aes(x = date, y = value, colour = library), 
+             alpha = 0.2) +
+  geom_point(aes(x = date, y = value, colour = library), size = 5) + 
+  geom_line(aes(x = date, y = value, colour = library, group = library),
+            size = 2) + 
+  facet_wrap(~ census_variable, scales = "free")
 
-
+ggsave("output/figure_6.png", figure_6, "png", width = 8, height = 8,
+       units = "in", dpi = 240)
 
