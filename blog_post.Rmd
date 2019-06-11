@@ -24,6 +24,12 @@ For example, in Montreal the core housing need is 57% higher within library walk
 figure_3
 ```
 
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Calgary", fig.align = 'center', message = FALSE}
+fig_calgary
+fig_calgary2
+```
+
+
 Comparing the census data from 2006 and 2016, we found that these patterns of greater social need in library walksheds are not new; social disparities between library service areas and the rest of the regions are relatively large and mostly growing. 
 
 ```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Change in demographic variables from 2006 to 2016", fig.align = 'center', message = FALSE}

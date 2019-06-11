@@ -33,13 +33,13 @@ fig_calgary <-
   tm_shape(filter(CTs_2016, CMA_name == "Calgary (B)")) +
   tm_polygons(c("unemployed_pct", "med_income", "housing_need_pct",
                 "visible_minorities_pct"), border.alpha = 0)  + 
-  tm_shape(water) +
-  tm_fill(col = "grey85") +
-  tm_shape(coastal_water) +
-  tm_fill(col = "grey85") +
+#  tm_shape(water) +
+#  tm_fill(col = "grey85") +
+#  tm_shape(coastal_water) +
+#  tm_fill(col = "grey85") +
   tm_facets(sync = TRUE, ncol = 2) +
   tm_shape(filter(
-    service_areas_2016, CMA_name == city_name & library == TRUE)) +
+    service_areas_2016, CMA_name == "Calgary (B)" & library == TRUE)) +
   tm_borders(col = 'black') + 
   tm_layout(legend.position = c("left", "top"), frame = FALSE)
 
