@@ -3,9 +3,17 @@ title: "Libraries as Urban Infrastructure"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r, include = FALSE}
+source("R/01_helper_functions.R")
+# input variables (cityname, citycode, End_date, Start_date) into data import before knitting the script
+options(cancensus.api_key = "CensusMapper_4be2cf3bf91d0cabf967f4934dbdc63b")
+source("R/02_data_import.R")
+source("R/03_service_area_comparison.R")
+source("R/04_graphing.R")
 ```
+
+
+
 
 ## R Markdown
 

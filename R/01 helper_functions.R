@@ -8,6 +8,9 @@ library(tidyverse)
 library(tmap)
 library(units)
 library(ggrepel)
+library(shinyjs)
+library(rmarkdown)
+library(tinytex)
 
 
 ## st_erase helper function
