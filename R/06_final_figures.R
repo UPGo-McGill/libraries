@@ -1,6 +1,6 @@
 ### FINAL FIGURES #############################################################
 
-source("R/01 helper_functions.R")
+source("R/01_helper_functions.R")
 
 
 ## FIGURE 1. MAP OF BANQ AREA (WITH NO BUFFERS AT ALL)

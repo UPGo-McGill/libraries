@@ -1,9 +1,9 @@
 ### DATA IMPORT ################################################################
 
-library(tidyverse)
-library(sf)
-library(cancensus)
-source("R/01 helper_functions.R")
+#library(tidyverse)
+#library(sf)
+#library(cancensus)
+source("R/01_helper_functions.R")
 
 
 ## 1 - Import 2016 CMA, CT, and Canada-wide Census Data for 2016 and 2006
