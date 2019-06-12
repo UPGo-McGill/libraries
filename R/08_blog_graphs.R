@@ -3,14 +3,13 @@
 figure1 <- 
   library_service_comparison %>%
   filter(date == "2016") %>%
-  ggplot(aes(med_income, reorder(CMA_name, med_income))) +
+  ggplot(aes(housing_need, reorder(CMA_name, housing_need))) +
   geom_line(aes(group = interaction(CMA_name, PR_UID)), colour = "grey80") +
   geom_point(aes(color = library)) +
-  scale_x_continuous(labels = scales::dollar) +
+  scale_x_continuous(labels = scales::percent) +
   theme_minimal() +
   theme(axis.title.y = element_blank()) +
   theme(axis.title.x = element_blank())
-
 
 ## FIG 2. MAP OF MONTREAL WITH ALL LIBRARY BUFFERS (2016)
 figure2 <- 
