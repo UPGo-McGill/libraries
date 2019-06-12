@@ -24,9 +24,20 @@ For example, in Montreal the core housing need is 57% higher within library walk
 figure_3
 ```
 
-```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Calgary", fig.align = 'center', message = FALSE}
-fig_calgary
-fig_calgary2
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Montreal, 2016",  fig.align='center', message = FALSE}
+tmap_arrange(fig_montreal, fig_montreal2) 
+```
+
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Toronto, 2016",  fig.align='center', message = FALSE}
+tmap_arrange(fig_toronto, fig_toronto2) 
+```
+
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Vancouver 2016",  fig.align='center', message = FALSE}
+tmap_arrange(fig_vancouver, fig_vancouver2) 
+```
+
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Calgary, 2016",  fig.align='center', message = FALSE}
+tmap_arrange(fig_calgary, fig_calgary2)
 ```
 
 
@@ -37,7 +48,7 @@ figure_6
 ```
 
 ```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 4: Variation in housing need change from 2006 to 2016", fig.align = 'center', message = FALSE}
-figure_7c
+figure_7a
 ```
 
 
