@@ -16,40 +16,40 @@ This preliminary study was requested by the Canadian Urban Libraries Council. We
 Overall, findings demonstrate systematically higher levels of social need within library walk-sheds, with higher core housing need, lower income, higher unemployment, and more visible minorities and immigrants when compared with surrounding areas.
 
 ```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 1: Household income in library walksheds", fig.align = 'center', message = FALSE}
-figure_5b
+figure1
 ```
 For example, in Montreal the core housing need is 57% higher within library walksheds than in the rest of the CMA.
 
 ```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 2: Distribution of housing need in Montreal", fig.align = 'center', message = FALSE}
-figure_3
+figure2
 ```
-
-```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Montreal, 2016",  fig.align='center', message = FALSE}
-tmap_arrange(fig_montreal, fig_montreal2) 
-```
-
-```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Toronto, 2016",  fig.align='center', message = FALSE}
-tmap_arrange(fig_toronto, fig_toronto2) 
-```
-
-```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Vancouver 2016",  fig.align='center', message = FALSE}
-tmap_arrange(fig_vancouver, fig_vancouver2) 
-```
-
-```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Demographic variables in Calgary, 2016",  fig.align='center', message = FALSE}
-tmap_arrange(fig_calgary, fig_calgary2)
-```
-
 
 Comparing the census data from 2006 and 2016, we found that these patterns of greater social need in library walksheds are not new; social disparities between library service areas and the rest of the regions are relatively large and mostly growing. 
 
 ```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 3: Change in demographic variables from 2006 to 2016", fig.align = 'center', message = FALSE}
-figure_6
+figure3
 ```
 
 ```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 4: Variation in housing need change from 2006 to 2016", fig.align = 'center', message = FALSE}
-figure_7a
+figure4
 ```
 
 
 Changing patterns of urban development have shifted, and will continue to shift, libraries’ local contexts and roles. With growing social need in library walk-sheds, libraries are becoming increasingly important spaces for community services, moving away from the traditional mission of public libraries. However, evidence suggests that while municipal officials are supportive of libraries, they do not fully understand the range of services that they may provide; stagnating or declining high-level funding is a major threat. 
+
+
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 5: Demographic variables in Montreal, 2016",  fig.align='center', message = FALSE}
+tmap_arrange(fig_montreal, fig_montreal2) 
+```
+
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 6: Demographic variables in Toronto, 2016",  fig.align='center', message = FALSE}
+tmap_arrange(fig_toronto, fig_toronto2) 
+```
+
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 7: Demographic variables in Vancouver 2016",  fig.align='center', message = FALSE}
+tmap_arrange(fig_vancouver, fig_vancouver2) 
+```
+
+```{r, echo = FALSE, fig.cap="\\label{figure1} Figure 8: Demographic variables in Calgary, 2016",  fig.align='center', message = FALSE}
+tmap_arrange(fig_calgary, fig_calgary2)
+```
